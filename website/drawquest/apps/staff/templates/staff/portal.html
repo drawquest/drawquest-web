@@ -1,0 +1,54 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+li {
+    list-style-type:none;
+    display:block;
+    margin:8px;
+}
+#user_management_form {
+    display:inline;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>Staff Portal</h1>
+<ul>
+    <li><a href="/admin/staff/moderation">Drawing moderation</a></li>
+    <li><a href="/admin/staff/moderation/ugq">UGQ moderation</a></li>
+    <li><a href="/admin/post_thread">Create a quest</a></li>
+    <li><a href="/admin/quests/schedule">Schedule a quest</a></li>
+    <li><a href="/admin/staff/explore">Explore</a></li>
+    <li><a href="/admin/staff/top_quests">Top quests</a></li>
+    {#<li><a href="/admin/staff/top_starred">Top-starred drawings</a></li>#}
+    <li><a href="/admin/staff/vanity_metrics">Vanity metrics</a></li>
+    <li>User management: <form id="user_management_form"><input id="user_management_username"><input type="submit" id="user_management_submit" value="Go"></form></li>
+    <li><a href="/admin/api_console#staff">Advanced user management</a></li>
+    <li><a href="/admin/staff/deep_links">Deep link examples</a></li>
+</ul>
+
+<h2>Color Management</h2>
+<ul>
+    <li><a href="/admin/staff/colors/packs">Color Packs</a></li>
+    <li><a href="/admin/staff/colors">Colors</a></li>
+</ul>
+{% endblock %}
+
+{% block extra_javascript %}
+<script>
+$(function () {
+
+    $('#user_management_form').submit(function (evt) {
+        evt.preventDefault();
+        window.location = '/admin/staff/user/' + encodeURIComponent($('#user_management_username').val());
+    });
+
+});
+</script>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

@@ -1,0 +1,192 @@
+{% extends "staff/base.html" %}
+
+{% block extra_css %}
+<style>
+#formset .ordinal {
+    display:none;
+}
+#formset {
+    list-style-type:none;
+}
+#formset table {
+    margin-top:0;
+}
+#form .form_actions input {
+    width:130px;
+    display:block;
+    margin:2em 0;
+}
+.colors ul {
+    list-style-type:none;
+}
+.colors li {
+    float:left;
+    margin-right:.5em;
+}
+.colors li .color_option_swatch {
+    top:1px;
+    position:relative;
+}
+.colors li input {
+    margin-right:0;
+}
+.colors input[type=checkbox] {
+    display:none;
+}
+.colors .color_option_swatch {
+    border-width:8px;
+}
+input:checked+.color_option_swatch {
+    border-color:rgba(0, 200, 0, 1);
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<h2>{% block body_title %}{% endblock %}</h2>
+
+<p><input type="button" value="Alert Users of New Colors or Packs" id="new_color_alert"></p>
+<p><input type="button" value="Set header labels" id="set_headers"></p>
+
+<form method="POST" id="form">
+    {% csrf_token %}
+
+    <div class="form_actions">
+        <input type="submit" value="Save">
+
+        {% block extra_form_actions %}{% endblock %}
+    </div>
+
+    {{ formset.management_form|safe }}
+
+    <ul id="formset">
+        {% for form in formset %}
+            <li>
+                {% for field in form.hidden_fields() %}
+                    {{ field|safe }}
+                {% endfor %}
+
+                <table class="sub_form {{ "empty hidden" if (not form.instance.pk and not form.errors) }}">
+                    {% for error in form.non_field_errors() %}
+                        <tr><td>{{ error|safe }}</td></tr>
+                    {% endfor %}
+
+                    {% block extra_form_rows %}{% endblock %}
+
+                    {% for field in form.visible_fields() %}
+                        <tr class="{{ field.name }}">
+                            <th>
+                                {{ field.label_tag()|safe }}
+                                {% for error in field.errors %}
+                                    <div class="form_field_error">{{ error|safe }}</div>
+                                {% endfor %}
+                            </th>
+                            <td>{{ field|safe }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </li>
+        {% endfor %}
+    </ul>
+</form>
+
+{% endblock %}
+
+{% block extra_javascript %}
+<script>
+$(function () {
+
+    $('#add_form').click(function (evt) {
+        evt.preventDefault();
+
+        $('.sub_form.empty.hidden:first').removeClass('hidden').prependTo('#formset');
+
+        refresh_ordinals();
+
+        if ($('.sub_form.empty.hidden').length === 0) {
+            $(this).attr('disabled', 'true');
+        }
+    });
+
+    var sorted = $('.sub_form:not(.empty)').sort(function (a, b) {
+        a = parseInt($(a).find('.ordinal input').attr('value'), 10);
+        b = parseInt($(b).find('.ordinal input').attr('value'), 10);
+
+        if(a==230 || b==230) {
+            console.log(a);
+            console.log(b);
+            console.log(a>b);
+        }
+
+        if (a > b) {
+            return 1;
+        } else if (a < b) {
+            return -1;
+        } else {
+            return 0;
+        }
+    });
+    sorted.prependTo($('#formset'));
+    $('.sub_form.empty').prependTo($('#formset'));
+
+    var refresh_ordinals = function () {
+        $('.sub_form:not(.hidden) .ordinal input').each(function (idx) {
+            $(this).attr('value', idx);
+        });
+    };
+
+    refresh_ordinals();
+
+    $('#formset').sortable({
+        update: function () { refresh_ordinals(); },
+    });
+
+    $( document ).tooltip({
+        position: {
+            my: "center bottom-10",
+            at: "center top",
+            using: function( position, feedback ) {
+                $( this ).css( position );
+                $( "<div>" )
+                .appendTo( this );
+            },
+        },
+    });
+
+    $('#new_color_alert').click(function (evt) {
+        evt.preventDefault();
+
+        if (!confirm("Are you sure? This will send a push notification to all users. DO NOT trigger this multiple times in a row.")) {
+            return;
+        }
+
+        var message = window.prompt("Enter a message to send for the push notification:", "");
+
+        dq.api('palettes/new_color_alert', {message: message}).done(function () {
+            window.alert('Done!');
+        });
+    });
+
+    $('#set_headers').click(function (evt) {
+        evt.preventDefault();
+
+        var color_packs_header = window.prompt("Enter a message for the bonus packs header:", "{{ color_packs_header if colors_header else "" }}");
+        if (color_packs_header === null) {
+            return;
+        }
+
+        var colors_header = window.prompt("Enter a message for the colors header:", "{{ colors_header if color_packs_header else "" }}");
+
+        if (colors_header === null) {
+            return;
+        }
+
+        dq.api('palettes/set_headers', {color_packs_header: color_packs_header, colors_header: colors_header}).done(function () {
+            window.alert('Done!');
+        });
+    });
+
+});
+</script>
+{% endblock %}
+

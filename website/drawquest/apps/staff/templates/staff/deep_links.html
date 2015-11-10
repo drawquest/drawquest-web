@@ -1,0 +1,26 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>Deep link examples</h1>
+
+<ul>
+    <li><a href="drawquest://">drawquest://</a></li>
+    <li><a href="drawquest://about">drawquest://about</a></li>
+    <li><a href="drawquest://settings">drawquest://settings</a></li>
+    <li><a href="drawquest://explore">drawquest://explore</a></li>
+    <li><a href="drawquest://profile/dmaurolizer">drawquest://profile/dmaurolizer</a></li>
+    <li><a href="drawquest://draw/3789715">drawquest://draw/3789715</a></li>
+    <li><a href="drawquest://quest/3789715/drawing/3899949">drawquest://quest/3789715/drawing/3899949</a></li>
+    <li><a href="drawquest://quest/3789715">drawquest://quest/3789715</a></li>
+    <li><a href="drawquest://foo">drawquest://foo</a></li>
+</ul>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

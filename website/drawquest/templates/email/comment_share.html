@@ -1,0 +1,40 @@
+{% extends "email/notification_template.html" %}
+
+{% block header %}
+    <span class="arial_rounded"><a href="http://example.com/{{ sender.username }}">{{ sender.username }}</a></span>
+    <br />
+    <span class="arial_rounded">{{ _("shared their drawing with you") }}</span>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ comment.absolute_share_page_url }}"><img class="displayed_image" src="{{ comment.content.gallery.url }}" /></a>
+    <br />
+    <table width="100%" cellpadding="0" cellspacing="5" bgcolor="transparent">
+        <tr>
+            <td align="center">
+                <br /><br /><br /><br />
+                <a class="cta_button arial_rounded" href="{{ comment.absolute_share_page_url }}">{{ _("Watch the drawing") }}</a>
+                <br /><br /><br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table width="100%" cellspacing="10" cellpadding="10" bgcolor="transparent">
+                    <tr>
+                        <td>
+                            <a href="{{ comment.absolute_share_page_url }}"><img class="thumbnail" {% if quest.content %}src="{{ quest_template_url }}"{% endif %} with="167" height="125" /></a>
+                        </td>
+                        <td>
+                            <span class="arial_rounded gray_text" style="font-size:24px">{{ _("From the Quest:") }}</span>
+                            <br>
+                            <span class="arial_rounded blue_text" style="font-size:30px"><a href="{{ quest.absolute_share_page_url }}">{{ quest.title }}</a></span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block notification_type %}drawing share{% endblock %}
+

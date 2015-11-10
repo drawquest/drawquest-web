@@ -1,0 +1,48 @@
+@import "fonts", "mixins", "vars", "normalize", "defaults";
+
+body {
+    background:$_color_green;
+}
+
+section.main {
+    background:$_color_blue url(/static/img/drawquest/about/app_about_background@2x.png);
+    background-size:100% auto;
+    background-position:center top;
+    padding:60% 20px 20px 20px;
+
+    p {
+        color:$default_light_font;
+        font-size:1.6em;
+        font-family:$_styled_font;
+        text-align:center;
+
+        a {
+            color:$_color_yellow;
+        }
+    }
+
+    .follow_us {
+        text-align:center;
+
+        a {
+            margin-right:10px;
+        }
+    }
+}
+
+footer {
+    padding:20px;
+    text-align:center;
+
+    a, a:visited, a:hover {
+        display:inline-block;
+        padding:10px;
+        min-width:330px;
+        background:rgba(#000, 0.15);
+        color:#fff;
+        font-family:$_styled_font;
+        font-size:1.6em;
+
+        @include border-radius(4px);
+    }
+}

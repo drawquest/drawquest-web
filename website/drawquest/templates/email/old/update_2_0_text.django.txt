@@ -1,0 +1,25 @@
+Dear {{ notification.recipient.username }},
+
+We’re pleased to introduce Version 2.0 of DrawQuest! This is our biggest release yet. Here’s what’s new: 
+
+✓ Web Profiles. Now people on DrawQuest can share their profiles on the web. This first step in our expansion to the web lets people showcase their drawing portfolios to everyone. 
+
+✓ Explore. Questers have asked for a way to discover amazing drawings, and Explore lets you do just that. The Explore page features impressive drawings created in the last 24 hours. It’s like a creative firehose. We use an algorithm to make sure that fresh, undiscovered talent has a great chance of making it onto the Explore page every day. 
+
+✓ People search. It’s easier than ever for people to find each other on DrawQuest. Now people can search profiles — this lets grandma find her grandkids, and it also is a great way to discover other talented drawers on DrawQuest. 
+
+✓ Twitter Connect. Now you can sign up and automatically post your drawings to Twitter using iOS Twitter integration. It’s easy to use multiple accounts! 
+
+✓ Tumblr share. Tumblr sharing is here! Just tap the Tumblr icon from the Gallery to post your favorite drawings on your Tumblr. 
+
+✓ Find Friends. Follow and invite friends on your social networks! Connect with Facebook or Twitter to see which of your friends are already on DrawQuest, and which ones should be! 
+
+✓ Unlimited drawings. The drawing limit has been removed from profiles and quest galleries. Enjoy endless scrolling of all drawings everywhere on DrawQuest! 
+
+✓ Delete drawings. Everyone has a creation they wish they could undraw. Now you can trash a drawing if you don’t like it. Let no one know your shame! 
+
+✓ Drafts. Your drawing progress will now be automatically saved, for any Quest. You can work on multiple quests at once, leave and come back, or even quit the app, and your progress will be waiting for you. 
+
+A big thank you to all of our Questers who have been with us since the beginning. We know you’re going to love this update!
+
+— Your friends at Team DrawQuest

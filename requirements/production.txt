@@ -1,0 +1,5 @@
+--requirement=canvas.txt
+
+https://s3.amazonaws.com/canvas-public-artifacts/distribute-0.6.49.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/MySQL-python-1.2.4.zip
+

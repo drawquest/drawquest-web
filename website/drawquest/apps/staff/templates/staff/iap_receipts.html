@@ -1,0 +1,34 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>{{ examined_user.username }}'s in-app purchase receipts</h1>
+
+<ul>
+    {% for receipt in receipts %}
+        <li>
+            <strong>{{ receipt.product_id }}</strong><br>
+            Verified (purchase success): {{ "Yes" if receipt.verified else "No" }}<br>
+            External identifier: {{ receipt.version_external_identifier }}<br>
+            BID: {{ receipt.bid }}<br>
+            BVRS: {{ receipt.bvrs }}<br>
+            {{ iso_8601(receipt.timestamp) }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block extra_javascript %}
+<script>
+$(function () {
+});
+</script>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

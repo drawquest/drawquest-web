@@ -1,0 +1,42 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block smart_app_banner %}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/support.css">
+{% endblock %}
+
+{% block viewport_meta %}<meta name="viewport" content="width=650">{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1>{{ _("DrawQuest Support") }}</h1>
+        <p>{{ _("Have a question about DrawQuest? Did you find a bug? We're here to help!") }}</p>
+        <div class="fixed_width_wrapper">
+            {% block form %}
+                <form action="" method="POST">{% csrf_token %}
+                    <label for="support_page_username">{{ _("Your DrawQuest username") }}</label>
+                    {% for error in form.username.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.username|safe }}
+
+                    <label for="support_page_email">{{ _("Your Email address") }}</label>
+                    {% for error in form.sender.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.sender|safe }}
+
+                    <label for="support_page_issue_description">{{ _("The issue you're experiencing") }}</label>
+                    {% for error in form.message.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                    {{ form.message|safe }}
+
+                    <button type="submit">{{ _("Submit") }}</button>
+                <form>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+

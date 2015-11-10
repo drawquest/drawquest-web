@@ -1,0 +1,81 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/landing_page.css">
+{% endblock %}
+
+{% block twitter_card %}
+    <meta name="twitter:site" content="@DrawQuest">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ _("DrawQuest - Daily Drawing Challenges") }}">
+    <meta name="twitter:url" content="http://example.com/">
+    <meta name="twitter:description" content="{{ _("Every day, people come together on DrawQuest to draw and be creative. Unlock your creativity and receive daily drawing challenges with DrawQuest.") }}">
+    <meta name="twitter:image" content="http://example.com/static/img/drawquest/promotion/screenshot_1_570.jpg">
+    <meta name="twitter:app:url:ipad" content="drawquest://"/>
+{% endblock %}
+
+{% block extra_javascript %}
+    <script>
+        (function() {
+            // Slideshow helper to handle clicks
+            // and automatically scroll through
+            var slideshow = $('ul.slideshow');
+            var active_class = "active";
+            var slideshow_timer;
+
+            var slideshow_reset = function(delay) {
+                if (slideshow_timer) {
+                    clearInterval(slideshow_timer);
+                }
+                delay = (delay) ? delay : 3000;
+                slideshow_timer = setInterval(function() {
+                    var active = slideshow.children("." + active_class);
+                    var next = active.next();
+                    if (!next.length) {
+                        next = slideshow.children("li:first-child");
+                    }
+                    active.removeClass(active_class);
+                    next.addClass(active_class)
+                }, delay);
+            };
+            slideshow_reset();
+
+            slideshow.on("click", "li", function() {
+                var target = $(this);
+                if (target.hasClass(active_class)) {
+                    return;
+                }
+                slideshow_reset(5000);
+                slideshow.children("li." + active_class).removeClass(active_class);
+                target.addClass(active_class);
+            });
+        })();
+    </script>
+{% endblock %}
+
+{% block body %}
+    <section class="body">
+        <div class="fixed_width_wrapper">
+            <ul class="slideshow">
+                <li class="active"><div class="screenshot shot_1"></div></li>
+                <li><div class="screenshot shot_2"></div></li>
+                <li><div class="screenshot shot_3"></div></li>
+                <li><div class="screenshot shot_4"></div></li>
+                <li><div class="screenshot shot_5"></div></li>
+            </ul>
+
+            <div class="marketing">
+                <img class="large_icon_before" src="/static/img/drawquest/website_app_icon_large@2x.png" width="134" height="134">
+                <img class="large_logo" src="/static/img/drawquest/website_logo_large@2x.png" width="339" height="228" alt="DrawQuest">
+                <p>
+                    {{ _("Every day, people come together on DrawQuest to draw and be creative. Unlock your creativity and receive daily drawing challenges with DrawQuest.") }}
+                </p>
+                <a href="{{ app_store_link() }}"><img class="large_icon_after" src="/static/img/drawquest/website_app_icon_large@2x.png" width="134" height="134"></a>
+
+                <a class="app_store_link" href="{{ app_store_link() }}">
+                    <img src="/static/img/drawquest/promotion/apple_app_store@2x.png" width="135" height="40">
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

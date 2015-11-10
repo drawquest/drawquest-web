@@ -1,0 +1,23 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+li {
+    list-style-type:none;
+    display:inline;
+    margin:4px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<ul>
+    {% for comment in comments %}
+    <li><a href="https://example.com{{ comment.get_share_page_url() }}"><img src="{{ comment.details().content.get_absolute_url_for_image_type("archive") }}"></a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

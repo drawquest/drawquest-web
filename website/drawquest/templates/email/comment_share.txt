@@ -1,0 +1,1 @@
+{% trans username=sender.username, url=comment.absolute_share_page_url %}{{ username }} shared a drawing with you on DrawQuest. You can view the drawing by visiting: {{ url }}{% endtrans %}

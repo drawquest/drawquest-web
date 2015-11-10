@@ -1,0 +1,1 @@
+{% trans username=sender.username, title=quest.title, url=quest.absolute_share_page_url %}{{ username }} invited you to complete a Quest on DrawQuest titled: "{{ title }}". You can complete the Quest by visiting: {{ url }}{% endtrans %}

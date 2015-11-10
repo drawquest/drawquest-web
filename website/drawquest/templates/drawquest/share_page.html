@@ -1,0 +1,41 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/share_page.css">
+    {% block share_css %}{% endblock %}
+{% endblock %}
+
+{% block extra_javascript %}
+    <script src="/static/js/drawquest/sharing.js"></script>
+    {% block share_javascript %}{% endblock %}
+{% endblock %}
+
+{% block body_header_content %}
+    <span class="quest_title">
+        "{% block body_header_quest_title %}{% endblock %}"
+    </span>
+{% endblock %}
+
+{% block body %}
+    <section class="body">
+        <div class="fixed_width_wrapper">
+            <div class="shared_content">
+                {% block shared_content %}{% endblock %}
+            </div>
+            <div class="marketing">
+                <a href="/"><img class="large_icon_before" src="/static/img/drawquest/website_app_icon_large@2x.png" width="134" height="134"></a>
+                <a href="/"><img class="large_logo" src="/static/img/drawquest/website_logo_large@2x.png" width="339" height="228" alt="DrawQuest"></a>
+                <p>
+                    Every day, people come together on DrawQuest to draw and be creative.
+                    Unlock your creativity and receive daily drawing challenges with DrawQuest. 
+                </p>
+                <a href="{{ app_store_link() }}"><img class="large_icon_after" src="/static/img/drawquest/website_app_icon_large@2x.png" width="134" height="134"></a>
+
+                <a class="app_store_link" href="{{ app_store_link() }}">
+                    <img src="/static/img/drawquest/promotion/apple_app_store@2x.png" width="135" height="40">
+                </a>
+            </div>
+        </div>
+        {% block extra_content %}{% endblock %}
+    </section>
+{% endblock %}

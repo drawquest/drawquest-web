@@ -1,0 +1,16 @@
+{% extends "drawquest/app/base.html" %}
+
+{% block body_class %}app_about{% endblock %}
+
+{% block body %}
+    <div class="fixed_width_wrapper">
+        <section class="modal">
+            <p>
+                {{ _("There's a new version of DrawQuest available!") }}
+            </p>
+            <p>
+                {{ _("Staying up to date with the latest version of DrawQuest makes sure you're having the best experience possible and gives you access to new features.") }}
+            </p>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "email/common_template.html" %}
+
+{% block extra_style %}
+    .displayed_image {
+        width:650px;
+        height:auto;
+    }
+
+    .thumbnail {
+        width:auto;
+        height:125px;
+        border-top:1px solid #E6E6E6;
+        border-right:1px solid #E6E6E6;
+        border-bottom:1px solid #E6E6E6;
+        border-left:1px solid #E6E6E6;
+    }
+
+    .cta_button {
+        display:block;
+        width:250px;
+        font-size:24px;
+        padding:10px 20px;
+        background-color:#FFD261;
+        color:#FFFFFF;
+        -moz-border-radius-topleft:4px;
+        -moz-border-radius-topright:4px;
+        -moz-border-radius-bottomright:4px;
+        -moz-border-radius-bottomleft:4px;
+        -webkit-border-radius:4px 4px 4px 4px;
+        border-radius:4px 4px 4px 4px;
+    }
+
+    {% block extra_notification_style %}{% endblock %}
+{% endblock %}
+
+{% block email_type %}
+    {% block notification_type %}{% endblock %} notification
+{% endblock %}

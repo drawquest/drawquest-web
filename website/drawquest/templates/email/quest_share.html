@@ -1,0 +1,25 @@
+{% extends "email/notification_template.html" %}
+
+{% block header %}
+    <span class="arial_rounded"><a href="http://example.com/{{ sender.username }}">{{ sender.username }}</a></span>
+    <br />
+    <span class="arial_rounded">{{ _("invited you to draw their Quest") }}</span>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ quest.absolute_share_page_url }}"><img class="displayed_image" {% if quest.content %}src="{{ quest_template_url }}"{% endif %} /></a>
+    <br />
+    <table width="100%" cellpadding="0" cellspacing="5" bgcolor="transparent">
+        <tr>
+            <td align="center">
+                <br /><br /><br /><br /><br />
+                <span class="arial_rounded blue_text" style="font-size:30px"><a href="{{ quest.absolute_share_page_url }}">{{ quest.title }}</a></span>
+                <br /><br /><br /><br /><br /><br />
+                <a class="cta_button arial_rounded" href="{{ quest.absolute_share_page_url }}">Draw this Quest</a>
+                <br /><br /><br /><br /><br />
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block notification_type %}quest invite{% endblock %}

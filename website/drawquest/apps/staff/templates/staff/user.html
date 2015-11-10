@@ -1,0 +1,166 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+li {
+    list-style-type:none;
+    display:inline;
+    margin:4px;
+}
+#status li.active, #active li.active {
+    background-color:lightgrey;
+    border:1px solid gray;
+    border-radius:5px;
+    font-weight:bold;
+}
+#status li, #active li {
+    display:inline-block;
+    padding:2px 4px;
+}
+.drawing {
+    display:inline-block;
+    margin-bottom:15px;
+}
+</style>
+{% endblock %}
+
+{% block title %}{{ examined_user.username }}{% endblock %}
+
+{% macro user_comment(comment) %}
+    <li>
+        <div class="drawing">
+            <div>{% if comment.details().content %}<a href="https://example.com{{ comment.get_share_page_url() }}"><img src="{{ comment.details().content.get_absolute_url_for_image_type("archive") }}"></a>{% endif %}</div>
+            <div class="metadata">
+                {% if comment.title %}<a href="https://example.com{{ comment.get_share_page_url() }}">{{ comment.title }}</a><br>{% endif %}
+                {{ "Judged" if comment.judged }}<br>
+                {% if comment.details().content %}<a href="http://i.drawquestugc.com/ugc/{{ comment.details().content.original.name }}">Original</a>{% endif %}
+                {{ iso_8601(comment.timestamp) }}
+            </div>
+        </div>
+    </li>
+{% endmacro %}
+
+{% block body %}
+<p><a href="/admin/staff">Back to staff portal</a></p>
+
+<h1>{{ examined_user.username }}</h1>
+
+{% if examined_user.userinfo.avatar %}
+    <img src="{{ examined_user.details().web_avatar_url }}"><br>
+    <a id="remove_avatar" href="#" data-api_endpoint="staff/remove_avatar">Remove avatar</a>
+{% endif %}
+
+<ul id="info">
+    <li><strong>Joined:</strong> {{ examined_user.date_joined }}</li>
+    <li><strong>Last login:</strong> {{ examined_user.last_login }}</li>
+    <li><strong>Bio:</strong> {{ examined_user.userinfo.bio_text }}</li>
+    <li><strong>Email:</strong> {{ examined_user.email }}</li>
+    <li><strong>App ver.:</strong> {{ last_app_version }}</li>
+    <li><strong>App ver. at signup:</strong> {{ signup_app_version }}</li>
+    <li><strong>Facebook UID:</strong> {% if facebook_user %}{{ facebook_user.fb_uid }}{% else %}(none){% endif %}</li>
+    <li><strong>Twitter screen name:</strong> {% if twitter_user %}{{ twitter_user.screen_name }}{% else %}(none){% endif %}</li>
+    <li><strong>SHA1:</strong> {{ username_hash }}</li>
+</ul>
+
+<p><a href="/admin/staff/user/{{ examined_user.username }}/ip_history">IP history</a></p>
+<p><a href="/admin/staff/user/{{ examined_user.username }}/activity_stream">Activity stream</a></p>
+<p><a href="/admin/staff/user/{{ examined_user.username }}/iap">In-app purchase receipts</a></p>
+<p><a href="https://papertrailapp.com/groups/305753/events?q={{ username_hash }}">Papertrail logs</a></p>
+
+ 
+<h2>Status</h2>
+<ul id="status">
+    {% if examined_user.userinfo.trusted %}<li class="active">Trusted</span>{% else %}<li><a href="#" id="trust" data-api_endpoint="staff/trust">Trusted</a>{% endif %}</li>
+{% if examined_user.userinfo.trusted == False %}<li class="active">Distrusted</span>{% else %}<li><a href="#" id="distrust" data-api_endpoint="staff/distrust">Distrusted</a>{% endif %}</li>
+    {% if examined_user.userinfo.trusted == None %}<li class="active">Unknown</a>{% else %}<li>Unknown{% endif %}</li>
+</ul>
+
+<ul id="active">
+    {% if examined_user.is_active %}<li class="active">Active</span>{% else %}<li><a href="#" id="activate" data-api_endpoint="auth/staff_activate">Active</a>{% endif %}</li>
+{% if not examined_user.is_active %}<li class="active">Deactivated</span>{% else %}<li><a href="#" id="deactivate" data-api_endpoint="auth/staff_deactivate">Deactivated</a>{% endif %}</li>
+</ul>
+
+
+<h2>UGQ</h2>
+
+<h3>Disabled</h3>
+<ul>
+    {% for comment in disabled_ugq %}
+        {{ user_comment(comment) }}
+    {% endfor %}
+</ul>
+
+<h3>Curated</h3>
+<ul>
+    {% for comment in curated_ugq %}
+        {{ user_comment(comment) }}
+    {% endfor %}
+</ul>
+
+<h3>Public</h3>
+<ul>
+    {% for comment in public_ugq %}
+        {{ user_comment(comment) }}
+    {% endfor %}
+</ul>
+
+
+<h2>Drawings</h2>
+
+<h3>Disabled</h3>
+<ul>
+    {% for comment in disabled_comments %}
+        {{ user_comment(comment) }}
+    {% endfor %}
+</ul>
+
+<h3>Curated</h3>
+<ul>
+    {% for comment in curated_comments %}
+        {{ user_comment(comment) }}
+    {% endfor %}
+</ul>
+
+<h3>Public</h3>
+<ul>
+    {% for comment in public_comments %}
+        {{ user_comment(comment) }}
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block extra_javascript %}
+<script>
+$(function () {
+
+    $('a').click(function (evt) {
+        if (!$(this).data('api_endpoint')) {
+            return;
+        }
+
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        if ($(this).attr('id') === 'deactivate') {
+            if (!confirm("Are you sure? This will irreversibly delete all drawings from this user.")) {
+                return;
+            }
+        } else if ($(this).attr('id') === 'remove_avatar') {
+            if (!confirm("Are you sure? This isn't reversible.")) {
+                return;
+            }
+        }
+
+        dq.api($(this).data('api_endpoint'), {username: '{{ examined_user.username }}'}).done(function () {
+            window.location.reload();
+        });
+    });
+
+});
+</script>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

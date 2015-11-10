@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DrawQuest - Profile Mock w/ orientation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/static/js/viewport_orientation_fix.js"></script>
+        <link rel="stylesheet" href="/static/css/drawquest/profile.css">
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+        <div class="fixed_width_wrapper">
+            <section class="banner">
+                <header>
+                    <a href="" class="logo">
+                        <img src="/static/img/drawquest/app_icon_30@2x.png">
+                        <img src="/static/img/drawquest/logo_medium.png">
+                    </a>
+                    <a href="/download" class="app_store_link">
+                        <img src="/static/img/drawquest/promotion/apple_app_store@2x.png">
+                    </a>
+                </header>
+                <div class="slideshow">
+                    <ul>
+                        <li><img src="http://i.drawquestugc.com/ugc/processed/a5e2c533ad296b5547e5adea69c9501e3720881e.jpg"></li>
+                        <li><img src="http://i.drawquestugc.com/ugc/processed/eb62ba8c236db6f0dd8087f8c4da368b0bc18cde.jpg"></li>
+                        <li><img src="http://i.drawquestugc.com/ugc/processed/dfbb66e7c387a6ee48037f13464ef14685b4b2d4.jpg"></li>
+                        <li><img src="http://i.drawquestugc.com/ugc/processed/76e9e5278308e9d67e7aa12a08111e05b29a9303.jpg"></li>
+                        <li><img src="http://i.drawquestugc.com/ugc/processed/061ed86dbf54e14fc54432e4009dfd40bae9026e.jpg"></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="body">
+                <header>
+                    <div class="avatar_wrapper">
+                        <img class="ugc_img" style="background-image:url(http://i.drawquestugc.com/ugc/processed/63ab482d28caff563c0c365e41cd3efb1a2438ba.jpg);">
+                        <div class="social">
+                            <p>Share this profile:</p>
+                            <div><div class="facebook"></div></div>
+                            <div><div class="twitter"></div></div>
+                            <div><div class="tumblr"></div></div>
+                        </div>
+                    </div>
+                    <p class="ugc_text username">slothdude</p>
+                    <div class="bio_wrapper">
+                        <p class="ugc_text bio">slothware engineer</p>
+                    </div>
+                    <div class="follow_counts">
+                        <p class="followers">
+                            <strong>1,468</strong><br>
+                            followers
+                        </p>
+                        <p class="following">
+                            <strong>59</strong><br>
+                            following
+                        </p>
+                    </div>
+                </header>
+                <ul class="drawings">
+                    <li>
+                        <a href="">
+                            <div class="drawing_wrapper">
+                                <img src="http://i.drawquestugc.com/ugc/processed/4d17f941b13c822f00f43a4b5306c259517cf0e4.jpg">
+                            </div>
+                            <p>What's in the attic?</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div class="drawing_wrapper">
+                                <img src="http://i.drawquestugc.com/ugc/processed/6662bc89ee9a1e6d668103cf6938bb093cc747e9.jpg">
+                            </div>
+                            <p>Who's your valentine?</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div class="drawing_wrapper">
+                                <img src="http://i.drawquestugc.com/ugc/processed/4d17f941b13c822f00f43a4b5306c259517cf0e4.jpg">
+                            </div>
+                            <p>What's in the attic?</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div class="drawing_wrapper">
+                                <img src="http://i.drawquestugc.com/ugc/processed/6662bc89ee9a1e6d668103cf6938bb093cc747e9.jpg">
+                            </div>
+                            <p>Who's your valentine?</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div class="drawing_wrapper">
+                                <img src="http://i.drawquestugc.com/ugc/processed/4d17f941b13c822f00f43a4b5306c259517cf0e4.jpg">
+                            </div>
+                            <p>What's in the attic?</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div class="drawing_wrapper">
+                                <img src="http://i.drawquestugc.com/ugc/processed/6662bc89ee9a1e6d668103cf6938bb093cc747e9.jpg">
+                            </div>
+                            <p>Who's your valentine?</p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <script>
+            // Request frame animation polyfill
+            (function() {
+                var lastTime = 0;
+                var vendors = ['ms', 'moz', 'webkit', 'o'];
+                for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+                    window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+                    window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
+                                               || window[vendors[x]+'CancelRequestAnimationFrame'];
+                }
+             
+                if (!window.requestAnimationFrame)
+                    window.requestAnimationFrame = function(callback, element) {
+                        var currTime = new Date().getTime();
+                        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                        var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+                          timeToCall);
+                        lastTime = currTime + timeToCall;
+                        return id;
+                    };
+             
+                if (!window.cancelAnimationFrame)
+                    window.cancelAnimationFrame = function(id) {
+                        clearTimeout(id);
+                    };
+            }());
+
+            // Scroll the slideshow
+            var speed = 0.5;
+            var requestID;
+            var slideshow_list = document.querySelector('.slideshow ul');
+            var img_width = 0;
+            var left = 0;
+
+            var anim_loop = function() {
+                requestID = window.requestAnimationFrame(function() {
+                    left -= speed;
+                    if (left < -img_width) {
+                        left = 0;
+                        slideshow_list.appendChild(slideshow_list.removeChild(slideshow_list.querySelector('li')));
+                    }
+                    slideshow_list.style.left = left + "px";
+                    anim_loop();
+                }, slideshow_list);
+            };
+
+            var reset_scroll = function() {
+                img_width = parseInt(window.getComputedStyle(slideshow_list.querySelector('li img')).getPropertyValue("width"), 10);
+                left = 0;
+                speed = img_width/450;
+            };
+
+            var no_slideshow_ele = document.querySelector("body > .fixed_width_wrapper.no_slideshow");
+            var start_animation = function() {
+                if (!no_slideshow_ele) {
+                    reset_scroll();
+                    anim_loop();
+                }
+            };
+
+            start_animation();
+
+            window.addEventListener("orientationchange", function() {
+                setTimeout(function() {
+                    window.cancelAnimationFrame(requestID);
+                    start_animation();
+                }, 1);
+            });
+
+            window.addEventListener("resize", function() {
+                window.cancelAnimationFrame(requestID);
+                start_animation();
+            });
+
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="/static/js/drawquest/common.js"></script>
+    </body>
+</html>

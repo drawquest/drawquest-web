@@ -1,0 +1,212 @@
+@import "fonts", "mixins", "vars", "normalize", "defaults";
+
+/* Defaults targetted at landscape mobile */
+
+$screenshot_ratio:1136/640;
+
+body {
+    min-width:480px;
+    background:$page_bg;
+}
+
+section.body {
+    background:$main_bg;
+    padding:0 0 20px 0;
+    @include clearfix();
+}
+
+.fixed_width_wrapper {
+    position:relative;
+    width:480px;
+    margin:0 auto;
+    padding:10px;
+    z-index:1;
+
+    @include clearfix();
+}
+
+ul.slideshow {
+    $height:250px;
+    $width:$height/$screenshot_ratio;
+
+    position:relative;
+    float:left;
+    width:$width;
+    height:$height;
+    padding:0;
+    text-align:center;
+    line-height:$height * 2 + 60px;
+    cursor:default;
+
+    li {
+        display:inline-block;
+        height:2em;
+        line-height:0px;
+        bottom:0;
+        outline:0;
+        cursor:pointer;
+
+        &:after {
+            /* Dot */
+            content:"\2022";
+            display:block;
+            position:relative;
+            color:$page_indicator_color;
+            z-index:3;
+            font-size:5em;
+            cursor:pointer;
+        }
+
+        &.active {
+            .screenshot {
+                opacity:1;
+                z-index:2;
+            }
+
+            &:after {
+                color:$page_indicator_active_color;
+            }
+        }
+
+        .screenshot {
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            border:$thumbnail_border;
+            background-size:cover;
+        }
+    }
+}
+
+.shot_1 { background-image:url(/static/img/drawquest/screenshots/screen_1.png); }
+.shot_2 { background-image:url(/static/img/drawquest/screenshots/screen_2.png); }
+.shot_3 { background-image:url(/static/img/drawquest/screenshots/screen_3.png); }
+.shot_4 { background-image:url(/static/img/drawquest/screenshots/screen_4.png); }
+.shot_5 { background-image:url(/static/img/drawquest/screenshots/screen_5.png); }
+
+.marketing {
+    float:right;
+    width:300px;
+
+    p {
+        margin:0;
+        font-size:1.4em;
+        line-height:1.4em;
+    }
+}
+
+.large_logo {
+    display:none;
+}
+
+.large_icon_before {
+    float:left;
+    margin-right:1em;
+    margin-bottom:1em;
+}
+
+.app_store_link {
+    float:left;
+    clear:left;
+    margin-right:1em;
+}
+
+.large_icon_after {
+    display:none;
+}
+
+/* Tall layout for vertical devices */
+/* And very small desktop screens */
+@media
+only screen and (max-width:320px) and (orientation:portrait),
+only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:portrait),
+only screen and (-webkit-min-device-pixel-ratio:1.5) and (orientation:portrait),
+only screen and (min-device-pixel-ratio:1.5) and (orientation:portrait)
+{
+    section.body .fixed_width_wrapper {
+        padding:10px 20px;
+    }
+
+    .large_icon_before {
+        float:none;
+        margin:0;
+    }
+
+    ul.slideshow {
+        $width:270px;
+        $height:$width * $screenshot_ratio;
+
+        width:$width;
+        height:$height;
+        line-height:$height * 2 + 60px;
+    }
+
+    .marketing {
+        width:138px;
+
+        p {
+            margin:1em 0;
+            font-size:1.5em;
+        }
+    }
+}
+
+/* For medium desktop screens */
+@media only screen and (min-width:900px) {
+    .fixed_width_wrapper {
+        width:900px;
+    }
+
+    section.body .fixed_width_wrapper {
+        padding:20px 30px;
+    }
+
+    section.body {
+        padding:0 0 40px 0;
+    }
+
+    .marketing {
+        width:339px;
+        margin:50px;
+        margin-top:0;
+
+        p {
+            margin:0 0 1em 0;
+            font-size:1.6em;
+        }
+    }
+
+    ul.slideshow {
+        $width:350px;
+        $height:$width * $screenshot_ratio;
+
+        width:$width;
+        height:$height;
+        line-height:$height * 2 + 60px;
+    }
+
+    .large_icon_before {
+        display:none;
+    }
+
+    .large_logo {
+        display:block;
+    }
+
+    .large_icon_after {
+        display:inline;
+        float:left;
+        margin-right:1em;
+    }
+
+    .app_store_link {
+        float:none;
+        display:inline;
+    }
+
+    footer.dq_footer {
+        font-size:2em;
+    }
+}

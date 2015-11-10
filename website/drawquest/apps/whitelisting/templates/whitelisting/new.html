@@ -1,0 +1,20 @@
+{% extends "whitelisting/whitelisting.html" %}
+
+{% block body_class %}new{% endblock %}
+
+{% block nav %}
+        <nav>
+            <a href="/admin/staff/moderation">Moderation</a>
+            |
+            <a class="active">Newest</a>
+            |
+            <a href="/admin/staff/moderation/distrusted">Distrusted</a>
+        </nav>
+{% endblock %}
+
+{% block unjudged_count %}
+    {{ unjudged_count }} drawings left to judge
+{% endblock %}
+
+{% block mode_toggle %}{% endblock %}
+

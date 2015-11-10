@@ -1,0 +1,57 @@
+body.app_legal {
+    p, h1, h2, ul {
+        position:relative;
+        z-index:1;
+    }
+
+    .fixed_width_wrapper > h1 {
+        margin-top:1.5em;
+    }
+
+    p {
+        font-size:1.6em;
+        line-height:1.4em;
+        color:$modal_text_color;
+    }
+
+    .navigation {
+        color:$modal_text_color;
+
+        ul {
+            margin:0;
+        }
+
+        span, li {
+            font-size:1.4em;
+            line-height:1.4em;
+        }
+
+        span {
+            font-weight:bold;
+        }
+    }
+
+    section {
+        @extend section.modal;
+
+        li > span {
+            font-size:1.6em;
+            line-height:1.4em;
+            font-weight:bold;
+        }
+
+        span {
+            display:block;
+            margin-top:30px;
+        }
+    }
+
+    h2 {
+        font-size:1.8em;
+        margin-top:0;
+
+        a {
+            color:$default_dark_font;
+        }
+    }
+}

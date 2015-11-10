@@ -1,0 +1,23 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block smart_app_banner %}{% endblock %}
+
+{% block viewport_meta %}
+    <meta name="viewport" content="width=450, user-scalable=no">
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/password_reset.css">
+{% endblock %}
+
+{% block body %}
+    <div class="fixed_width_wrapper">
+        {% trans %}
+            <h1>Reset complete</h1>
+            <p>
+                Your password has been set.  You may go ahead and
+                log in now in the DrawQuest app.
+            </p>
+        {% endtrans %}
+    </div>
+{% endblock %}

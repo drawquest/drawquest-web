@@ -1,0 +1,54 @@
+--requirement=bootstrap1.txt
+--requirement=bootstrap2.txt
+--requirement=django.txt
+
+# Old sentry client.
+# used to be --requirement=sentry.txt, but the sentry box is running a newer version for now.
+https://s3.amazonaws.com/canvas-public-artifacts/distribute-0.6.49.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/django-indexer-0.3.0.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/django-templatetag-sugar-0.1.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/django-paging-0.2.4.tar.gz
+
+https://s3.amazonaws.com/canvas-public-artifacts/py-1.4.15.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/pytest-2.3.5.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/raven-3.4.0.tar.gz
+
+https://s3.amazonaws.com/canvas-public-artifacts/cssselect-0.8.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/BeautifulSoup-3.2.1.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/PyYAML-3.09.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/argparse-1.1.zip
+https://s3.amazonaws.com/canvas-public-artifacts/paramiko-1.7.6.zip
+https://s3.amazonaws.com/canvas-public-artifacts/pyOpenSSL-0.13.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/redis-2.7.2.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/txAWS-0.0.1.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/deldotdr-txRedis-11b6068.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/Epsilon-0.6.0.tar.gz
+
+https://s3.amazonaws.com/canvas-public-artifacts/pytz-2013.8.tar.bz2
+https://s3.amazonaws.com/canvas-public-artifacts/Babel-1.3.tar.gz
+
+https://s3.amazonaws.com/canvas-public-artifacts/html5lib-0.90.zip
+https://s3.amazonaws.com/canvas-public-artifacts/canvasnetworks-bleach-v1.0.4-14-gc8f5835.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/simplejson-2.2.1.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/python-cjson-1.0.5.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/python-memcached-1.53.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/factlib-1.0.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/faulthandler-2.1.tar.gz
+https://github.com/martinrusev/django-redis-sessions/archive/96d4c40a45b47bf04a9409cc70d812b7988806d5.zip
+https://s3.amazonaws.com/canvas-public-artifacts/urbanairship-0.3.tar.gz
+
+https://s3.amazonaws.com/canvas-public-artifacts/requests-1.2.3.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/rauth-3b1a03e905ccafd05a12be2d23bb33e38bc7ec22.zip
+https://s3.amazonaws.com/canvas-public-artifacts/python-openid-2.2.5.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/oauthlib-0.5.1.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/requests-oauthlib-0.3.3.tar.gz
+https://s3.amazonaws.com/canvas-public-artifacts/django-allauth-3b1a03e905ccafd05a12be2d23bb33e38bc7ec22.zip
+
+https://s3.amazonaws.com/canvas-public-artifacts/Pillow-2.1.0.zip
+
+https://s3.amazonaws.com/canvas-public-artifacts/django-extra-views-0.6.3.tar.gz
+
+# Because this is under such active development, reuploading to S3 is a pain.
+# We already rely on GitHub for deployment and bootstrapping.
+https://github.com/aehlke/django-cachecow/archive/c378814cfd945bbe16d00dd072145c6f5b52cdd7.zip
+

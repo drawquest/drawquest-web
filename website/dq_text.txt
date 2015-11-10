@@ -1,0 +1,27 @@
+Hi {{ username }},
+
+The DrawQuest archive is now online! We've made all of your favorite Quests and the community's drawings available for a limited time, so you can browse them and download a copy of your artwork.
+
+There are a few ways you can access the archive:
+
+- Visit your own profile page:
+
+  http://drawquest-export.s3-website-us-east-1.amazonaws.com/{{ username }}/
+
+- Visit the archive homepage, where you can view other users' profiles and the Quest of the Day galleries:
+
+  http://drawquest-export.s3-website-us-east-1.amazonaws.com/
+
+- Download a ZIP file containing all of your drawings:
+
+  http://drawquest-zips.s3-website-us-east-1.amazonaws.com/{{ username }}.zip
+
+  (If you're on an iPhone/iPad, you'll want to use a desktop or laptop computer to download this ZIP file. You can still download individual drawings on iPhone/iPad via the links above though.)
+
+The archive will be available for about 30 days, after which it will be taken offline. Please remember to download the ZIP file or follow the instructions on your profile page to save your drawings forever!
+
+Thanks again to our wonderful community for making DrawQuest one of the most amazing creative communities to ever exist. We still miss it dearly.
+
+Your friends forever,
+
+— Team DrawQuest

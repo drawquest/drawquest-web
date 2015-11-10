@@ -1,0 +1,274 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrawQuest</title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/base-min.css">
+
+    <style>
+        body {
+            font-family:Arial;
+            background-color:#fbfbfb;
+            color:#444;
+            line-height:1.3em;
+            padding:8px;
+        }
+        @media only screen 
+        and (max-device-width : 320px) {
+            @viewport {
+                width:300px;
+            }
+            #app_icon {
+                zoom:.7;
+                margin:0 !important;
+            }
+            .section {
+                margin-top:1.5em !important;
+            }
+            #qotd_container {
+                margin-top:2em !important;
+            }
+            #profile_info {
+                font-size:.8em;
+            }
+            #desc {
+                margin:5px 0 !important;
+                font-size:0.91em !important;
+                width:100%;
+                text-align:center !important;
+            }
+            #username_field {
+                max-width:180px;
+            }
+            #app_icon {
+                zoom:.6;
+                margin:0 !important;
+            }
+            .logo {
+                zoom:.55;
+                margin:0 auto !important;
+            }
+        }
+        @media only screen 
+        and (min-device-width : 768px) 
+        and (max-device-width : 1024px) 
+        and (orientation : portrait) {
+            @viewport {
+                width:600px;
+            }
+        }
+        #questbot_link {
+            line-height:1.2em;
+        }
+        a {
+            color:#67ceda;
+        }
+        a:visited {
+            color:#52a4ae;
+        }
+        .logo {
+            display:block;
+            margin:0 auto .5em auto;
+            position:relative;
+            top:-5px;
+            max-height:285px;
+        }
+        p, .section, #icon_container {
+            text-align:center;
+            max-width:33em;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        #brushes {
+            display:block;
+            margin:4em auto .5em auto;
+            zoom:.55;
+        }
+        .section {
+            margin-top:2em;
+        }
+
+        #profile_form input[type=text] {
+            -webkit-box-shadow: rgb(221, 221, 221) 0px 1px 3px 0px inset;
+            background-color: rgb(255, 255, 255);
+            border-bottom-color: rgb(204, 204, 204);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-image-outset: 0px;
+            border-image-repeat: stretch;
+            border-image-slice: 100%;
+            border-image-source: none;
+            border-image-width: 1;
+            border-left-color: rgb(204, 204, 204);
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-right-color: rgb(204, 204, 204);
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-top-color: rgb(204, 204, 204);
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-top-style: solid;
+            border-top-width: 1px;
+            box-shadow: rgb(221, 221, 221) 0px 1px 3px 0px inset;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin:0;
+            color:black;
+            padding:8px 9px;
+            vertical-align: baseline;
+            height:37px;
+        }
+
+        #profile_form input[type=submit] {
+            background-color:#67ceda;
+            color:#fff;
+            padding:.5em 1em;
+            border-radius:2px;
+            text-decoration:none;
+            text-align:center;
+            cursor:pointer;
+            white-space:nowrap;
+            vertical-align:baseline;
+            -webkit-appearance:button;
+            text-transform:none;
+            box-sizing:border-box;
+            font-size:100%;
+            border:0 white;
+            line-height:normal;
+            -webkit-user-drag:none;
+            -webkit-user-select:none;
+            user-select:none;
+            margin:0 1px;
+            height:35px;
+        }
+
+        #profile_form {
+            margin:.5em 0;
+        }
+
+        #icon_container {
+        }
+        #icon_container p {
+            max-width:20em;
+            text-align:left;
+        }
+        #app_icon {
+            margin-right:1em;
+        }
+        #desc {
+            display:inline-block;
+            vertical-align:top;
+            position:relative;
+            top:.2em;
+            font-size:110%;
+            margin-bottom:2em;
+        }
+        #qotd_container {
+            text-align:center;
+            margin-top:2.8em;
+        }
+        #qotd_bg {
+            border:1px solid #67ceda;
+            border-radius:14px;
+            display:inline-block;
+            padding:12px 16px 10px 16px;
+        }
+        #qotd_desc {
+            font-size:.9em;
+            margin-top:.4em;
+            color:#999;
+        }
+        #qotd_container a {
+            font-size:1.5em;
+            margin:0 auto;
+        }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://drawquest-export.s3-website-us-east-1.amazonaws.com/000exporter/mixed_case_usernames.js"></script>
+
+    <script type"text/javascript">
+        function url_might_exist (url) {
+            try {
+                var req = new XMLHttpRequest();
+                req.open('HEAD', url, false);
+                req.send();
+                return 200 <= req.status && req.status < 400;
+            } catch (err) {
+                return true;
+            }
+        }
+
+        $(function () {
+            $('#profile_form').submit(function (event) {
+                event.preventDefault();
+                var lookup_username = $('#username_field').val();
+                var lower_username = lookup_username.toLowerCase();
+                var actual_username = null;
+
+                if (lower_username === 'soap') {
+                    actual_username = 'Soap';
+                } else {
+                    $.each(window.usernames, function (_, username) {
+                        var lower_candidate = username.toLowerCase();
+                        if (lower_candidate === lower_username) {
+                            actual_username = username;
+                            return false;
+                        } else if (lower_candidate > lower_username) {
+                            return false;
+                        }
+                    });
+                }
+
+                var go_to_profile = function (username) {
+                    window.location = '/' + username + '/';
+                };
+
+                if (actual_username !== null) {
+                    go_to_profile(actual_username);
+                } else if (url_might_exist('/' + lookup_username + '/index.html')) {
+                    go_to_profile(lookup_username);
+                } else if (lower_username !== lookup_username && url_might_exist('/' + lower_username + '/index.html')) {
+                    go_to_profile(lower_username);
+                } else {
+                    alert("Username '" + lookup_username + "' not found, please try again.");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<img src="http://drawquest-export.s3-website-us-east-1.amazonaws.com/000exporter/website_logo_large@2x.png" class="logo pure-img">
+
+<div id="icon_container">
+<img src="http://drawquest-export.s3-website-us-east-1.amazonaws.com/000exporter/nav_app_icon@2x.png" id="app_icon">
+<p id="desc">
+DrawQuest ended in May of 2014, but the millions of drawings made by its community of Questers live on in this archive.
+</p>
+</div>
+
+<div class="section">
+    <span id="profile_info">Enter your DrawQuest username to visit your profile:</span><br>
+    <form id="profile_form">
+        <input type="text" autocorrect="off" autocapitalize="none" id="username_field" placeholder="Username">
+        <input type="submit" value="Go">
+    </form>
+</div>
+
+<div id="qotd_container">
+    <div id="qotd_bg">
+        <a href="/Questbot/" id="questbot_link"><strong>Quest of the Day</strong> Archive</a>
+        <div id="qotd_desc">Each day was a new Quest to complete. See them all.</div>
+    </div>
+</div>
+
+
+<img src="http://drawquest-export.s3-website-us-east-1.amazonaws.com/000exporter/brushes.png" title=" ❤ ❤ ❤ ❤ " id="brushes" class="pure-img">
+
+</body>
+</html>

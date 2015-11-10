@@ -1,0 +1,25 @@
+{% extends "profiles/profile.html" %}
+
+{% block viewport_meta %}
+    <meta name="viewport" content="width=1024, initial-scale=0.468">
+{% endblock %}
+
+{% block body_class %}preview{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .fixed_width_wrapper {
+            margin:0 !important;
+        }
+        .slideshow {
+            background:white;
+        }
+        .slideshow ul li img {
+            width:350px !important;
+            height:263px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block app_store_link %}{% endblock %}
+

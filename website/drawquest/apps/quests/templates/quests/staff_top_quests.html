@@ -1,0 +1,32 @@
+{% extends "staff/comments_grid.html" %}
+
+{% block extra_css %}
+{{ super() }}
+
+<style>
+li {
+    list-style-type:none;
+    display:inline;
+    margin:4px;
+}
+.drawing {
+    display:inline-block;
+    margin-bottom:15px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<ul>
+    {% for comment in comments %}
+        <li>
+            <div class="drawing">
+                <a href="https://example.com{{ comment.get_share_page_url() }}"><img {% if comment.details().content %}src="{{ comment.details().content.get_absolute_url_for_image_type("archive") }}"{% endif %}></a><br>
+                Score: {{ get_quest_score(comment) }}<br>
+                Drawing count: {{ comment.details().drawing_count }}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

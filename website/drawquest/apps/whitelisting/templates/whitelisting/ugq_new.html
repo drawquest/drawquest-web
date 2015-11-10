@@ -1,0 +1,14 @@
+{% extends "whitelisting/moderation.html" %}
+
+{% block nav %}
+    <nav>
+        <a href="/admin/staff/moderation/ugq">UGQ Moderation</a>
+        |
+        <a class="active">New UGQ</a>
+    </nav>
+{% endblock %}
+
+{% block unjudged_count %}
+    {{ unjudged_count }} UGQ left to judge
+{% endblock %}
+

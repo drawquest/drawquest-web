@@ -1,0 +1,16 @@
+Dear {{ notification.recipient.username }},
+
+We're excited to announce our very first DrawQuest update just went live in the App Store. To update, open App Store on your iPad and tap Updates.
+
+This update is all about making sure you have a great experience using DrawQuest. Here's what's in it:
+
+✓ Never lose your drawings! If the app closes, your progress will be recovered.
+✓ Major stability improvements. Seeya crashes!
+✓ Fixed errors with publishing to Facebook.
+✓ Lots of miscellaneous bug fixes and polish.
+
+We're hard at work on our next update, which will include a number of additional features, including the ability to view all drawings for a given quest gallery, and a better way of discovering popular drawings and other DrawQuest users. We're incorporating a lot of your feedback and suggestions, so if you haven't already, please feel free to send us your thoughts at feedback@example.com.
+
+Finally, if you're enjoying the newly updated app, please take a moment to rate it in the App Store. And if you have any questions or ideas for us, just reply to this email!
+
+— Your friends at Team DrawQuest

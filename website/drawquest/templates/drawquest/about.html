@@ -1,0 +1,25 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/about_page.css">
+{% endblock %}
+
+{% block body %}
+    <section class="body">
+        <div class="fixed_width_wrapper">
+            <nav class="about_navigation">
+                <ul>
+                    <li><a href="/mission">{{ _("Our Mission") }}<img src="/static/img/drawquest/disclosure_right@2x.png" width="15" height="24"></a></li>
+                    <li><a href="/team">{{ _("Meet the Team") }}<img src="/static/img/drawquest/disclosure_right@2x.png" width="15" height="24"></a></li>
+                    <li><a href="/privacy">{{ _("Privacy Policy") }}<img src="/static/img/drawquest/disclosure_right@2x.png" width="15" height="24"></a></li>
+                    <li><a href="/terms">{{ _("Terms of Service") }}<img src="/static/img/drawquest/disclosure_right@2x.png" width="15" height="24"></a></li>
+                </ul>
+                {% block nav_figure %}{% endblock %}
+            </nav>
+            <div class="page">
+                {% block about_page_main %}{% endblock %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

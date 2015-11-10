@@ -1,0 +1,173 @@
+{% extends "drawquest/share_page.html" %}
+
+{% block body_header_quest_title %}{{ quest.title }}{% endblock %}
+
+{% set img_url_mobile = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_small = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_large = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_giant = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_original = comment.content.get_absolute_url_for_image_type("original") %}
+
+{% block smart_app_banner %}
+  <meta name="apple-itunes-app" content="app-id={{ app_store_id() }}, app-argument=drawquest://quest/{{ quest.id }}/drawing/{{ comment.id }}">
+{% endblock %}
+
+{% block twitter_card %}
+    <meta name="twitter:site" content="@DrawQuest">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:title" content="{{ quest.title }}">
+    <meta name="twitter:description" content="{% trans username=comment.user.username %}Watch {{ username }} draw a Quest on DrawQuest.{% endtrans %}">
+    <meta name="twitter:image" content="{{ comment.content.get_absolute_url_for_image_type('gallery') }}">
+    <meta name="twitter:image:width" content="{{ comment.reply_content._d['gallery']['width'] }}">
+    <meta name="twitter:image:height" content="{{ comment.reply_content._d['gallery']['height'] }}">
+    <meta name="twitter:url" content="http://example.com{{ get_share_page_url(comment) }}">
+    <meta name="twitter:app:url:ipad" content="drawquest://quest/{{ quest.id }}/drawing/{{ comment.id }}"/>
+{% endblock %}
+
+{% block share_javascript %}
+<script src="/static/lib/kinetic-v4.3.3.min.js"></script>
+<script src="/static/js/drawquest/playback.js"></script>
+<script>
+    (function() {
+        // Drawing animation
+        if ($('html').hasClass("lt-ie9")) {
+            // Assume this drawing animation won't work in IE 8 or lower
+            $('.playback_button').hide();
+        } else {
+            // Start loading animation on load
+            // play on click
+            var playback_deferred;
+            var deferred_data;
+            $(window).load(function() {
+                window.begin_loading_playback_data({{ comment.id }});
+            });
+            $('.playback_button').on('click', function() {
+                var button = $(this);
+                button.attr("disabled", true);
+                button.addClass("loading");
+                window.begin_drawing_playback({{ comment.id }}, function(has_playback_data) {
+                    // Playback data loaded
+                    button.removeClass("loading");
+                    if (!has_playback_data) {
+                        var message = $('.no_animation_message');
+                        message.show()
+                        setTimeout(function() {
+                            message.fadeOut();
+                        }, 1500);
+                    }
+                    button.hide();
+                }, function() {
+                    // Drawing complete
+                    //button.show();
+                });
+            });
+        }
+
+        // Sharing
+        $(function() {
+            $('a.social').on('click', function() {
+                var share_type = $(this).attr("class").split(/\s+/);
+                share_type = share_type[share_type.length - 1];
+                var quest_title = "{{ quest.title|safe }}";
+                var img_url = "{{ img_url_original }}";
+                window.share(share_type, window.document.location.href, quest_title, img_url);
+            });
+        });
+    }());
+</script>
+{% endblock %}
+
+{% block share_css %}
+    <style>
+        /* Response image CSS, needs to be in template */
+        .drawing {
+            background-image:url({{ img_url_small }});
+        }
+        .drawing:before {
+            background-image:url({{ quest_template_url }});
+        }
+        @media
+        only screen and (max-width:320px) and (orientation:portrait),
+        only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:portrait),
+        only screen and (-webkit-min-device-pixel-ratio:1.5) and (orientation:portrait),
+        only screen and (min-device-pixel-ratio:1.5) and (orientation:portrait),
+        only screen and (max-width:400px),
+        {
+            .drawing {
+                background-image:url({{ img_url_mobile }});
+            }
+            .drawing:before {
+                background-image:url({{ quest_template_url }});
+            }
+        }
+        @media only screen and (min-width:1000px) {
+            .drawing {
+                background-image:url({{ img_url_small }});
+            }
+            .drawing:before {
+                background-image:url({{ quest_template_url }});
+            }
+        }
+        @media only screen and (min-width:1300px) {
+            .drawing {
+                background-image:url({{ img_url_large }});
+            }
+            .drawing:before {
+                background-image:url({{ quest_template_url }});
+            }
+        }
+        @media only screen and (min-width:1700px) {
+            .drawing {
+                background-image:url({{ img_url_giant }});
+            }
+            .drawing:before {
+                background-image:url({{ quest_template_url }});
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block fb_metadata %}
+    <meta property="og:title" content="{{ quest.title }}">
+    <meta property="og:description" content="{% trans username=comment.user.username %}{{ username }} completed a Quest on DrawQuest.{% endtrans %}">
+    <meta property="og:image" content="{{ img_url_original }}">
+    <meta property="og:type" content="{{ fb_namespace }}:quest">
+    <meta property="og:site_name" content="DrawQuest">
+    <meta property="article:published_time" content="{{ iso_8601(comment.timestamp) }}">
+    <meta property="fb:app_id" content="{{ fb_app_id }}">
+    <link rel="image_src" href="{{ img_url_original }}" />
+{% endblock %}
+
+{% block shared_content %}
+    <div class="drawing_wrapper">
+        <a href="{{ img_url_original }}">
+            <div class="ugc_img drawing">
+                <canvas id="playback_drawing" width="1024" height="768"></canvas>
+                <canvas id="playback_stroke" width="1024" height="768"></canvas>
+            </div>
+        </a>
+        <p class="no_animation_message">
+            {{ _("Sorry, this drawing doesn't have playback data.") }}
+        </p>
+    </div>
+    <div class="drawing_info">
+        <div class="user">
+            <div class="avatar">
+                {% if not private_profile %}<a href="/{{ comment.user.username }}"{% else %}<span{% endif%} style="background-image:url({{ author.web_avatar_url }});">{% if not private_profile %}</a>{% else %}</span>{% endif %}
+            </div>
+            <p>
+                <strong>{% if not private_profile %}<a href="/{{ comment.user.username }}">{% endif %}{{ comment.user.username }}{% if not private_profile %}</a>{% endif %}</strong>
+                <br>
+                {{ comment.star_count }} <img title="Starred" class="icon" src="/static/img/drawquest/icon_star_count@2x.png" width="15" height="15">
+                {{ comment.playback_count }} <img title="Plays" class="icon" src="/static/img/drawquest/icon_play_count@2x.png" width="15" height="15">
+            </p>
+        </div>
+        <div class="actions">
+            <a class="playback_button"><img src="/static/img/drawquest/icon_play@2x.png" width="32" height="32"></a>
+            <a class="social twitter"><img src="/static/img/drawquest/share_twitter_white@2x.png" width="32" height="32"></a>
+            <a class="social facebook"><img src="/static/img/drawquest/share_facebook_white@2x.png" width="32" height="32"></a>
+            <a class="social tumblr"><img src="/static/img/drawquest/share_tumblr_white@2x.png" width="32" height="32"></a>
+        </div>
+    </div>
+{% endblock %}
+

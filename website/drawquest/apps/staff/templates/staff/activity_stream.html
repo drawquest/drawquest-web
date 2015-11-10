@@ -1,0 +1,42 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>{{ examined_user.username }}'s activity stream</h1>
+
+<ul>
+    {% for activity in activities %}
+        <li>
+            <strong>{{ activity.type }}</strong><br>
+            {% for k, v in activity.to_client().items() if k not in ["type", "id"] %}
+                <em>{{ k }}:</em>
+
+                {% if k == "actor" %}
+                    <img src="{{ v["avatar_url"] }}" width="50" height="50"> <a href="/admin/staff/user/{{ v["username"] }}">{{ v["username"] }}</a>
+                {% elif k == "thumbnail_url" %}
+                    <img src="{{ v }}">
+                {% else %}
+                     {{ v }}
+                {% endif %}
+
+                <br>
+            {% endfor %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block extra_javascript %}
+<script>
+$(function () {
+});
+</script>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

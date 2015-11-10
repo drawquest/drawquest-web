@@ -1,0 +1,59 @@
+{% extends "drawquest/dqbase.html" %}
+
+
+{% block base_javascript %}
+{{ super() }}
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+{% endblock %}
+
+{% block base_css %}
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" type="text/css" media="all"> 
+
+<style>
+body {
+    font-family:"Helvetica Neue";
+    margin:2em 4em;
+}
+table {
+    margin:1em 0;
+    background-color:#eee;
+    border-spacing:0;
+}
+tr {
+    background-color:#ddd;
+}
+th {
+    white-space:nowrap;
+}
+td, th {
+    padding:.2em .5em;
+    border-width:1px 0;
+    border-color:#eee;
+    border-style:solid;
+}
+.form_field_error {
+    color:red;
+}
+.hidden {
+    display:none;
+}
+
+.color_option_swatch .color_option_swatch_inner {
+    height:23px;
+    width:23px;
+    border-radius:9001px;
+    border:2px solid rgba(0, 0, 0, .2);
+    -webkit-box-shadow:inset -3px -4px rgba(0, 0, 0, .07);
+}
+.color_option_swatch {
+    display:inline-block;
+    border-radius:999px;
+    border:6px solid #ccc;
+}
+</style>
+{% endblock %}
+
+{% block body_header %}
+{% endblock %}
+

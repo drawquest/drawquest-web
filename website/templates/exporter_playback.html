@@ -1,0 +1,370 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Drawing | DrawQuest</title>
+    <style>
+        body {
+            font-family:Arial;
+            background-color:#fbfbfb;
+            padding:0 0 1em 0;
+            margin:0;
+        }
+        #main {
+            padding:0 8px 0 8px;
+        }
+        a {
+            color:#67ceda;
+        }
+        a:visited {
+            color:#52a4ae;
+        }
+        #bar .title {
+            font-weight:bold;
+            color:white;
+            position:relative;
+            top:2px;
+            left:2px;
+        }
+        #bar {
+            width:100%;
+            box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            background-color:#67ceda;
+            color:white;
+            padding:6px 8px;
+        }
+        .quest_title {
+            margin-bottom:4px;
+        }
+        .avatar_container {
+            display:inline-block;
+            margin:0 32px 0 0;
+            padding:0;
+            text-align:center;
+        }
+        .avatar_container li {
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            font-size:80%;
+        }
+        .avatar {
+            max-height:60px;
+        }
+        .star_container, .date, .download, .view_quest, .fullscreen {
+            vertical-align:top;
+            display:inline-block;
+            margin-top:12px;
+            margin-right:16px;
+            font-size:107%;
+            height:1.5em;
+        }
+        .download a {
+            margin:0;
+        }
+        .star {
+            margin-left:2px;
+            position:relative;
+            top:-4px;
+            color:rgb(252, 219, 85);
+        }
+
+        #drawing_wrapper {
+            position:relative;
+            margin-bottom:0.5em;
+            display:inline-block;
+        }
+        #drawing_wrapper > a {
+            display:inline-block;
+        }
+
+        .drawing {
+            width:270px;
+            height:202px;
+
+            position:relative;
+            border:1px;
+            background-position:center center;
+            background-size:100%;
+            background-color:#fff;
+            background-repeat:no-repeat;
+            box-sizing:content-box;
+        }
+        .drawing:before {
+            content:"\00a0";
+            position:absolute;
+            display:none;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            background-position:center center;
+            background-size:100%;
+            background-color:#fff;
+            background-repeat:no-repeat;
+        }
+        @media only screen and (max-width:499px) {
+            .play_animation {
+                width:50px;
+                height:50px;
+                bottom:-15px;
+            }
+            .stats {
+                max-width:270px;
+            }
+        }
+        @media only screen and (min-width:500px) {
+            .drawing {
+                width:550px;
+                height:412px;
+            }
+        }
+        /* For medium desktop screens */
+        @media only screen and (min-width:700px) {
+            .drawing {
+                width:700px;
+                height:525px;
+            }
+        }
+        /* For larger desktop screens */
+        @media only screen and (min-width:1100px) {
+            .drawing {
+                width:800px;
+                height:600px;
+            }
+        }
+        /* For very large desktop screens */
+        @media only screen and (min-width:1700px) {
+            .drawing {
+                width:1024px;
+                height:768px;
+            }
+        }
+        .drawing canvas {
+            position:absolute;
+            width:100%;
+            height:100%;
+        }
+        .drawing.show_original:before {
+            display:block;
+        }
+
+        :-webkit-full-screen {
+            position: fixed !important;
+            width:100%;
+            height:100%;
+            top: 0;
+            background: black;
+        }
+        :fullscreen {
+            position: fixed !important;
+            width:100%;
+            height:100%;
+            top: 0;
+            background: black;
+        }
+        :ms-fullscreen {
+            position: fixed !important;
+            width:100%;
+            height:100%;
+            top: 0;
+            background: black;
+        }
+
+        :-webkit-full-screen .drawing {
+            width:100%;
+            height:100%;
+            position:fixed;
+            top:0;
+        }
+        :fullscreen .drawing {
+            width:100%;
+            height:100%;
+            position:fixed;
+            top:0;
+        }
+        :-ms-fullscreen .drawing {
+            width:100%;
+            height:100%;
+            position:fixed;
+            top:0;
+        }
+
+        :-webkit-full-screen .play_animation {
+            bottom:-3px;
+            right:-3px;
+        }
+        :fullscreen .play_animation {
+            bottom:-3px;
+            right:-3px;
+        }
+        :-ms-fullscreen .play_animation {
+            bottom:-3px;
+            right:-3px;
+        }
+
+        .play_animation {
+            position:absolute;
+            width:100px;
+            height:100px;
+            bottom:-30px;
+            right:3px;
+            background:url(/000exporter/playback_button.png) top center no-repeat;
+            background-size:100% 100%;
+            cursor:pointer;
+        }
+        .play_animation.loading:before {
+            content:"\00a0";
+            position:absolute;
+            width:100%;
+            height:100%;
+            background:rgba(#999, 0.5) url(/000exporter/loading.gif) center center no-repeat;
+            border-radius:100%;
+            -webkit-border-radius:100%;
+            -moz-border-radius:100%;
+        }
+        .no_animation_message {
+            display:none;
+            left:0;
+            bottom:0;
+            margin-left:10px;
+            color:red;
+            font-size:1.2em;
+            background:rgba(#fff, 0.8);
+        }
+
+        .drawing {
+            background-image:url({{ d.url }});
+        }
+        .drawing:before {
+            background-image:url({{ d.quest_image_url }});
+        }
+        .favicon, .favicon img {
+            display:inline-block;
+            width:20px;
+            height:20px;
+            vertical-align:middle;
+        }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/000exporter/pako_inflate.js"></script>
+    <script src="/000exporter/playback.js"></script>
+
+    <script type"text/javascript">
+        $(function () {
+            var elem = document.getElementById("drawing_wrapper");
+            if (document.fullscreenEnabled || 
+                    document.webkitFullscreenEnabled || 
+                    document.msFullscreenEnabled ||
+                    document.mozFullScreenEnabled) {
+                $('.fullscreen a').click(function (e) {
+                    e.preventDefault();
+
+                    if (elem.requestFullscreen) {
+                        elem.requestFullscreen();
+                    } else if (elem.msRequestFullscreen) {
+                        elem.msRequestFullscreen();
+                    } else if (elem.mozRequestFullScreen) {
+                        elem.mozRequestFullScreen();
+                    } else if (elem.webkitRequestFullscreen) {
+                        elem.webkitRequestFullscreen();
+                    }
+                });
+            } else {
+                $('.fullscreen').hide();
+            }
+
+            // Start loading animation on load
+            // play on click
+            var playback_deferred;
+            var deferred_data;
+            {% if d.playback_url %}
+            $(window).load(function() {
+                window.begin_loading_playback_data('{{ d.playback_url }}');
+            });
+            {% endif %}
+            $('.play_animation').on('click', function() {
+                var button = $(this);
+                button.attr("disabled", true);
+                button.addClass("loading");
+                window.begin_drawing_playback('{{ d.playback_url }}', function(has_playback_data) {
+                    // Playback data loaded
+                    button.removeClass("loading");
+                    console.log(has_playback_data);
+                    if (!has_playback_data) {
+                        var message = $('.no_animation_message');
+                        message.show()
+                        setTimeout(function() {
+                            message.fadeOut();
+                        }, 1500);
+                    }
+                    button.hide();
+                }, function() {
+                    // Drawing complete
+                    //button.show();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<header id="bar">
+    <a href="/" class="favicon"><img src="/favicon.ico"></a> <a href="/" class="title">DrawQuest Archive</a>
+</header>
+<section id="main">
+<p>
+<strong><a href="../">&#8617; Back to {{ user.username }}'s DrawQuest profile</a></strong>
+</p>
+
+<h2 class="quest_title"><a href="{{ d.quest_detail_url }}">{{ d.quest_title }}</a></h2>
+
+<div id="drawing_wrapper">
+    <a href="{{ d.url }}">
+        <div class="ugc_img drawing">
+            <canvas id="playback_drawing" width="1024" height="768"></canvas>
+            <canvas id="playback_stroke" width="1024" height="768"></canvas>
+        </div>
+    </a>
+    <div class="play_animation"></div>
+    <p class="no_animation_message">
+        Sorry, this drawing doesn't have playback data.
+    </p>
+</div>
+
+<div class="stats">
+    {% if avatar_url %}
+        <ul class="avatar_container">
+            <li><a href="../"><img class="avatar" src="{{ avatar_url }}"></a></li>
+            <li><a href="../">{{ user.username }}</a></li>
+        </ul>
+    {% endif %}
+    
+    {% if d.star_count %}
+    <div class="star_container">
+        {{ d.star_count }}<span class="star">&#9733;</span>
+    </div>
+    {% endif %}
+
+    <div class="date">
+        {{ d.date }}
+    </div>
+
+    <div class="download">
+        <a href="{{ d.url }}" download class="download">Download</a>
+    </div>
+
+    <div class="view_quest">
+        <a href="{{ d.quest_detail_url }}">View Quest</a>
+    </div>
+
+    <div class="fullscreen">
+        <a href="#">Fullscreen</a>
+    </div>
+</div>
+
+
+</section>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% extends "email/common_template.html" %}
+
+{% block extra_style %}
+    table.content p {
+        font-size:14px;
+        color:#555555;
+        margin:1em 0;
+    }
+
+    table.content p strong {
+        font-weight:normal;
+        font-family:'ArialRoundedMTBold', 'Nunito', Arial, Helvetica, sans-serif;
+    }
+
+    table.content p a {
+        color:#67ceda;
+    }
+
+    .social_channels {
+        text-align:center;
+        padding-bottom:1em;
+    }
+
+    .social_channels a {
+        color:#67ceda;
+    }
+
+    .signature {
+        margin-bottom:0;
+    }
+
+    .underline {
+        text-decoration:underline;
+    }
+{% endblock %}
+
+{% block header %}
+    <span class="arial_rounded">Dear {{ notification.recipient.username }},</span>
+{% endblock %}
+
+{% block content %}
+    <table cellspacing="20" cellpadding="0">
+        <tr>
+            <td>
+                <p>
+                    As you may have read earlier this week, we shared some <a href="http://blog.example.com/post/74083057195/sad-news-an-important-message-from-team-drawquest">sad news</a> with the world—that our company is shutting down and our team going their separate ways, but perhaps most importantly—<span class="underline">our plan is to keep DrawQuest running as long as we're able to cover the cost of maintaining it</span>. (Be sure to read this entire e-mail for details!)
+                </p>
+                <p>
+We've been overwhelmed by your kind words and support since our announcement. As we said in our blog post, we really do want to find a way to go forward, but it's very unlikely we'll be able to do so as a company. But that doesn't necessarily mean DrawQuest is over! On to the happy news...
+                </p>
+                <p>
+Though the team will go their separate ways, we are all still committed to keeping DrawQuest alive for as long as possible. We are proud of the app we've worked so hard on this past year, and even more proud of the amazing community that's formed around it. Watching you all create such incredible artwork every day has brought us so much joy and inspiration that we can't imagine a world without it.
+                </p>
+                <p>
+We're currently working hard to dramatically lower the app's operating costs. It's important to note that DrawQuest may see few, if any, app updates going forward—but it's our hope that if we can get the costs low enough, we'll be able to keep the DrawQuest servers running for a long time to come.
+                </p>
+                <p>
+We're also investigating alternative sources of income, which may include additional brushes, more color packs, sponsored Quests, and becoming a paid app. (Don't worry—if you've already downloaded DrawQuest using your iTunes account, you already own the app for free. This would only apply to new Questers.)
+                </p>
+                <p>
+Many of you have asked how you can help. For one, keep doing what you're doing! Keep creating amazing drawings, create new Quests, and invite your friends to DrawQuest. Second, every time you purchase coins and brushes, it helps us dramatically. If every active DrawQuest user made a single $0.99 purchase, we could sustain the app for <strong>years</strong> to come!
+                </p>
+                <p>
+We hope you'll bear with and continue to support us as we navigate these next few months. It won't be easy, but we're committed to doing our best to maintain what we believe is one of the best drawing apps ever created.
+                </p>
+                <p>
+Thank you all for being a part of something wonderful. Here's to DrawQuesting!
+                </p>
+                <p class="signature">
+                    Your friends forever,
+                    <br />
+                    — The DrawQuest Team
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    <p class="social_channels">
+        PS: Please follow us for updates:
+        <a target="_blank" href="http://www.facebook.com/">Facebook</a>,
+        <a target="_blank" href="http://www.twitter.com/DrawQuest">Twitter</a>,
+        and <a target="_blank" href="http://blog.example.com">Tumblr</a>.
+    </p>
+
+    <table width="100%" cellspacing="30" cellpadding="0">
+        <tr>
+            <td align="center">
+                <img src="http://example.com/static/img/drawquest/promotion/email/dq_friends.jpg" width="610" height="456" alt="DQ Friends"/>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block email_type %}
+    update
+{% endblock %}

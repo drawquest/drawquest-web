@@ -1,0 +1,121 @@
+// Drawquest defaults and common elements
+* {
+    @include box-sizing(border-box);
+}
+
+html {
+    font-size:62.5%;
+    font-family:$page_font_family;
+}
+
+body {
+    font-size:1em;
+    color:$default_medium_font;
+}
+
+a {
+    text-decoration:none;
+    color:$link_color;
+    cursor:pointer;
+
+    &:hover {
+        color:$link_hover_color;
+    }
+
+    &:visited {
+        color:$link_color;
+    }
+}
+
+ul {
+    list-style-type:none;
+    padding:0;
+}
+
+h1 {
+    font-family:$header_font_family;
+    color:$default_medium_font*0.8;
+    font-size:3em;
+    line-height:1.4em;
+    margin:0;
+    margin-bottom:0.5em;
+}
+
+strong {
+    font-weight:normal;
+    font-family:$header_font_family;
+}
+
+header.dq_header {
+    min-width:100%;
+    background:$header_bg;
+    color:$header_font_color;
+
+    .fixed_width_wrapper {
+        padding:10px;
+        @include clearfix();
+    }
+
+    .header_logo_link {
+        float:left;
+
+        img {
+            margin-right:3px;
+        }
+    }
+
+    .header_social {
+        $difference:10px;
+        $margin:5px;
+
+        float:right;
+        padding-top:$difference;
+
+        span {
+            font-size:1.2em;
+            margin-right:$margin + 3px;
+            vertical-align:middle;
+        }
+
+        a {
+            $size:52px - $difference * 2;
+            display:inline-block;
+            width:$size;
+            height:$size;
+            margin-right:$margin;
+            background:$header_font_color;
+            vertical-align:middle;
+
+            @include border-radius($size/2);
+        }
+    }
+}
+
+footer.dq_footer {
+    width:100%;
+    font-size:1.5em;
+    padding:1.5em 0;
+    background:$footer_bg;
+    border-top:$footer_border;
+    text-align:center;
+
+    ul {
+        display:inline-block;
+
+        li {
+            display:inline-block;
+
+            &:not(:last-child):after {
+                /* Dot */
+                content:"\2022";
+                position:relative;
+                color:$link_color;
+                z-index:3;
+                font-size:1.5em;
+                cursor:pointer;
+                vertical-align:middle;
+                margin:0.75em;
+            }
+        }
+    }
+}

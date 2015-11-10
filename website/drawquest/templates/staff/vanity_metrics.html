@@ -1,0 +1,16 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block body %}
+<ul>
+    <li>Active users: {{ users_since_launch }} since launch, {{ users_in_24h }} in last 24h, {{ users_in_1h }} in last hour.</li>
+    <li>Drawings (iPad/iPhone): {{ drawings }} since launch, {{ drawings_in_24h }} in last 24h.
+    <li>Drawings created on iPhone: {{ iphone_drawings }} were since launch, {{ iphone_drawings_in_24h }} in last 24h.</li>
+    <li>UGQ: {{ ugq }} since launch, {{ ugq_in_24h }} in last 24h.</li>
+    <li>Stars: {{ stars }}</li>
+    <li>Playbacks: {{ playbacks }}</li>
+</ul>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

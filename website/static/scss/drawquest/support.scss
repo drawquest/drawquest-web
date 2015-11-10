@@ -1,0 +1,95 @@
+@import "fonts", "mixins", "vars", "normalize", "defaults";
+
+body {
+    background:$page_bg;
+
+    &:after {
+        content:"\00a0";
+        position:fixed;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+    }
+}
+
+.main {
+    position:relative;
+    z-index:1;
+    padding:0 20px 20px;
+
+    h1 {
+        font-size:2.6em;
+        text-align:center;
+    }
+
+    p {
+        font-size:1.4em;
+        line-height:1.5em;
+    }
+
+    > p {
+        text-align:center;
+    }
+}
+
+.fixed_width_wrapper {
+    width:550px;
+    margin:0 auto;
+}
+
+.main {
+    background:$main_bg;
+    padding-top:10px;
+
+    .fixed_width_wrapper {
+        position:relative;
+        margin:10px auto;
+        border:1px solid $_color_medium_gray;
+        padding:20px;
+        background:#fff;
+        z-index:1;
+        @include border-radius(4px);
+
+        p {
+            margin:0;
+            text-align:center;
+            color:$default_medium_font;
+        }
+
+        form {
+            label {
+                font-size:1.6em;
+                color:$default_medium_font;
+            }
+
+            span.error {
+                display:block;
+                font-size:1.4em;
+                color:red;
+            }
+
+            input,
+            textarea {
+                display:block;
+                width:100%;
+                margin-top:5px;
+                margin-bottom:15px;
+                border:1px solid #999;
+                padding:0.35em;
+                font-size:1.6em;
+                @include border-radius(4px);
+            }
+
+            button {
+                font-size:1.6em;
+                border:0;
+                background:$link_color;
+                color:$default_light_font;
+                padding:10px 40px;
+
+                @include border-radius(3px);
+            }
+        }
+    }
+}

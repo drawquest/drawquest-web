@@ -1,0 +1,498 @@
+@import "fonts", "mixins", "vars", "normalize";
+
+/* Defaults */
+* {
+    @include box-sizing(border-box);
+}
+
+html {
+    font-size:62.5%;
+    font-family:$page_font_family;
+}
+
+body {
+    font-size:1em;
+}
+
+a {
+    text-decoration:none;
+    color:$link_color;
+    cursor:pointer;
+
+    &:hover {
+        color:$link_hover_color;
+    }
+}
+
+ul {
+    list-style-type:none;
+    padding:0;
+}
+
+
+
+body {
+    background:$_color_white;
+}
+
+.fixed_width_wrapper {
+    max-width:1024px;
+    margin:0 auto;
+}
+
+$padding:10px;
+
+header {
+    padding:4px 4px 1px;
+    @include clearfix();
+    @include bg-linear-gradient((90deg, #222 0%, #383838 60%, #444 61%, #555 95%, #222 100%));
+
+    a.logo {
+        display:block;
+        position:static;
+        float:left;
+        padding:2px;
+
+        img:first-of-type {
+            width:20px;
+            height:auto;
+            margin-right:5px;
+        }
+
+        img:last-of-type {
+            width:120px;
+            height:auto;
+        }
+    }
+
+    a.app_store_link {
+        position:static;
+        float:right;
+
+        img {
+            width:80px;
+            height:auto;
+        }
+    }
+}
+
+section.template {
+    padding:$padding;
+
+    .template_image_wrapper {
+        margin-bottom:10px;
+        border:$drawing_outer_border;
+        padding:$padding;
+        @include box-shadow(3px 3px 0 0 rgba(#000, 0.1));
+
+        img {
+            display:block;
+            width:100%;
+            height:auto;
+            border:$drawing_inner_border;
+        }
+    }
+
+    .template_info {
+        @include clearfix();
+    }
+
+    p.date,
+    a.draw_this_quest {
+        display:none;
+    }
+
+    a.draw_this_quest {
+        img {
+            display:block;
+            width:263;
+            height:50px;
+        }
+    }
+
+    p.date {
+        margin:0.25em 0 0.75em;
+        font-family:$_normal_font;
+        color:$default_medium_font;
+        font-size:1.2em;
+    }
+
+    p.prompt {
+        margin:0.75em 0;
+        font-family:$_silly_font;
+        color:$default_dark_font;
+        font-size:1.4em;
+        text-align:center;
+    }
+
+    .social {
+        float:right;
+        width:10em;
+        margin-left:0.5em;
+        position:relative;
+        border:1px solid $_color_medium_gray*0.9;
+        @include bg-linear-gradient((-90deg, #fff 0%, #e5e5e5 100%));
+        @include border-radius(0.4em);
+        @include clearfix();
+
+        p {
+            margin:0;
+            border-bottom:1px solid $_color_medium_gray*0.9;
+            padding:0.2em 0.5em;
+            color:#777;
+            text-align:center;
+        }
+
+        > div {
+            float:left;
+            height:3em;
+            width:33%;
+            padding:0.4em;
+            border-right:1px solid $_color_medium_gray*0.9;
+            cursor:pointer;
+
+            &:last-of-type {
+                border:0;
+            }
+
+            > div {
+                width:100%;
+                height:100%;
+                opacity:0.75;
+                @include border-radius(3em);
+            }
+
+            $color:$_color_turqoise;
+
+            .facebook {
+                background:$color url(/static/img/drawquest/facebook_share.png) center bottom no-repeat;
+                background-size:53%;
+            }
+            .twitter {
+                background:$color url(/static/img/drawquest/twitter_share.png) center no-repeat;
+                background-size:75%;
+            }
+            .tumblr {
+                background:$color url(/static/img/drawquest/tumblr_share.png) center no-repeat;
+                background-size:50%;
+            }
+        }
+    }
+}
+
+ul.drawings {
+    margin:0;
+    padding:10px;
+    border-top:1px solid #ccc;
+    @include clearfix();
+
+    li {
+        display:block;
+        float:left;
+        width:47%;
+        margin-bottom:20px;
+        margin-right:6%;
+
+        &:nth-child(2n) {
+            margin-right:0;
+        }
+        &:nth-child(2n + 1) {
+            clear:both;
+        }
+        &:last-of-type,
+        &:nth-last-child(2) {
+            margin-bottom:0;
+        }
+
+        div {
+            position:relative;
+            border:1px solid $_color_dark_gray;
+            padding:8px;
+            @include box-shadow(3px 3px 0 rgba(#000, 0.1));
+
+            img {
+                display:block;
+                width:100%;
+                height:auto;
+                @include box-shadow(0 0 0 1px $_color_medium_gray);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:480px) {
+    section.template {
+        @include clearfix();
+
+        .template_image_wrapper {
+            float:left;
+            width:50%;
+            margin:0;
+            margin-right:10px;
+        }
+
+        .template_info {
+            position:relative;
+            height:100%;
+        }
+
+        p.date {
+            display:block;
+        }
+
+        p.prompt {
+            font-size:1.4em;
+        }
+
+        .social {
+            float:none;
+            position:absolute;
+            right:0;
+            bottom:0;
+        }
+    }
+
+    ul.drawings {
+        li {
+            width:30.6%;
+
+            &:nth-child(1n) {
+                margin-right:4%;
+                clear:none;
+            }
+            &:nth-child(3n) {
+                margin-right:0;
+            }
+            &:nth-child(3n + 1) {
+                clear:left;
+            }
+            &:last-of-type,
+            &:nth-last-child(2),
+            &:nth-last-child(3) {
+                margin-bottom:0;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:680px) {
+    $padding:20px;
+
+    header {
+        padding:8px $padding 5px;
+
+        a.logo {
+            padding:4px;
+
+            img:first-of-type {
+                width:30px;
+                margin-right:8px;
+            }
+
+            img:last-of-type {
+                width:175px;
+            }
+        }
+
+        a.app_store_link {
+            img {
+                width:135px;
+            }
+        }
+    }
+
+    section.template {
+        padding:15px;
+        margin:$padding;
+        border:$drawing_outer_border;
+        @include border-radius(7px);
+        @include box-shadow(4px 4px 0 0 rgba(#000, 0.1));
+
+        .template_image_wrapper {
+            width:40%;
+            padding:0;
+            @include box-shadow(none);
+
+            img {
+                border:0;
+            }
+        }
+
+        .template_info {
+            width:58%;
+            margin-left:42%;
+            border:2px solid $_color_dark_gray;
+            @include bg-linear-gradient((90deg, $_color_lime*0.8 48px, $_color_lime*0.9 48px, $_color_lime*1.1 80%, $_color_lime 100%));
+            @include border-radius(3px);
+        }
+
+        .template_info > div {
+            padding:10px;
+        }
+
+        p.date {
+            font-size:1.6em;
+            font-weight:bold;
+            color:$default_light_font;
+            text-shadow:1px 1px 0 rgba(#000, 0.3), 0 0 1px rgba(#000, 0.7);
+        }
+
+        p.prompt {
+            font-size:2.2em;
+            color:$default_light_font;
+            text-shadow:2px 2px 0 rgba(#000, 0.3), 0 0 1px rgba(#000, 0.7);
+        }
+
+        $bottom_padding:5px;
+
+        a.draw_this_quest {
+            display:block;
+            position:absolute;
+            left:$bottom_padding - 2px;
+            bottom:$bottom_padding - 2px;
+
+            img {
+                height:40px;
+                width:auto;
+            }
+        }
+
+        .social {
+            width:auto;
+            right:$bottom_padding;
+            bottom:$bottom_padding;
+            border:0;
+            background:transparent;
+            font-size:1.2em;
+
+            p {
+                display:none;
+            }
+
+            > div {
+                height:3em;
+                width:3em;
+                padding:3px;
+                margin-left:0.6em;
+                border-right:0;
+                background:$_color_white;
+                @include border-radius(2em);
+                @include box-shadow(0 0 0 2px rgba(#000, 0.1));
+
+                > div {
+                    opacity:1;
+                }
+            }
+        }
+    }
+
+    $padding:$padding + 5px;
+
+    ul.drawings {
+        padding:$padding;
+
+        li {
+            width:22%;
+            margin-bottom:30px;
+
+            &:nth-child(1n) {
+                margin-right:4%;
+                clear:none;
+            }
+            &:nth-child(4n) {
+                margin-right:0;
+            }
+            &:nth-child(4n + 1) {
+                clear:left;
+            }
+            &:last-of-type,
+            &:nth-last-child(2),
+            &:nth-last-child(3),
+            &:nth-last-child(4) {
+                margin-bottom:0;
+            }
+
+            p {
+                font-size:1.2em;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:1024px) {
+    section.template {
+        .template_info {
+            @include bg-linear-gradient((90deg, $_color_lime*0.8 60px, $_color_lime*0.9 60px, $_color_lime*1.1 80%, $_color_lime 100%));
+        }
+
+        p.date {
+            font-size:1.8em;
+        }
+
+        p.prompt {
+            margin:1em 0;
+            font-size:3em;
+        }
+
+        .social {
+            font-size:1.5em;
+
+            > div {
+                padding:4px;
+            }
+        }
+
+        a.draw_this_quest {
+            img {
+                height:50px;
+            }
+        }
+    }
+
+    ul.drawings {
+        li {
+            width:16.8%;
+
+            &:nth-child(1n) {
+                margin-right:4%;
+                clear:none;
+            }
+            &:nth-child(5n) {
+                margin-right:0;
+            }
+            &:nth-child(5n + 1) {
+                clear:left;
+            }
+            &:last-of-type,
+            &:nth-last-child(2),
+            &:nth-last-child(3),
+            &:nth-last-child(4),
+            &:nth-last-child(5) {
+                margin-bottom:0;
+            }
+
+            p {
+                font-size:1.3em;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:1025px) {
+    body {
+        background:$page_bg;
+    }
+
+    .fixed_width_wrapper {
+        margin:20px auto;
+        border:1px solid $_color_dark_gray;
+        background:$_color_white;
+        overflow:hidden;
+        @include border-radius(7px);
+        @include box-shadow(0 0 2px rgba(#000, 0.3));
+    }
+
+    header {
+        padding:8px 8px 5px;
+    }
+}

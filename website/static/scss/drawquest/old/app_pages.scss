@@ -1,0 +1,50 @@
+@import "fonts", "mixins", "vars", "normalize", "defaults";
+@import "app_about_page", "app_legal";
+
+body {
+    background:#fff;
+}
+
+.fixed_width_wrapper {
+    margin:30px;
+
+    > h1 {
+        margin:0;
+        color:$modal_text_header_color;
+        font-family:$modal_text_header_font;
+        font-size:1.8em;
+        text-shadow:none;
+        font-weight:normal;
+    }
+}
+
+section.modal {
+    margin:0;
+    padding:20px;
+    background:$modal_section_bg_color;
+    border:1px solid $modal_section_border_color;
+    @include border-radius($modal_section_radius);
+    color:$modal_text_color;
+
+    a {
+        color:$modal_text_highlight_color;
+    }
+
+    p {
+        margin:0;
+        font-size:1.6em;
+        line-height:1.4em;
+    }
+
+    * + p {
+        margin-top:1em;
+    }
+}
+
+section.modal + section.modal {
+    margin-top:30px;
+}
+
+* + section.modal {
+    margin-top:30px;
+}

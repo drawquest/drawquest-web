@@ -1,0 +1,204 @@
+{% extends "drawquest/share_page.html" %}
+
+{% block body_header_quest_title %}{{ quest.title }}{% endblock %}
+
+{% block smart_app_banner %}
+  <meta name="apple-itunes-app" content="app-id={{ app_store_id() }}, app-argument=drawquest://quest/{{ quest.id }}">
+{% endblock %}
+
+{% block twitter_card %}
+    {% if quest.content %}
+        <meta name="twitter:site" content="@DrawQuest">
+        <meta name="twitter:card" content="photo">
+        <meta name="twitter:title" content="{{ quest.title }}">
+        <meta name="twitter:description" content="{% trans username=quest.user.username %}Complete this Quest by {{ username }} on DrawQuest.{% endtrans %}">
+        <meta name="twitter:image" content="{{ quest.content.gallery.get('url') }}">
+        <meta name="twitter:image:width" content="1212">
+        <meta name="twitter:image:height" content="908">
+        <meta name="twitter:url" content="{{ quest.absolute_share_page_url }}">
+        <meta name="twitter:app:url:ipad" content="drawquest://quest/{{ quest.id }}"/>
+    {% endif %}
+{% endblock %}
+
+{% block share_css %}
+    {% if quest.content %}
+        <style>
+            /* Response image CSS, needs to be in template */
+            .drawing {
+                background-image:url({{ quest_template_url }});
+            }
+            .drawing:before {
+                background-image:url({{ original_img_url_small }});
+            }
+            @media
+            only screen and (max-width:320px) and (orientation:portrait),
+            only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:portrait),
+            only screen and (-webkit-min-device-pixel-ratio:1.5) and (orientation:portrait),
+            only screen and (min-device-pixel-ratio:1.5) and (orientation:portrait),
+            only screen and (max-width:400px),
+            {
+                .drawing {
+                    background-image:url({{ quest_template_url }});
+                }
+                .drawing:before {
+                    background-image:url({{ quest_template_url }});
+                }
+            }
+            @media only screen and (min-width:1000px) {
+                .drawing {
+                    background-image:url({{ quest_template_url }});
+                }
+                .drawing:before {
+                    background-image:url({{ quest_template_url }});
+                }
+            }
+            @media only screen and (min-width:1300px) {
+                .drawing {
+                    background-image:url({{ quest_template_url }});
+                }
+                .drawing:before {
+                    background-image:url({{ quest_template_url }});
+                }
+            }
+            @media only screen and (min-width:1700px) {
+                .drawing {
+                    background-image:url({{ quest_template_url }});
+                }
+                .drawing:before {
+                    background-image:url({{ quest_template_url }});
+                }
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+
+
+{% block share_javascript %}
+    <script src="/static/js/drawquest/sharing.js"></script>
+    <script>
+        $(function() {
+            // Sharing
+            $(function() {
+                $('a.social').on('click', function() {
+                    var share_type = $(this).attr("class").split(/\s+/);
+                    share_type = share_type[share_type.length - 1];
+                    var quest_title = "{{ quest.title|safe }}";
+                    var img_url = "{{ original_quest_template_url }}";
+                    window.share(share_type, window.document.location.href, quest_title, img_url);
+                });
+            });
+
+            // Go through and set image heights based on width.
+            var hardcode_image_heights = function() {
+                var ratio = 3/4;
+                var width = $($("ul.drawings img")[0]).width();
+                var height = width * ratio;
+                $("ul.drawings img").css("height", height);
+            };
+            $(window).on("resize", hardcode_image_heights);
+            hardcode_image_heights();
+
+            // Unload img src of things off screen
+            (function() {
+                var images = $("ul.drawings img");
+                var items = [];
+                var window_top = 0;
+                var window_bottom = 0;
+                var top_threshold = 0;
+                var bottom_threshold = 1000;
+
+                var on_resize = function() {
+                    window_top = $(window).scrollTop();
+                    window_bottom = window_top + $(window).height();
+
+                    items = [];
+                    images.each(function(index, element) {
+                        var node = $(element);
+                        var item = {
+                            element : element,
+                            top     : node.offset().top,
+                            height  : node.outerHeight()
+                        };
+                        items.push(item);
+                    });
+                };
+
+                var on_scroll = function() {
+                    window_top = $(window).scrollTop();
+                    window_bottom = window_top + $(window).height();
+
+                    for (var i = 0; i < items.length; i++) {
+                        var blank_img_src = "http://example.com/static/img/0.gif";
+                        var item = items[i];
+                        var bottom = item.top + item.height + top_threshold; // bottom of image
+                        var top = item.top - bottom_threshold; // top of image
+                        if (item.element.src != blank_img_src && (bottom < window_top || top > window_bottom)) {
+                            item.element.src = blank_img_src;
+                        } else if (bottom > window_top && top < window_bottom) {
+                            item.element.src = item.element.getAttribute("data-original");
+                        }
+                    }
+                };
+
+                on_resize();
+                on_scroll();
+                $(window).on("resize", on_resize);
+                $(window).on("scroll", on_scroll);
+            })();
+        });
+    </script>
+{% endblock %}
+
+{% block fb_metadata %}
+    <meta property="og:title" content="{{ quest.title }}">
+    <meta property="og:description" content="{% trans username=quest.user.username %}Complete this Quest by {{ username }} on DrawQuest.{% endtrans %}">
+    {% if quest.content %}
+        <meta property="og:image" content="{{ quest.content.gallery.get('url') }}">
+        <link rel="image_src" href="{{ quest.content.gallery.get('url') }}" />
+    {% endif %}
+    <meta property="og:type" content="{{ fb_namespace }}:quest">
+    <meta property="og:site_name" content="DrawQuest">
+    <meta property="article:published_time" content="{{ iso_8601(quest.timestamp) }}">
+    <meta property="fb:app_id" content="{{ fb_app_id }}">
+{% endblock %}
+
+{% block shared_content %}
+    <div class="drawing_wrapper">
+        <a href="{{ original_quest_template_url }}">
+            <div class="ugc_img drawing"></div>
+        </a>
+    </div>
+    <div class="drawing_info">
+        <div class="user">
+            <div class="avatar">
+                {% if not private_profile %}<a href="/{{ quest.user.username }}"{% else %}<span{% endif%} style="background-url:url({{ quest.user.web_avatar_url }});">{% if not private_profile %}</a>{% else %}</span>{% endif %}
+            </div>
+            <p>
+            <strong>{% if not private_profile %}<a href="/{{ quest.user.username }}">{% endif %}{{ quest.user.username }}{% if not private_profile %}</a>{% endif %}</strong>
+            </p>
+        </div>
+        <div class="actions">
+            <a class="social twitter"><img src="/static/img/drawquest/share_twitter_white@2x.png" width="32" height="32"></a>
+            <a class="social facebook"><img src="/static/img/drawquest/share_facebook_white@2x.png" width="32" height="32"></a>
+            <a class="social tumblr"><img src="/static/img/drawquest/share_tumblr_white@2x.png" width="32" height="32"></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_content %}
+    {% if comments %}
+        <div class="fixed_width_wrapper">
+            <ul class="drawings">
+                {% for comment in comments %}
+                    <li>
+                        <a href="{{ comment.share_page_url }}">
+                            <div class="drawing_wrapper">
+                                <img class="lazy" data-original="{{ comment.content.archive.url }}" src="">
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

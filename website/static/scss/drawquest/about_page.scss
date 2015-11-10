@@ -1,0 +1,131 @@
+@import "fonts", "mixins", "vars", "normalize", "defaults";
+
+section.body {
+    background:$about_nav_background_color;
+    @include clearfix();
+}
+
+.fixed_width_wrapper {
+    max-width:900px;
+    margin:0 auto;
+}
+
+nav.about_navigation {
+    position:relative;
+    width:28%;
+    max-width:270px;
+    height:100%;
+    float:left;
+    text-align:right;
+
+    ul {
+        text-align:left;
+        padding-left:1em;
+        margin-bottom:2em;
+
+        li {
+            position:relative;
+            padding:1em 1em 1em 0;
+            font-size:1.2em;
+            border-bottom:1px solid #fff;
+
+            a {
+                color:#fff;
+                font-family:$_styled_font;
+            }
+
+            img {
+                position:absolute;
+                width:0.75em;
+                height:auto;
+                right:0.75em;
+                top:1.2em;
+            }
+        }
+    }
+
+    & > img {
+        width:100%;
+        max-width:300px;
+        height:auto;
+    }
+}
+
+.page {
+    background:$main_bg;
+    float:left;
+    width:72%;
+    padding:20px;
+    font-size:1.6em;
+
+    h1 {
+        color:$_color_yellow;
+        font-size:2em;
+    }
+
+    // Legal
+    ol {
+        padding-left:2em;
+        list-style-type:upper-roman;
+    }
+}
+
+ul.team {
+    li {
+        display:inline-block;
+        width:200px;
+        height:330px;
+        text-align:center;
+        vertical-align:top;
+
+        h2 {
+            font-size:1.2em;
+            margin-bottom:0;
+        }
+
+        p {
+            margin:0;
+        }
+    }
+}
+
+img.image_404 {
+    width:100%;
+    max-width:1190px;
+    height:auto;
+
+    & + h2 {
+        text-align:center;
+    }
+}
+
+/* For medium desktop screens */
+@media only screen and (min-width:900px) {
+
+    section.body {
+        background:$main_bg;
+    }
+
+    nav.about_navigation {
+        z-index:1;
+
+        ul li {
+            font-size:1.8em;
+        }
+    }
+
+    .page {
+        position:relative;
+
+        &:before {
+            content:"\00a0";
+            position:absolute;
+            width:10000px;
+            height:100%;
+            top:0;
+            left:-10000px;
+            background:$about_nav_background_color;
+            z-index:0;
+        }
+    }
+}

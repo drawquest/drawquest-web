@@ -1,0 +1,32 @@
+{% extends "drawquest/app/base.html" %}
+
+{% block body_header %}{% endblock %}
+{% block body_footer %}{% endblock %}
+
+{% block body_class %}app_about{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/app_about_page.css">
+{% endblock %}
+
+{% block body %}
+    <section class="main">
+        <p>
+            {{ _("Every day, people come together on DrawQuest to draw and be creative. Unlock your creativity and receive daily drawing challenges with DrawQuest.") }}
+        </p>
+        <p>
+            Learn more about us on <a href="/">our website</a>!
+        </p>
+        <p>
+            Be sure to follow us as well!
+        </p>
+        <div class="follow_us">
+            <a href="http://twitter.com/" class="social"><img src="/static/img/drawquest/share_twitter_blue@2x.png" width="32" height="32"></a>
+            <a href="http://facebook.com/" class="social"><img src="/static/img/drawquest/share_facebook_blue@2x.png" width="32" height="32"></a>
+            <a href="http://tumblr.com" class="social"><img src="/static/img/drawquest/share_tumblr_blue@2x.png" width="32" height="32"></a>
+        </div>
+    </section>
+    <footer>
+        <a href="/privacy">Privacy Policy & Terms of Service</a>
+    </footer>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "whitelisting/moderation.html" %}
+
+{% block nav %}
+    <nav>
+        <a href="/admin/staff/moderation">Moderation</a>
+        |
+        <a href="/admin/staff/moderation/new">Newest</a>
+        |
+        <a class="active">Distrusted</a>
+    </nav>
+{% endblock %}
+
+{% block unjudged_count %}{% endblock %}
+

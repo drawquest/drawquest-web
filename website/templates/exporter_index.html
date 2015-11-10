@@ -1,0 +1,313 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% if user.username == "Questbot" %}
+        <title>Quest of the Day Archive</title>
+    {% else %}
+        <title>{{ user.username }}'s Drawings on DrawQuest</title>
+    {% endif %}
+    <style>
+        #main {
+            padding:0 8px 0 8px;
+        }
+        .favicon, .favicon img {
+            display:inline-block;
+            width:20px;
+            height:20px;
+            vertical-align:middle;
+        }
+        .avatar_container {
+            display:inline-block;
+            vertical-align:top;
+            text-align:center;
+        }
+        #questbot_name {
+            font-size:80%;
+        }
+        a {
+            color:#67ceda;
+        }
+        a:visited {
+            color:#52a4ae;
+        }
+        #bar .title {
+            font-weight:bold;
+            color:white;
+            position:relative;
+            top:2px;
+            left:2px;
+        }
+        #bar {
+            width:100%;
+            box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            background-color:#67ceda;
+            color:white;
+            padding:6px 8px;
+        }
+        .image {
+            max-width:100%;
+        }
+        .quest_links {
+            font-size:80%;
+            text-align:left;
+            display:block;
+        }
+        .quest_links_without_image {
+            font-size:80%;
+            text-align:center;
+            display:block;
+        }
+        .image_container, .quest_container {
+            display:inline-block;
+            float:left;
+            width:360px;
+            padding:0;
+
+            margin:4px 4px 1.5em 4px;
+
+            font-size:1.2em;
+        }
+        .image_container img {
+            width:360px;
+            height:270px;
+            border:1px solid #b5b5b5;
+        }
+        .invisible {
+            display:none;
+        }
+        .lazy {
+            display:none;
+        }
+        .quest_container {
+            text-align:center;
+        }
+        .drawing_links {
+
+        }
+        .image_container li {
+            list-style-type:none;
+            margin:0;
+            padding:0;
+        }
+        .image_container .quest_date, .image_container .drawing_date {
+            font-size:70%;
+        }
+        .image_container .drawing_date, .image_container .quest_title {
+            text-align:center;
+        }
+        .image_container .quest_title {
+            font-size:90%;
+            font-weight:bold;
+        }
+        .download {
+        }
+        body {
+            font-family:Arial;
+            background-color:#fbfbfb;
+            padding:0;
+            margin:0;
+        }
+        .avatar_container a, .avatar_container img {
+            vertical-align:top;
+        }
+        .profile {
+            display:inline-block;
+        }
+        .profile li {
+            margin: .5em;
+        }
+        .star {
+            margin-left:2px;
+            color:rgb(252, 219, 85);
+        }
+        .avatar {
+            {% if user.username == "Questbot" %}
+            max-height:150px;
+            {% else %}
+            max-height:200px;
+            {% endif %}
+        }
+        #drawings_sort_info, #quests_sort_info {
+            position:relative;
+            top:-1em;
+            font-size:80%;
+            color:#555;
+            display:block;
+        }
+        .power_users {
+            font-size:80%;
+            color:#777;
+        }
+        .power_users a.load_all, .power_users a.load_all:visited {
+            color:#777;
+        }
+        #save_page_info a.load_all, #save_page_info a.load_all:visited {
+            color:black;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/000exporter/jquery.lazyload.js"></script>
+
+    <script type"text/javascript">
+        $(function () {
+            $("img.lazy").show().lazyload({
+                effect: "fadeIn"
+            });
+
+            $('#followers_dialog, #following_dialog').css({height:240, width: 300, overflow: 'auto', border: '1px solid gray', margin: '1em 0', padding: '.3em'});
+
+            $('#followers').click(function (e) {
+                e.preventDefault();
+                $('#followers_dialog').toggle();
+            });
+            $('#following').click(function (e) {
+                e.preventDefault();
+                $('#following_dialog').toggle();
+            });
+            $('.load_all').click(function (e) {
+                e.preventDefault();
+                $('img.lazy').each(function (_, el) {
+                    $(el).trigger('appear');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<header id="bar">
+    <a href="/" class="favicon"><img src="/favicon.ico"></a> <a href="/" class="title">DrawQuest Archive</a>
+</header>
+<section id="main">
+{% if user.username == "Questbot" %}
+    <h1>Quest of the Day Archive</h1>
+{% else %}
+    <h1>{{ user.username }}'s DrawQuest</h1>
+
+<p><strong>Click any "Download" links to download your drawings.</strong> You can also view playback and find quest pages by clicking/tapping the drawings below.</p>
+
+<p id="save_page_info">
+To save your entire profile: 1) Open this page on a desktop/laptop computer. 2) <a href="#" class="load_all">Click here to pre-load all images</a>. 3) Click "File" then "Save As...", select the "Webpage, Complete" option, then save to your computer.
+</p>
+
+<p class="power_users"><em>Power users only:</em> If you are using an image download extensin, either make sure you download linked images only, or <a href="#" class="load_all">click here to load all images at once</a> and then use your extension. <strong>It's simplest to just click "Download" on each below!</strong> Or use the instructions above to download the page.</p>
+
+{% endif %}
+
+{% if user.username == "Questbot" %}
+{% else %}
+<h2>Profile</h2>
+{% endif %}
+
+<div class="avatar_container">
+{% if avatar_url %}
+    <a href="{{ full_avatar_url }}"><img class="avatar" src="{{ avatar_url }}"></a>
+{% endif %}
+{% if user.username == "Questbot" %}
+    <br><span id="questbot_name">Questbot</span>
+{% endif %}
+</div>
+
+<ul class="profile">
+    {% if user.username == "Questbot" %}
+    <li>
+        {{ quest_count }} days of Quests
+    </li>
+    <li>
+        <a id="followers" href="#" style="font-size:80%">{{ follower_count_f }} Followers</a>
+
+        <div id="followers_dialog" title="Followers" style="display: none;">
+            {% for u in follower_usernames %}
+                <a href="../{{ u }}/">{{ u }}</a><br>
+            {% endfor %}
+        </div>
+    </li>
+    {% else %}
+    <li>
+        Joined {{ date_joined }}
+    </li>
+    <li>
+        <a id="followers" href="#">{{ follower_count_f }} Followers</a>
+
+        <div id="followers_dialog" title="Followers" style="display: none;">
+            {% for u in follower_usernames %}
+                <a href="../{{ u }}/">{{ u }}</a><br>
+            {% endfor %}
+        </div>
+    </li>
+    <li>
+        <a id="following" href="#">{{ following_count_f }} Following</a>
+
+        <div id="following_dialog" title="Following" style="display: none;">
+            {% for u in following_usernames %}
+                <a href="../{{ u }}/">{{ u }}</a><br>
+            {% endfor %}
+        </div>
+    </li>
+    {% endif %}
+</ul>
+
+<div style="clear:both"></div>
+
+{% if user.username != "Questbot" %}
+<h2>Drawings</h2>
+<div id="drawings_sort_info"><em>{{ drawing_count }} {% if drawing_count == 0 or drawing_count > 1 %}drawings, from latest to earliest{% else %}drawing{% endif %}.</em></div>
+<div style="clear:both"></div>
+{% for d in drawings %}
+    <ul class="image_container {{ "invisible" if not d.visible }}">
+        <li class="drawing_date">{{ d.date }}</li>
+        <li class="quest_title">
+            <a href="{{ d.quest_detail_url }}">{{ d.quest_title }}</a>
+        </li>
+        <li>
+            <a href="{{ d.detail_url }}">{%-if loop.index < 20 %}
+                <img class="image" src="{{ d.url }}">
+            {% else %}
+                <img class="image lazy" src="/000exporter/grey.gif" data-original="{{ d.url }}">
+            {% endif %}</a>
+            <div class="drawing_links">
+                <a href="{{ d.url }}" download class="download">Download</a> &#183; <a href="{{ d.detail_url }}">View{% if d.detail_url %} Playback{% endif %}</a>{% if d.star_count %} &#183; {{ d.star_count }}<span class="star">&#9733;</span>{% endif %}
+            </div>
+        </li>
+    </ul>
+{% endfor %}
+{% endif %}
+
+<div style="clear:both"></div>
+
+{% if quests %}
+<br>
+<br>
+
+{% if user.username != "Questbot" %}
+<h2>Quests</h2>
+<div id="quests_sort_info"><em>Sorted by popularity.</em></div>
+<div id="quests_sort_info"><em>{{ quest_count }} {% if quest_count == 0 or quest_count > 1 %}quests, sorted by popularity{% else %}quest{% endif %}.</em></div>
+{% endif %}
+{% for q in quests %}
+    <ul class="quest_container image_container">
+        <li class="quest_date">{{ q.date }}</li>
+        <li class="quest_title">
+            <a href="{{ q.detail_url }}">{{ q.title }}</a>
+        </li>
+        <li>
+            {% if q.url %}
+            <a href="{{ q.detail_url }}"><img class="image" src="{{ q.url }}"></a><br>
+            {% endif %}
+            {% if q.url %}
+            <span class="quest_links"><a href="{{ q.url }}" download class="download">Download</a> &#183; <a href="{{ q.detail_url }}">View Gallery</a> (<span class="reply_count">{{ q.reply_count_f }} {% if q.reply_count == 0 or q.reply_count > 1 %}drawings{% else %}drawing{%endif %}</span>)</span>
+            {% else %}
+            <span class="quest_links_without_image">(<span class="reply_count">{{ q.reply_count_f }} {% if q.reply_count == 0 or q.reply_count > 1 %}drawings{% else %}drawing{%endif %}</span>)</span>
+            {% endif %}
+            {% if not q.url %}<div style="margin-bottom:.5em"></div>{% endif %}
+        </li>
+    </ul>
+{% endfor %}
+
+<div style="clear:both"></div>
+{% endif %}
+
+</section>
+</body>
+</html>

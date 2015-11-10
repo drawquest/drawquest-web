@@ -1,0 +1,15 @@
+Hi {{ username }},
+
+The DrawQuest archive is now online! We've made all of your favorite Quests and the community's drawings available for a limited time, so you can browse them and download copies of your favorite artwork.
+
+Here you can view other users' profiles and the Quest of the Day galleries:
+
+http://drawquest-export.s3-website-us-east-1.amazonaws.com/
+
+The archive will be available for about 30 days, after which it will be taken offline. Please remember to download any drawings you would like to save forever!
+
+Thanks again to our wonderful community for making DrawQuest one of the most amazing creative communities to ever exist. We still miss it dearly.
+
+Your friends forever,
+
+— Team DrawQuest

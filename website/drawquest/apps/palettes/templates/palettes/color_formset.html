@@ -1,0 +1,41 @@
+{% extends "palettes/formset.html" %}
+
+{% block body_title %}Colors{% endblock %}
+
+{% block extra_form_actions %}
+<input type="button" value="Add Color" id="add_form">
+{% endblock %}
+
+
+{% block extra_form_rows %}
+<tr>
+    <th>Preview</th>
+    <td>
+        <div class="color_option_swatch color_preview"><div class="color_option_swatch_inner"></div></div>
+    </td>
+</tr>
+{% endblock %}
+
+{% block extra_javascript %}
+{{ super() }}
+
+<script>
+$(function () {
+
+    var refresh_color_preview = function (form) {
+        form = $(form);
+        form.find('.color_preview').css('background-color', $.validator.format('rgb({0}, {1}, {2}', form.find('.red input').val(), form.find('.green input').val(), form.find('.blue input').val()));
+    };
+
+    $('.sub_form').each(function (idx, form) {
+        refresh_color_preview(form);
+    });
+
+    $('.red input, .green input, .blue input').on('input change keyup paste', function () {
+        refresh_color_preview($(this).closest('.sub_form'));
+    });
+
+});
+</script>
+{% endblock %}
+

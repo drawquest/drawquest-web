@@ -1,0 +1,586 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-13 00:26-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh-Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#, python-format
+msgid ""
+"%(username)s invited you to complete a Quest on DrawQuest titled: \"%(title)s"
+"\". You can complete the Quest by visiting: %(url)s"
+msgstr "%(username)s邀请你在DrawQuest上完成一个名为: \"%(title)s"
+"\"的绘画。可访问此处完成此Quest: %(url)s"
+
+#, python-format
+msgid ""
+"%(username)s shared a drawing with you on DrawQuest. You can view the "
+"drawing by visiting: %(url)s"
+msgstr "%(username)s在DrawQuest上与你分享了一张画。可在此处查看此画: %(url)s"
+
+#, python-format
+msgid ""
+"%(username)s starred your drawing on DrawQuest. You can view your drawing "
+"here: %(url)s"
+msgstr "%(username)s在DrawQuest上赞了你的画。可在此处查看你的画: %(url)s"
+
+msgid ""
+"Every day, people come together on DrawQuest to draw and be creative. Unlock "
+"your creativity and receive daily drawing challenges with DrawQuest."
+msgstr "每一天，人们聚到DrawQuest上绘画和培养创造性。使用DrawQuest可释放你的创造性并接受每日绘画挑战。"
+
+msgid ""
+"Have a question about DrawQuest? Did you find a bug? We're here to help!"
+msgstr "有DrawQuest问题? 发现错误? 请随时联系我们!"
+
+msgid ""
+"Staying up to date with the latest version of DrawQuest makes sure you're "
+"having the best experience possible and gives you access to new features."
+msgstr "保持关注DrawQuest的最新版本，确保获得最佳的体验并使用新功能。"
+
+msgid ""
+"\n"
+"                <h1>Enter new password</h1>\n"
+"                <p>Please enter your new password twice so we can verify you "
+"typed it in correctly.</p>\n"
+"            "
+msgstr "\n"
+"                <h1>输入新密码</h1>\n"
+"                <p>请输入你的新密码两次以便我们验证是否输入正确。</p>"
+
+msgid ""
+"\n"
+"                <h1>Password reset unsuccessful</h1>\n"
+"                <p>The password reset link was invalid, possibly because it "
+"has already been used. Please request a new password reset.</p>\n"
+"            "
+msgstr "\n"
+"                <h1>密码重设失败</h1>\n"
+"                <p>密码重设链接无效，可能已使用。请再请求一次密码重设。</p>"
+
+msgid ""
+"\n"
+"            <h1>Password Reset Requested</h1>\n"
+"            <p>\n"
+"                We've e-mailed you your username and instructions for "
+"resetting\n"
+"                your password to the e-mail address you submitted. You "
+"should\n"
+"                be receiving it shortly.\n"
+"            </p>\n"
+"        "
+msgstr "\n"
+"            <h1>密码重设已请求</h1>\n"
+"            <p>\n"
+"                我们向你发送了你的用户名和密码重设说明\n"
+"                到你提交的电子邮件中。你应该很快会\n"
+"                收到。\n"
+"            </p>"
+
+msgid ""
+"\n"
+"            <h1>Reset complete</h1>\n"
+"            <p>\n"
+"                Your password has been set.  You may go ahead and\n"
+"                log in now in the DrawQuest app.\n"
+"            </p>\n"
+"        "
+msgstr "\n"
+"            <h1>重设完成</h1>\n"
+"            <p>\n"
+"                你的密码已设。你现在可以前往\n"
+"                DrawQuest应用中登录。\n"
+"            </p>"
+
+msgid ""
+"\n"
+"        <h1>Our Mission</h1>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>Why we built DrawQuest</strong>\n"
+"            <br><br>\n"
+"            Deep down, we're all creative people. Unfortunately, as Sir Ken "
+"Robinson <a href=\"http://www.ted.com/talks/"
+"ken_robinson_says_schools_kill_creativity.html\" target=\"_blank\">warns us</"
+"a>, society is \"educating people out of their creativity.\" In school, "
+"we're led to believe that creative pursuits won't lead to a job, while "
+"subjects like math and science will. So as we grow up, we grow out of our "
+"creative habits.\n"
+"            <br><br>\n"
+"            It doesn't have to be this way. We built DrawQuest to bring "
+"creative expression back into your daily life.\n"
+"        </p>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>But I'm not creative!</strong>\n"
+"            <br><br>\n"
+"            Creativity isn't a mystical gift passed on to some people and "
+"not others. Creativity is like brushing your teeth &mdash; it's a healthy "
+"habit you should make time for every day.\n"
+"            <br><br>\n"
+"            DrawQuest isn't about \"winning\" or becoming the next Picasso. "
+"DrawQuest is about re-learning to express yourself creatively and sticking "
+"with it. Everything about DrawQuest &mdash; from our simple drawing tools to "
+"the ability to star and play back drawings &mdash; was designed to foster a "
+"community of budding creators.\n"
+"            <br><br>\n"
+"            What are you waiting for? <a href=\"/download\" target=\"_blank"
+"\">Download</a> the app and come create with us!\n"
+"        </p>\n"
+"    "
+msgstr "\n"
+"        <h1>我们的使命</h1>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>为何开发DrawQuest</strong>\n"
+"            <br><br>\n"
+"            在每个人内心深处，我们都是有创意的人。不幸的是，就像肯•罗宾逊先生<a href=\"http://www.ted.com/talks/"
+"ken_robinson_says_schools_kill_creativity.html\" target=\"_blank\">警告我们</"
+"a>的一样，社会会“让人们失去创造性\"。在学校，我们被迫认为追求创造性会找不到工作，而学好数学和科学能找到好工作。所以，随着我们慢慢长大，我们渐渐失去了创造的习惯。\n"
+"            <br><br>\n"
+"            其实我们大可不必如此成长。我们打造了DrawQuest就是为了让创造重新回归你的日常生活。\n"
+"        </p>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>但是我缺少创造性!</strong>\n"
+"            <br><br>\n"
+"            创造性并不是某些人独有而他人没有的神秘礼物。创造性就像刷牙一样&mdash;它是一个每天都应该坚持的习惯。\n"
+"            <br><br>\n"
+"            DrawQuest不是关于\"获胜\"或成为下一个毕加索。DrawQuest是关于重新学习创造性地表达自我并持之以恒。从简单的绘画工具到赞和播放绘画功能，DrawQuest提供的一切都是为了培养一个萌芽中的创造者社区。\n"
+"            <br><br>\n"
+"            你还在等什么呢? <a href=\"/download\" target=\"_blank"
+"\">下载</a>应用来与我们一起创造吧!\n"
+"        </p>"
+
+msgid ""
+"\n"
+"        <h1>Password reset</h1>\n"
+"        <p>\n"
+"            Forgotten your username or password? Enter your e-mail address "
+"and we'll send\n"
+"            you directions for how to reset your password.\n"
+"        </p>\n"
+"        <p>\n"
+"            This will be the email address you signed up with. (If you "
+"signed up with Facebook,\n"
+"            enter your the email address associated with your Facebook "
+"account.)\n"
+"        </p>\n"
+"        "
+msgstr "\n"
+"        <h1>密码重设</h1>\n"
+"        <p>\n"
+"            忘记了用户名或密码? 请输入你的电子邮件地址，我们将\n"
+"            给你发送密码重设说明。\n"
+"        </p>\n"
+"        <p>\n"
+"            这将是你的注册用的电子邮件地址。(若是使用Facebook注册的，\n"
+"            请输入与你的Facebook帐户关联的电子邮件地址。)\n"
+"        </p>"
+
+#, python-format
+msgid "%(username)s completed a Quest on DrawQuest."
+msgstr "%(username)s在DrawQuest上完成了一个Quest。"
+
+#, python-format
+msgid "%(username)s's drawings on DrawQuest"
+msgstr "%(username)s在DrawQuest上的绘画"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Blog"
+msgstr "博客"
+
+msgid "Change my password"
+msgstr "更改我的密码"
+
+#, python-format
+msgid "Check out all of %(username)s's drawings on DrawQuest."
+msgstr "在DrawQuest上查看%(username)s的所有绘画。"
+
+#, python-format
+msgid "Complete this Quest by %(username)s on DrawQuest."
+msgstr "在DrawQuest上完成%(username)s创建的此绘画。"
+
+msgid "Confirm password:"
+msgstr "确认密码:"
+
+msgid "Contact"
+msgstr "联系"
+
+msgid "DrawQuest - Daily Drawing Challenges"
+msgstr "DrawQuest – 每日绘画挑战"
+
+msgid "DrawQuest Support"
+msgstr "DrawQuest支持"
+
+msgid "Drawings"
+msgstr "绘画"
+
+msgid "Email address:"
+msgstr "电子邮件地址:"
+
+msgid "Followers"
+msgstr "关注者"
+
+msgid "Following"
+msgstr "正在关注"
+
+msgid "From the Quest:"
+msgstr "来自Quest:"
+
+msgid "Jobs"
+msgstr "工作"
+
+msgid "Meet the Team"
+msgstr "团队介绍"
+
+msgid "New password:"
+msgstr "新密码:"
+
+msgid "Our Mission"
+msgstr "我们的使命"
+
+msgid "Privacy Policy"
+msgstr "隐私政策"
+
+msgid "Reset my password"
+msgstr "重设我的密码"
+
+msgid "Someone invited you to complete a Quest on DrawQuest!"
+msgstr "有人邀请你在DrawQuest上完成一个Quest!"
+
+msgid "Someone shared a drawing with you on DrawQuest!"
+msgstr "有人在DrawQuest上与你分享了一张画!"
+
+msgid "Someone starred your drawing on DrawQuest!"
+msgstr "有人在DrawQuest上赞了你的绘画!"
+
+msgid "Submit"
+msgstr "提交"
+
+msgid "Terms of Service"
+msgstr "服务条款"
+
+msgid "Thank you for contacting us! We'll respond shortly."
+msgstr "感谢联系我们! 我们会很快回复你。"
+
+msgid "The issue you're experiencing"
+msgstr "你所遇到的问题"
+
+msgid "There's a new version of DrawQuest available!"
+msgstr "DrawQuest有一个新版本!"
+
+#, python-format
+msgid "Watch %(username)s draw a Quest on DrawQuest."
+msgstr "观看%(username)s在DrawQuest上画一个Quest。"
+
+msgid "Watch the drawing"
+msgstr "观看此绘画"
+
+msgid "Your DrawQuest username"
+msgstr "你的DrawQuest用户名"
+
+msgid "Your Email address"
+msgstr "你的电子邮件地址"
+
+msgid "invited you to draw their Quest"
+msgstr "邀请你画他们的Quest"
+
+msgid "shared their drawing with you"
+msgstr "分享了他们的绘画给你"
+
+msgid ""
+"Billy is perfect for that painterly look. He also loves jam and singing in "
+"the shower."
+msgstr "轻描用画笔。适合画阴影及添加纹理。"
+
+#, python-format
+msgid ""
+"Check out this drawing on DrawQuest: \"%(quest_title)s\" %(url)s\n"
+"\n"
+"Download DrawQuest for free here: %(download_url)s"
+msgstr "看看DrawQuest上的这张画: \"%(quest_title)s\" %(url)s\n"
+"\n"
+"可在此处免费下载DrawQuest: %(download_url)s"
+
+#, python-format
+msgid ""
+"Come draw \"%(quest_title)s\" by @%(screen_name)s with me on @DrawQuest! "
+"%(url)s"
+msgstr "来与我一起在@DrawQuest上画@%(screen_name)s的\"%(quest_title)s\"! "
+"%(url)s"
+
+#, python-format
+msgid ""
+"I just created a Quest on @DrawQuest! \"%(quest_title)s\" Come draw it with "
+"me: %(url)s"
+msgstr "我刚在@DrawQuest上创建了一个Quest! \"%(quest_title)s\" 来与我一起画它: %(url)s"
+
+#, python-format
+msgid ""
+"I just created a Quest on DrawQuest! \"%(quest_title)s\" Come draw it with "
+"me: %(url)s"
+msgstr "我刚在DrawQuest上创建了一个Quest! \"%(quest_title)s\" 来与我一起画它: %(url)s"
+
+#, python-format
+msgid ""
+"I thought you'd like this drawing made with DrawQuest, a free creative "
+"drawing app for iPhone, iPod touch, and iPad.\n"
+"\n"
+"\"%(quest_title)s\" %(url)s\n"
+"\n"
+"Download DrawQuest for free here: %(download_url)s"
+msgstr "我想你会喜欢这张用DrawQuest画的画，一款用于iPhone、iPod touch及iPad的免费创意绘画应用。\n"
+"\n"
+"\"%(quest_title)s\" %(url)s\n"
+"\n"
+"可在此处免费下载DrawQuest: %(download_url)s"
+
+#, python-format
+msgid ""
+"I'm using DrawQuest, a free creative drawing app for iPhone, iPod touch, and "
+"iPad. DrawQuest sends you daily drawing challenges and allows you to create "
+"your own to share with friends. %(follow_me_message)s\n"
+"\n"
+"Download DrawQuest for free here: %(url)s"
+msgstr "我在使用DrawQuest，一款用于iPhone、iPod touch及iPad的免费创意绘画应用。DrawQuest会向你发送每日绘画挑战，并且你可以创建自己的Quest以与好友分享。%(follow_me_message)s\n"
+"\n"
+"可在这里免费下载DrawQuest: %(url)s"
+
+#, python-format
+msgid ""
+"I'm using DrawQuest, a free creative drawing app for iPhone, iPod touch, and "
+"iPad. DrawQuest sends you daily drawing challenges and allows you to create "
+"your own to share with friends. I thought you might enjoy this Quest: "
+"\"%(quest_title)s\"\n"
+"\n"
+"Download DrawQuest for free here: %(url)s"
+msgstr "我在使用DrawQuest，一款用于iPhone、iPod touch及iPad的免费创意绘画应用。DrawQuest会向你发送每日绘画挑战，并且你可以创建自己的Quest以与好友分享。我想你可能会喜欢此Quest的: "
+"\"%(quest_title)s\"\n"
+"\n"
+"可在这里免费下载DrawQuest: %(url)s"
+
+msgid ""
+"Need to color the whole canvas? Patty is always happy to help out. She'll "
+"fill the entire screen with a single color."
+msgstr "请用颜料桶选择单色填充整个画布。"
+
+msgid ""
+"Sorry! That email address is already being used for an account. Try signing "
+"in instead, or use another email address."
+msgstr "抱歉! 该电子邮件地址已被一个帐户使用。请尝试登录或使用其他电子邮件地址。"
+
+msgid ""
+"Sorry, your email address contains invalid characters. Please remove them "
+"and try again."
+msgstr "抱歉，你的电子邮件地址包含无效字符。请删除它们并重试。"
+
+msgid ""
+"Sorry, your password is too short. Please use %(count)d or more characters."
+msgstr "抱歉，你的密码太短。请使用%(count)d个或更多字符。"
+
+msgid ""
+"The password you entered is incorrect. Please try again (make sure your caps "
+"lock is off)."
+msgstr "输入的密码不正确。请重试(确保关闭了大写锁)。"
+
+#, python-format
+msgid ""
+"The username you entered, \"%(username)s\", doesn't exist. Please try again, "
+"or enter the email address you used to sign up."
+msgstr "你输入的用户名\"%(username)s\"不存在。请重试，或输入你使用的电子邮件地址以注册。"
+
+msgid ""
+"There appears to be an issue communicating with Facebook. Please try again."
+msgstr "与Facebook通信出现问题。请重试。"
+
+msgid ""
+"Usernames can only contain the letters a-z or A-Z, digits, and underscores."
+msgstr "用户名只能包含字母a-z或A-Z、数字及下划线。"
+
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset\n"
+"for your user account at DrawQuest <http://example.com/>.\n"
+"\n"
+"Your username, in case you've forgotten: %(username)s\n"
+"\n"
+"Please go to the following page and choose a new password:\n"
+"\n"
+"https://example.com/password_reset/reset%(uid)s-%(token)s/\n"
+"\n"
+"\n"
+"\n"
+"Thanks for using DrawQuest!\n"
+"\n"
+"-Team DrawQuest\n"
+msgstr "你收到此邮件是因为你请求\n重设你的DrawQuest用户帐户密码<http://example.com/>。\n"
+"\n"
+"你的用户名(以防遗忘): %(username)s\n"
+"\n"
+"请访问以下页面并选择一个新密码:\n"
+"\n"
+"https://example.com/password_reset/reset%(uid)s-%(token)s/\n"
+"\n"
+"\n"
+"\n"
+"感谢使用DrawQuest!\n"
+"\n"
+"-DrawQuest团队\n"
+
+#, python-format
+msgid "\"%(quest_title)s\" %(url)s by @%(screen_name)s via @DrawQuest"
+msgstr "\"%(quest_title)s\" %(url)s 由@%(screen_name)s通过@DrawQuest创建"
+
+#, python-format
+msgid "\"%(quest_title)s\" %(url)s via @DrawQuest"
+msgstr "\"%(quest_title)s\" %(url)s通过@DrawQuest"
+
+#, python-format
+msgid "%(first_name)s %(last_name)s joined DrawQuest as \"%(username)s\""
+msgstr "%(first_name)s %(last_name)s加入了DrawQuest，用户名是\"%(username)s\""
+
+#, python-format
+msgid "%(name)s (@%(screen_name)s) joined DrawQuest as \"%(username)s\""
+msgstr "%(name)s (@%(screen_name)s)加入了DrawQuest，用户名是\"%(username)s\""
+
+#, python-format
+msgid "%(username)s starred your drawing"
+msgstr "%(username)s赞了你的绘画"
+
+#, python-format
+msgid "%(username)s started following you"
+msgstr "%(username)s已开始关注你"
+
+msgid "Billy the Brush"
+msgstr "画笔"
+
+msgid "Bonus Streak"
+msgstr "连续奖励"
+
+#, python-format
+msgid "Check out this drawing on DrawQuest: \"%(quest_title)s\" %(url)s"
+msgstr "在DrawQuest上看看这张画: \"%(quest_title)s\" %(url)s"
+
+#, python-format
+msgid "Come draw \"%(quest_title)s\" with me on @DrawQuest! %(url)s"
+msgstr "来与我一起在@DrawQuest上画\"%(quest_title)s\"! %(url)s"
+
+#, python-format
+msgid "Come draw \"%(quest_title)s\" with me on DrawQuest! %(url)s"
+msgstr "来与我一起在DrawQuest上画\"%(quest_title)s\"! %(url)s"
+
+#, python-format
+msgid "Come draw with me on @DrawQuest! %(url)s"
+msgstr "来与我一起在@DrawQuest上画画! %(url)s"
+
+#, python-format
+msgid "Come draw with me on DrawQuest! %(url)s"
+msgstr "来与我一起在DrawQuest上画画! %(url)s"
+
+msgid "Congrats—you're featured in Explore and received 10 coins!"
+msgstr "恭喜—你的画入选了“探索”并获得了10个钱币!"
+
+msgid "Epic! 100 straight Quests"
+msgstr "史诗一般! 连续画了100个Quests"
+
+msgid "Eraser"
+msgstr "橡皮"
+
+msgid "Invalid Twitter access token, most likely because of revoked access."
+msgstr "无效的Twitter访问令牌，很可能是由于访问被撤销。"
+
+msgid "Marker"
+msgstr "马克笔"
+
+msgid "Patty the Paint Can"
+msgstr "颜料桶"
+
+msgid "Pencil"
+msgstr "铅笔"
+
+msgid "Please enter a password."
+msgstr "请输入一个密码。"
+
+msgid "Please enter a username."
+msgstr "请输入一个用户名。"
+
+msgid "Please enter a valid email address."
+msgstr "请输入一个有效的电子邮件地址。"
+
+msgid "Please enter your email address."
+msgstr "请输入你的电子邮件地址。"
+
+msgid "Quest Streak: 10"
+msgstr "连续Quest: 10"
+
+msgid "Quest Streak: 3"
+msgstr "连续Quest: 3"
+
+msgid "Quest of the Day!"
+msgstr "今天的Quest!"
+
+msgid "Shared with Facebook"
+msgstr "分享到了Facebook上"
+
+msgid "Shared with Twitter"
+msgstr "分享到了Twitter上"
+
+msgid "Sorry! That username is already taken."
+msgstr "抱歉! 该用户名已被用。"
+
+msgid "Sorry! This username is taken. Please pick a different username."
+msgstr "抱歉! 此用户名已被用。请选择其他用户名。"
+
+msgid "Sorry, this username is not allowed."
+msgstr "抱歉，不允许使用此用户名。"
+
+msgid "Submitted by:"
+msgstr "提交者:"
+
+#, python-format
+msgid "Today's Quest: %(quest_title)s"
+msgstr "今天的Quest: %(quest_title)s"
+
+msgid "Too many signup attempts. Wait a minute and try again."
+msgstr "注册尝试次数太多。请稍等一分钟并再试。"
+
+msgid "Username is required to sign in."
+msgstr "登录需要用户名。"
+
+msgid "Username must be 16 characters or less."
+msgstr "用户名必须最多有16个字符或更少。"
+
+msgid "Username must be 3 or more characters."
+msgstr "用户名必须有3个或更多字符"
+
+msgid "Usernames can only contain letters, digits and underscores."
+msgstr "用户名只能包含字母、数字和下划线。"
+
+msgid "Woo! Your first Quest ever!"
+msgstr "哇! 你的第一个Quest!"
+
+#, python-format
+msgid "You can follow me in the app as \"%(username)s\""
+msgstr "你可以使用\"%(username)s\"在应用内关注我"
+
+msgid "You drew a Quest"
+msgstr "你画了一个Quest"
+
+msgid "You drew the Quest of the Day"
+msgstr "你画了今天的Quest"
+
+msgid "Your first Quest!"
+msgstr "你的第一个Quest!"
+

@@ -1,0 +1,50 @@
+{% extends "email/notification_template.html" %}
+
+{% block extra_notification_style %}
+    .avatar {
+        height:125px;
+        height:125px;
+        background-size:cover;
+        background-position:center;
+        -moz-border-radius-topleft:63px;
+        -moz-border-radius-topright:63px;
+        -moz-border-radius-bottomright:63px;
+        -moz-border-radius-bottomleft:63px;
+        -webkit-border-radius:63px 63px 63px 63px;
+        border-radius:63px 63px 63px 63px;
+    }
+
+    .starred_reward {
+        font-size:30px;
+        vertical-align:middle;
+    }
+
+    .starred_coin {
+        vertical-align:middle;
+    }
+{% endblock %}
+
+{% block header %}
+    <span class="arial_rounded"><a href="http://example.com/{{ notification.recipient.username }}">{{ notification.recipient.username }}</a></span>
+{% endblock %}
+
+{% block content %}
+    <table width="100%" cellpadding="0" cellspacing="20" bgcolor="transparent">
+        <tr>
+            <td width="125" height="125" valign="middle">
+                <a href="http://example.com/{{ notification.actor.username }}"><div class="avatar" style="background:url({{ notification.actor.details.web_avatar_url }}) no-repeat;"></div></a>
+            </td>
+            <td valign="middle">
+                <span class="arial_rounded yellow_text" style="font-size:36px;"><a href="http://example.com/{{ notification.actor.username }}">{{ notification.actor.username }}</a></span>
+                <br />
+                <span class="gray_text" style="font-size:24px;">Starred your drawing</span>
+            </td>
+            <td width="167" valign="middle">
+                <a href="{{ notification.comment_sticker.comment.get_share_page_url() }}"><img class="thumbnail" src="{{ notification.comment_sticker.comment.reply_content.details().archive.url }}" width="167" height="125" /></a>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block notification_type %}star{% endblock %}
+

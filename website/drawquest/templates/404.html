@@ -1,0 +1,13 @@
+{% extends "drawquest/about.html" %}
+
+{% block extra_meta %}
+    <meta name="apple-itunes-app" content="app-id={{ app_store_id() }}, affiliate-data=myAffiliateData, app-argument=myURL">
+{% endblock %}
+
+{% block about_page_main %}
+    <img class="image_404" src="/static/img/drawquest/404@2x.png">
+    <h2>
+        Oh dear. This doesn't look quite right. Why don't you try returning to the <a href="/">homepage</a> in the meantime. Help yourself to snacks.
+    </h2>
+{% endblock %}
+

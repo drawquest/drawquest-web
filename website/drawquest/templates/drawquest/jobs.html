@@ -1,0 +1,30 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/jobs_page.css">
+{% endblock %}
+
+{% block twitter_card %}
+    <meta name="twitter:site" content="@DrawQuest">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="DrawQuest is Hiring!">
+    <meta name="twitter:url" content="http://example.com/jobs">
+    <meta name="twitter:description" content="We're hiring for an iOS lead! Join a close-knit team to help build DrawQuest. Click through for more details.">
+    <meta name="twitter:image" content="http://example.com/static/img/drawquest/promotion/screenshot_1_570.jpg">
+{% endblock %}
+
+{% block viewport_meta %}<meta name="viewport" content="width=1000, initial-scale=0.75">{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <div class="fixed_width_wrapper">
+            <img src="/static/img/drawquest/jobs.jpg">
+            <div class="left_column">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

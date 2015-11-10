@@ -1,0 +1,76 @@
+{% extends "email/common_template.html" %}
+
+{% block extra_style %}
+    table.content p {
+        font-size:14px;
+        color:#555555;
+        margin:1em 0;
+    }
+
+    table.content p strong {
+        font-weight:normal;
+        font-family:'ArialRoundedMTBold', 'Nunito', Arial, Helvetica, sans-serif;
+    }
+
+    table.content p a {
+        color:#67ceda;
+    }
+
+    .social_channels {
+        text-align:center;
+        padding-bottom:1em;
+    }
+
+    .social_channels a {
+        color:#67ceda;
+    }
+
+    .signature {
+        margin-bottom:0;
+    }
+{% endblock %}
+
+{% block header %}
+    <span class="arial_rounded">Dear {{ notification.recipient.username }},</span>
+{% endblock %}
+
+{% block content %}
+    <table cellspacing="20" cellpadding="0">
+        <tr>
+            <td>
+                {% block update_content %}{% endblock %}
+                <p class="signature">
+                    Happy Questing!
+                    <br />
+                    — The DrawQuest Team
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%" cellspacing="30" cellpadding="0">
+        <tr>
+            <td align="center">
+                <img src="http://example.com/static/img/drawquest/promotion/email/cute_footer2.png" width="302" height="103" alt="cute drawing tools"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <a class="app_store_link" href="{{ app_store_link() }}">
+                    <img src="/static/img/drawquest/promotion/apple_app_store@2x.png" width="135" height="40">
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <p class="social_channels">
+        Keep in touch with us on
+        <a target="_blank" href="http://www.facebook.com/">Facebook</a>,
+        <a target="_blank" href="http://www.twitter.com/DrawQuest">Twitter</a>,
+        and <a target="_blank" href="http://blog.example.com">Tumblr</a>.
+    </p>
+{% endblock %}
+
+{% block email_type %}
+    update
+{% endblock %}

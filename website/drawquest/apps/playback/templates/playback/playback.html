@@ -1,0 +1,309 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+a.speed.selected {
+    background-color:lightgray;
+}
+a.speed {
+    padding:3px 4px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+    {% include "drawquest/header.html" %}
+    <section class="main">
+        <div style="padding:20px 0;font-size::16px">
+            Speed: 
+            <a href="#" class="speed" data-speed="1">1x</a>
+            <a href="#" class="speed" data-speed="5">5x</a>
+            <a href="#" class="speed" data-speed="15">15x</a>
+            <a href="#" class="speed selected" data-speed="20">20x</a>
+            <a href="#" class="speed" data-speed="25">25x</a>
+            <a href="#" class="speed" data-speed="30">30x</a>
+            <a href="#" class="speed" data-speed="35">35x</a>
+            <a href="#" class="speed" data-speed="45">45x</a>
+            <a href="#" class="speed" data-speed="100">100x</a>
+            <a href="#" class="speed" data-speed="250">250x</a>
+        </div>
+
+        <div style="position:relative;">
+            <canvas id="playback_bg" width="1024" height="768" style="position:absolute; left:0; top:100px; z-index:0;"></canvas>
+            <canvas id="playback_drawing" width="1024" height="768" style="position:absolute; left:0; top:100px; z-index:1;"></canvas>
+            <canvas id="playback_stroke" width="1024" height="768" style="position:absolute; left:0; top:100px; z-index:2;"></canvas>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block extra_javascript %}
+<script src="/static/lib/kinetic-v4.3.3.min.js"></script>
+
+<script>
+$(function () {
+    /* via http://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-object-in-javascript#159807 */
+
+    Function.prototype.createSubclass = function () {
+        function Class () {
+            if (!(this instanceof Class)) {
+                throw('Constructor called without "new"');
+            }
+            this.init.apply(this, arguments);
+        }
+        Function.prototype.createSubclass.nonconstructor.prototype = this.prototype;
+        Class.prototype = new Function.prototype.createSubclass.nonconstructor();
+        Class.__super__ = this.prototype;
+        if (!('init' in Class.prototype)) {
+            Class.prototype.init = function () {};
+        }
+        return Class;
+    };
+
+    Function.prototype.createSubclass.nonconstructor= function () {};
+
+    var playback_data = {{ playback_data|safe }};
+
+
+    //
+    // Class definitions.
+    //
+
+    var Stroke = Object.createSubclass();
+
+    Stroke.BRUSH_TYPES = {
+        PEN: 1,
+        MARKER: 2,
+        PAINTBRUSH: 3,
+        ERASER: 4,
+    };
+
+    Stroke._convert_color = function (val) {
+        return Math.round(val * 255);
+    };
+
+    Stroke.prototype.init = function (data) {
+        this.brush_type = data['brushType'];
+        var rgb = data['strokeColor'];
+
+        if (this.brush_type == Stroke.BRUSH_TYPES.ERASER) {
+            this.color = 'rgb(255,255,255)';
+        } else {
+            this.color = 'rgb(' + Stroke._convert_color(rgb.r) + ',' + Stroke._convert_color(rgb.g) + ',' + Stroke._convert_color(rgb.b) + ')';
+        }
+
+        var that = this;
+        this.components = $.map(data['components'], function (component_data) {
+            return new Component(that, component_data);
+        });
+    };
+
+    Stroke.prototype.line_join = 'round';
+    Stroke.prototype.line_cap = 'round';
+    Stroke.prototype.alpha = 1;
+
+    var PenStroke = Stroke.createSubclass();
+    PenStroke.prototype.brush_type = Stroke.BRUSH_TYPES.PEN;
+    PenStroke.prototype.line_width = 2.9;
+
+    var MarkerStroke = Stroke.createSubclass();
+    MarkerStroke.prototype.brush_type = Stroke.BRUSH_TYPES.MARKER;
+    MarkerStroke.prototype.line_width = 20;
+
+    var PaintbrushStroke = Stroke.createSubclass();
+    PaintbrushStroke.prototype.brush_type = Stroke.BRUSH_TYPES.PAINTBRUSH;
+    PaintbrushStroke.prototype.line_width = 20.18;
+    PaintbrushStroke.prototype.alpha = 0.38;
+
+    var EraserStroke = Stroke.createSubclass();
+    EraserStroke.prototype.brush_type = Stroke.BRUSH_TYPES.ERASER;
+    EraserStroke.prototype.line_width = 15;
+
+    Stroke.create_stroke = function (data) {
+        return new {
+            1: PenStroke,
+            2: MarkerStroke,
+            3: PaintbrushStroke,
+            4: EraserStroke,
+        }[data['brushType']](data);
+    };
+
+
+    var Component = Object.createSubclass();
+
+    Component.LINE  = 0;
+    Component.CURVE = 1;
+
+    Component._parse_point = function (point_string) {
+        var match = /^{(.+), ?(.+)}$/g.exec(point_string);
+        return [parseFloat(match[1]), parseFloat(match[2])];
+    };
+
+    Component.prototype.init = function (stroke, data) {
+        this.stroke = stroke;
+        this.type = data['type'];
+
+        this.from = Component._parse_point(data['fromPoint']);
+        this.to   = Component._parse_point(data['toPoint']);
+        //this.path  = [this._from[0], this._from[1], this._to[0], this._to[1]];
+
+        if (this.type === Component.CURVE) {
+            this.control_point_1 = Component._parse_point(data['controlPoint1']);
+            this.control_point_2 = Component._parse_point(data['controlPoint2']);
+        }
+    };
+
+    Component.prototype._draw_line = function (ctx) {
+        ctx.lineTo(this.to[0], this.to[1]);
+    };
+
+    Component.prototype._draw_curve = function (ctx) {
+        ctx.bezierCurveTo(this.control_point_1[0], this.control_point_1[1], this.control_point_2[0], this.control_point_2[1], this.to[0], this.to[1]);
+    };
+
+    Component.prototype.draw = function (ctx) {
+        if (ctx.canvas.style.opacity !== this.stroke.alpha) {
+            ctx.canvas.style.opacity = this.stroke.alpha;
+        }
+
+        ctx.save();
+
+        if (this.stroke.brush_type === Stroke.BRUSH_TYPES.ERASER) {
+            ctx.globalCompositeOperation = 'destination-out';
+        } else {
+            ctx.globalCompositeOperation = 'source-over';
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(this.from[0], this.from[1]);
+
+        if (this.type === Component.LINE) {
+            this._draw_line(ctx);
+        } else if (this.type === Component.CURVE) {
+            this._draw_curve(ctx);
+        }
+
+        ctx.lineWidth = this.stroke.line_width;
+        ctx.strokeStyle = this.stroke.color;
+        ctx.lineCap = this.stroke.line_cap;
+        ctx.lineJoin = this.stroke.line_join;
+        ctx.stroke();
+
+        ctx.restore();
+    };
+
+
+    //
+    // Playback implementation.
+    //
+
+
+    var strokes = $.map(playback_data['strokes'], function (stroke_data) {
+        return new Stroke.create_stroke(stroke_data);
+    });
+
+    // http://www.html5canvastutorials.com/advanced/html5-canvas-animation-stage/
+    window.requestAnimFrame = (function (callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+            window.setTimeout(callback, 1000 / 60);
+        };
+    })();
+
+    // Background.
+    var bg_canvas = document.getElementById('playback_bg');
+    var bg_ctx = bg_canvas.getContext('2d');
+
+    var bg_img = new Image();
+    bg_img.onload = function () {
+        bg_ctx.drawImage(bg_img, 0, 0, 1024, 768);
+
+        begin_drawing();
+    };
+    bg_img.src = '{{ quest.reply_content.get_absolute_url_for_image_type("gallery") }}';
+
+    var drawing_speed = 5;
+
+    $('a.speed').click(function (evt) {
+        evt.preventDefault();
+
+        drawing_speed = $(this).data('speed');
+
+        $('a.speed').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    // Drawing.
+    var run_animation = {value: true};
+    var begin_drawing = function () {
+        var drawing_ctx = document.getElementById('playback_drawing').getContext('2d');
+        var stroke_canvas = document.getElementById('playback_stroke');
+        var stroke_ctx = stroke_canvas.getContext('2d');
+
+        var bake_stroke = function () {
+            if (current_stroke.brush_type === Stroke.BRUSH_TYPES.ERASER) {
+                return;
+            }
+
+            drawing_ctx.save();
+            drawing_ctx.globalAlpha = current_stroke.alpha;
+            drawing_ctx.drawImage(stroke_canvas, 0, 0);
+            drawing_ctx.restore();
+
+            stroke_ctx.clearRect(0, 0, 1024, 768);
+        };
+
+        var i = 0, j = 0;
+        var current_stroke = strokes[0];
+        var current_component = current_stroke.components[0];
+        var _advance_component = function () {
+            if (i >= strokes.length) { return false; }
+
+            if (j >= strokes[i].components.length - 1) {
+                bake_stroke();
+
+                j = 0;
+                i++;
+
+                if (i == strokes.length) { return false; }
+
+                current_stroke = strokes[i];
+            } else {
+                j++;
+            }
+
+            current_component = current_stroke.components[j];
+
+            return true;
+        };
+
+        var start_time = (new Date()).getTime();
+        var animate = function () {
+            if (!run_animation.value) {
+                return;
+            }
+
+            var time = (new Date()).getTime() - start_time;
+
+            var component;
+            for (var n = 0; n < drawing_speed; n++) {
+                if (current_stroke.brush_type == Stroke.BRUSH_TYPES.ERASER) {
+                    current_component.draw(drawing_ctx);
+                } else {
+                    current_component.draw(stroke_ctx);
+                }
+
+                if (!_advance_component()) {
+                    run_animation.value = false;
+                    break;
+                }
+            }
+
+            requestAnimFrame(function () { animate(); });
+        };
+        animate();
+    };
+
+});
+</script>
+{% endblock %}
+

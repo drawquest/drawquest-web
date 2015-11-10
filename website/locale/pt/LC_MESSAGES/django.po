@@ -1,0 +1,594 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-13 00:26-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid ""
+"Billy is perfect for that painterly look. He also loves jam and singing in "
+"the shower."
+msgstr "Use o pincel para traços mais claros. É ótimo para sombras e adicionar textura."
+
+#, python-format
+msgid ""
+"Check out this drawing on DrawQuest: \"%(quest_title)s\" %(url)s\n"
+"\n"
+"Download DrawQuest for free here: %(download_url)s"
+msgstr "Confira este desenho no DrawQuest: \"%(quest_title)s\" %(url)s\n"
+"\n"
+"Baixe o DrawQuest grátis aqui: %(download_url)s"
+
+#, python-format
+msgid ""
+"Come draw \"%(quest_title)s\" by @%(screen_name)s with me on @DrawQuest! "
+"%(url)s"
+msgstr "Venha desenhar \"%(quest_title)s\" de @%(screen_name)s comigo em @DrawQuest! "
+"%(url)s"
+
+#, python-format
+msgid ""
+"I just created a Quest on @DrawQuest! \"%(quest_title)s\" Come draw it with "
+"me: %(url)s"
+msgstr "Acabei de criar uma Quest no @DrawQuest! \"%(quest_title)s\" Venha desenhá-la comigo: %(url)s"
+
+#, python-format
+msgid ""
+"I just created a Quest on DrawQuest! \"%(quest_title)s\" Come draw it with "
+"me: %(url)s"
+msgstr "Acabei de criar uma Quest no DrawQuest! \"%(quest_title)s\" Venha desenhá-la comigo: %(url)s"
+
+#, python-format
+msgid ""
+"I thought you'd like this drawing made with DrawQuest, a free creative "
+"drawing app for iPhone, iPod touch, and iPad.\n"
+"\n"
+"\"%(quest_title)s\" %(url)s\n"
+"\n"
+"Download DrawQuest for free here: %(download_url)s"
+msgstr "Achei que você iria gostar deste desenho feito com o DrawQuest, um app criativo"
+"de desenhar grátis para iPhone, iPod touch e iPad.\n"
+"\n"
+"\"%(quest_title)s\" %(url)s\n"
+"\n"
+"Baixe o DrawQuest grátis aqui: %(download_url)s"
+
+#, python-format
+msgid ""
+"I'm using DrawQuest, a free creative drawing app for iPhone, iPod touch, and "
+"iPad. DrawQuest sends you daily drawing challenges and allows you to create "
+"your own to share with friends. %(follow_me_message)s\n"
+"\n"
+"Download DrawQuest for free here: %(url)s"
+msgstr "Estou usando o DrawQuest, um app grátis de desenho criativo para iPhone, iPod touch, e iPad. DrawQuest envia desafios de desenhar diários e permite que você crie o seu próprio para compartilhar com os amigos. %(follow_me_message)s\n"
+"\n"
+"Baixe o DrawQuest grátis aqui: %(url)s"
+
+#, python-format
+msgid ""
+"I'm using DrawQuest, a free creative drawing app for iPhone, iPod touch, and "
+"iPad. DrawQuest sends you daily drawing challenges and allows you to create "
+"your own to share with friends. I thought you might enjoy this Quest: "
+"\"%(quest_title)s\"\n"
+"\n"
+"Download DrawQuest for free here: %(url)s"
+msgstr "Estou usando o DrawQuest, um app grátis de desenho criativo para iPhone, iPod touch e iPad. DrawQuest envia desafios de desenhar diários e permite que você crie"
+"seu próprio para compartilhar com os amigos. Achei que você poderia gostar desta Quest: "
+"\"%(quest_title)s\"\n"
+"\n"
+"Baixe o DrawQuest grátis aqui: %(url)s"
+
+msgid ""
+"Need to color the whole canvas? Patty is always happy to help out. She'll "
+"fill the entire screen with a single color."
+msgstr "Use a lata de tinta para preencher toda a tela com uma única cor."
+
+msgid ""
+"Sorry! That email address is already being used for an account. Try signing "
+"in instead, or use another email address."
+msgstr "Desculpe! Esse endereço de e-mail já está sendo usado em uma conta. Tente entrar"
+"em vez disso, ou use outro endereço de e-mail."
+
+msgid ""
+"Sorry, your email address contains invalid characters. Please remove them "
+"and try again."
+msgstr "Desculpe, seu endereço de e-mail contém caracteres inválidos. Por favor, remova-os"
+"e tente novamente."
+
+msgid ""
+"Sorry, your password is too short. Please use %(count)d or more characters."
+msgstr "Desculpa, sua senha é muito curta. Por favor, use %(count)d ou mais caracteres."
+
+msgid ""
+"The password you entered is incorrect. Please try again (make sure your caps "
+"lock is off)."
+msgstr "A senha que você inseriu é incorreta. Tente novamente (certifique-se de que o caps lock está desativado)."
+
+#, python-format
+msgid ""
+"The username you entered, \"%(username)s\", doesn't exist. Please try again, "
+"or enter the email address you used to sign up."
+msgstr "O nome de usuário que você inseriu, \"%(username)s\", não existe. Por favor, tente novamente, "
+"ou insira o endereço de e-mail que você usou ao se inscrever."
+
+msgid ""
+"There appears to be an issue communicating with Facebook. Please try again."
+msgstr "Parece haver um problema na comunicação com o Facebook. Tente novamente."
+
+msgid ""
+"Usernames can only contain the letters a-z or A-Z, digits, and underscores."
+msgstr "Nome de usuário só pode conter letras de a até z ou A até Z, dígitos e underlines."
+
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset\n"
+"for your user account at DrawQuest <http://example.com/>.\n"
+"\n"
+"Your username, in case you've forgotten: %(username)s\n"
+"\n"
+"Please go to the following page and choose a new password:\n"
+"\n"
+"https://example.com/password_reset/reset%(uid)s-%(token)s/\n"
+"\n"
+"\n"
+"\n"
+"Thanks for using DrawQuest!\n"
+"\n"
+"-Team DrawQuest\n"
+msgstr "Você está recebendo este e-mail porque você pediu uma redefinição de senha\n"
+"para sua conta no DrawQuest <http://example.com/>.\n"
+"\n"
+"Seu nome de usuário, caso se esqueça: %(username)s\n"
+"\n"
+"Por favor, vá à página seguinte e escolha uma nova senha:\n"
+"\n"
+"https://example.com/password_reset/reset%(uid)s-%(token)s/\n"
+"\n"
+"\n"
+"\n"
+"Obrigado por usar o DrawQuest!\n"
+"\n"
+"-Equipe DrawQuest\n"
+
+#, python-format
+msgid "\"%(quest_title)s\" %(url)s by @%(screen_name)s via @DrawQuest"
+msgstr "\"%(quest_title)s\" %(url)s de @%(screen_name)s via @DrawQuest"
+
+#, python-format
+msgid "\"%(quest_title)s\" %(url)s via @DrawQuest"
+msgstr "\"%(quest_title)s\" %(url)s via @DrawQuest"
+
+#, python-format
+msgid "%(first_name)s %(last_name)s joined DrawQuest as \"%(username)s\""
+msgstr "%(first_name)s %(last_name)s entrou no DrawQuest como \"%(username)s\""
+
+#, python-format
+msgid "%(name)s (@%(screen_name)s) joined DrawQuest as \"%(username)s\""
+msgstr "%(name)s (@%(screen_name)s) entrou no DrawQuest como \"%(username)s\""
+
+#, python-format
+msgid "%(username)s starred your drawing"
+msgstr "%(username)s curtiu seu desenho"
+
+#, python-format
+msgid "%(username)s started following you"
+msgstr "%(username)s começou a seguir você"
+
+msgid "Billy the Brush"
+msgstr "Pincel"
+
+msgid "Bonus Streak"
+msgstr "Bônus por Dias em Curso"
+
+#, python-format
+msgid "Check out this drawing on DrawQuest: \"%(quest_title)s\" %(url)s"
+msgstr "Confira este desenho no DrawQuest: \"%(quest_title)s\" %(url)s"
+
+#, python-format
+msgid "Come draw \"%(quest_title)s\" with me on @DrawQuest! %(url)s"
+msgstr "Venha desenhar \"%(quest_title)s\" comigo em @DrawQuest! %(url)s"
+
+#, python-format
+msgid "Come draw \"%(quest_title)s\" with me on DrawQuest! %(url)s"
+msgstr "Venha desenhar \"%(quest_title)s\" comigo no DrawQuest! %(url)s"
+
+#, python-format
+msgid "Come draw with me on @DrawQuest! %(url)s"
+msgstr "Venha desenhar comigo em @DrawQuest! %(url)s"
+
+#, python-format
+msgid "Come draw with me on DrawQuest! %(url)s"
+msgstr "Venha desenhar comigo no DrawQuest! %(url)s"
+
+msgid "Congrats—you're featured in Explore and received 10 coins!"
+msgstr "Parabéns—você foi apresentado no Explore e recebeu 10 moedas!"
+
+msgid "Epic! 100 straight Quests"
+msgstr "Épico! 100 dias seguidos de Quests"
+
+msgid "Eraser"
+msgstr "Borracha"
+
+msgid "Invalid Twitter access token, most likely because of revoked access."
+msgstr "Token de acesso ao Twitter inválido, provavelmente por causa de acesso cancelado."
+
+msgid "Marker"
+msgstr "Marcador"
+
+msgid "Patty the Paint Can"
+msgstr "Lata de Tinta"
+
+msgid "Pencil"
+msgstr "Lápis"
+
+msgid "Please enter a password."
+msgstr "Por favor, insira sua senha."
+
+msgid "Please enter a username."
+msgstr "Por favor, insira um nome de usuário."
+
+msgid "Please enter a valid email address."
+msgstr "Favor inserir um endereço de e-mail válido."
+
+msgid "Please enter your email address."
+msgstr "Por favor, insira seu endereço de e-mail."
+
+msgid "Quest Streak: 10"
+msgstr "Dias de Quests em Curso: 10"
+
+msgid "Quest Streak: 3"
+msgstr "Dias de Quests em Curso: 3"
+
+msgid "Quest of the Day!"
+msgstr "Quest do Dia!"
+
+msgid "Shared with Facebook"
+msgstr "Compartilhado no Facebook"
+
+msgid "Shared with Twitter"
+msgstr "Compartilhado no Twitter"
+
+msgid "Sorry! That username is already taken."
+msgstr "Desculpe! Esse nome de usuário já existe."
+
+msgid "Sorry! This username is taken. Please pick a different username."
+msgstr "Desculpe! Este nome de usuário já existe. Por favor, escolha um nome de usuário diferente."
+
+msgid "Sorry, this username is not allowed."
+msgstr "Desculpe, nome de usuário não permitido."
+
+msgid "Submitted by:"
+msgstr "Enviado por:"
+
+#, python-format
+msgid "Today's Quest: %(quest_title)s"
+msgstr "A Quest de Hoje: %(quest_title)s"
+
+msgid "Too many signup attempts. Wait a minute and try again."
+msgstr "Muitas tentativas de inscrição. Aguarde um minuto e tente novamente."
+
+msgid "Username is required to sign in."
+msgstr "Nome de usuário é obrigatório para entrar."
+
+msgid "Username must be 16 characters or less."
+msgstr "Nome de usuário deve ter 16 caracteres ou menos."
+
+msgid "Username must be 3 or more characters."
+msgstr "Nome de usuário deve ter 3 ou mais caracteres."
+
+msgid "Usernames can only contain letters, digits and underscores."
+msgstr "Nomes de usuários podem conter letras, dígitos e underlines."
+
+msgid "Woo! Your first Quest ever!"
+msgstr "Uhu! Sua primeira Quest!"
+
+#, python-format
+msgid "You can follow me in the app as \"%(username)s\""
+msgstr "Você pode me seguir no app como \"%(username)s\""
+
+msgid "You drew a Quest"
+msgstr "Você desenhou uma Quest"
+
+msgid "You drew the Quest of the Day"
+msgstr "Você desenhou a Quest do Dia"
+
+msgid "Your first Quest!"
+msgstr "Sua primeira Quest!"
+
+#, python-format
+msgid ""
+"%(username)s invited you to complete a Quest on DrawQuest titled: \"%(title)s"
+"\". You can complete the Quest by visiting: %(url)s"
+msgstr "%(username)s convidou você para terminar uma Quest no DrawQuest intitulada: \"%(title)s"
+"\". Você pode terminar a Quest visitando: %(url)s"
+
+#, python-format
+msgid ""
+"%(username)s shared a drawing with you on DrawQuest. You can view the "
+"drawing by visiting: %(url)s"
+msgstr "%(username)s compartilhou um desenho com você no DrawQuest. Você pode ver o desenho visitando: %(url)s"
+
+#, python-format
+msgid ""
+"%(username)s starred your drawing on DrawQuest. You can view your drawing "
+"here: %(url)s"
+msgstr "%(username)s curtiu seu desenho no DrawQuest. Você pode ver seu desenho aqui: %(url)s"
+
+msgid ""
+"Every day, people come together on DrawQuest to draw and be creative. Unlock "
+"your creativity and receive daily drawing challenges with DrawQuest."
+msgstr "Todos os dias, as pessoas se reúnem no DrawQuest para desenhar e serem criativas. Desbloqueie a sua criatividade e receba desafios de desenhar diários com o DrawQuest."
+
+msgid ""
+"Have a question about DrawQuest? Did you find a bug? We're here to help!"
+msgstr "Alguma pergunta sobre o DrawQuest? Encontrou um bug? Estamos aqui para ajudar!"
+
+msgid ""
+"Staying up to date with the latest version of DrawQuest makes sure you're "
+"having the best experience possible and gives you access to new features."
+msgstr "Manter-se atualizado com a última versão do DrawQuest assegura que você está"
+"tendo a melhor experiência possível e dá a você acesso a novos recursos."
+
+msgid ""
+"\n"
+"                <h1>Enter new password</h1>\n"
+"                <p>Please enter your new password twice so we can verify you "
+"typed it in correctly.</p>\n"
+"            "
+msgstr "\n"
+"                <h1>Inserir nova senha</h1>\n"
+"                <p>Por favor, insira sua nova senha duas vezes para que possamos verificar se você a digitou corretamente.</p>"
+
+msgid ""
+"\n"
+"                <h1>Password reset unsuccessful</h1>\n"
+"                <p>The password reset link was invalid, possibly because it "
+"has already been used. Please request a new password reset.</p>\n"
+"            "
+msgstr "\n"
+"                <h1>Redefinição de senha malsucedida</h1>\n"
+"                <p>O link da redefinição de senha era inválido, possivelmente porque já foi usado. Por favor, peça uma nova redefinição de senha.</p>"
+
+msgid ""
+"\n"
+"            <h1>Password Reset Requested</h1>\n"
+"            <p>\n"
+"                We've e-mailed you your username and instructions for "
+"resetting\n"
+"                your password to the e-mail address you submitted. You "
+"should\n"
+"                be receiving it shortly.\n"
+"            </p>\n"
+"        "
+msgstr "\n"
+"            <h1>Redefinição de Senha Pedida</h1>\n"
+"            <p>\n"
+"                Enviamos a você um e-mail com seu nome de usuário e instruções para redefinir\n"
+"                sua senha para o endereço de e-mail que você enviou. Você deve\n estar recebendo o e-mail em breve.\n"
+"            </p>"
+
+msgid ""
+"\n"
+"            <h1>Reset complete</h1>\n"
+"            <p>\n"
+"                Your password has been set.  You may go ahead and\n"
+"                log in now in the DrawQuest app.\n"
+"            </p>\n"
+"        "
+msgstr "\n"
+"            <h1>Redefinição concluída</h1>\n"
+"            <p>\n"
+"                Sua senha foi definida. Você pode prosseguir e\n entrar agora no app DrawQuest.\n"
+"            </p>"
+
+msgid ""
+"\n"
+"        <h1>Our Mission</h1>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>Why we built DrawQuest</strong>\n"
+"            <br><br>\n"
+"            Deep down, we're all creative people. Unfortunately, as Sir Ken "
+"Robinson <a href=\"http://www.ted.com/talks/"
+"ken_robinson_says_schools_kill_creativity.html\" target=\"_blank\">warns us</"
+"a>, society is \"educating people out of their creativity.\" In school, "
+"we're led to believe that creative pursuits won't lead to a job, while "
+"subjects like math and science will. So as we grow up, we grow out of our "
+"creative habits.\n"
+"            <br><br>\n"
+"            It doesn't have to be this way. We built DrawQuest to bring "
+"creative expression back into your daily life.\n"
+"        </p>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>But I'm not creative!</strong>\n"
+"            <br><br>\n"
+"            Creativity isn't a mystical gift passed on to some people and "
+"not others. Creativity is like brushing your teeth &mdash; it's a healthy "
+"habit you should make time for every day.\n"
+"            <br><br>\n"
+"            DrawQuest isn't about \"winning\" or becoming the next Picasso. "
+"DrawQuest is about re-learning to express yourself creatively and sticking "
+"with it. Everything about DrawQuest &mdash; from our simple drawing tools to "
+"the ability to star and play back drawings &mdash; was designed to foster a "
+"community of budding creators.\n"
+"            <br><br>\n"
+"            What are you waiting for? <a href=\"/download\" target=\"_blank"
+"\">Download</a> the app and come create with us!\n"
+"        </p>\n"
+"    "
+msgstr "\n"
+"        <h1>Nossa Missão</h1>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>Por que criamos o DrawQuest</strong>\n"
+"            <br><br>\n"
+"            No fundo, somos todos pessoas criativas. Infelizmente, como Sir Ken "
+"Robinson <a href=\"http://www.ted.com/talks/"
+"ken_robinson_says_schools_kill_creativity.html\" target=\"_blank\">nos adverte</"
+"a>, a sociedade está \"educando pessoas desprovidas de criatividade.\" Na escola, "
+"somos levados a acreditar que atividades criativas não nos darão um trabalho, enquanto matérias como matemática e ciências irão. Então, vamos crescendo sem hábitos criativos.\n"
+"            <br><br>\n"
+"            Isso não deve ser assim. Criamos o DrawQuest para trazer de volta a expressão da criatividade a nossa vida diária.\n"
+"        </p>\n"
+"        <p class=\"about_us\">\n"
+"            <strong>Mas eu não sou criativo!</strong>\n"
+"            <br><br>\n"
+"            Criatividade não é um dom místico transmitido a algumas pessoas e outras não. Criatividade é como escovar seus dentes &mdash; é um hábito saudável que você deve praticar todos os dias.\n "
+"<br><br>\n "
+"DrawQuest não é \"vencer\" ou se tornar o próximo Picasso. "
+"DrawQuest é reaprender a expressar-se com criatividade e dedicação. Tudo sobre o DrawQuest &mdash; desde as nossas simples ferramentas de desenhar até a habilidade de curtir e reproduzir desenhos &mdash; foi desenvolvido para criar uma comunidade de criadores potenciais.\n "
+"            <br><br>\n"
+"            O que você está esperando? <a href=\"/download\" target=\"_blank"
+"\">Baixe</a> o app e venha criar com a gente!\n"
+"        </p>"
+
+msgid ""
+"\n"
+"        <h1>Password reset</h1>\n"
+"        <p>\n"
+"            Forgotten your username or password? Enter your e-mail address "
+"and we'll send\n"
+"            you directions for how to reset your password.\n"
+"        </p>\n"
+"        <p>\n"
+"            This will be the email address you signed up with. (If you "
+"signed up with Facebook,\n"
+"            enter your the email address associated with your Facebook "
+"account.)\n"
+"        </p>\n"
+"        "
+msgstr "\n"
+"        <h1>Redefinição de senha</h1>\n"
+"        <p>\n"
+"            Esqueceu seu nome de usuário ou senha? Insira seu endereço de e-mail e enviaremos\n"
+"            a você orientações de como redefinir sua senha.\n"
+"        </p>\n"
+"        <p>\n"
+"            Este será o e-mail com o qual você se inscreveu. (Se você se inscreveu com o Facebook,\n"
+"            insira seu endereço de e-mail associado a sua conta do Facebook.)\n"
+"        </p>"
+
+#, python-format
+msgid "%(username)s completed a Quest on DrawQuest."
+msgstr "%(username)s terminou uma Quest no DrawQuest."
+
+#, python-format
+msgid "%(username)s's drawings on DrawQuest"
+msgstr "Os desenhos de %(username)s no DrawQuest"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Change my password"
+msgstr "Alterar minha senha"
+
+#, python-format
+msgid "Check out all of %(username)s's drawings on DrawQuest."
+msgstr "Confira todos os desenhos de %(username)s no DrawQuest."
+
+#, python-format
+msgid "Complete this Quest by %(username)s on DrawQuest."
+msgstr "Termine esta Quest de %(username)s no DrawQuest."
+
+msgid "Confirm password:"
+msgstr "Confirmar senha:"
+
+msgid "Contact"
+msgstr "Contato"
+
+msgid "DrawQuest - Daily Drawing Challenges"
+msgstr "DrawQuest - Desafios Diários De Desenhar"
+
+msgid "DrawQuest Support"
+msgstr "Suporte do DrawQuest"
+
+msgid "Drawings"
+msgstr "Desenhos"
+
+msgid "Email address:"
+msgstr "Endereço de e-mail:"
+
+msgid "Followers"
+msgstr "Seguidores"
+
+msgid "Following"
+msgstr "Seguindo"
+
+msgid "From the Quest:"
+msgstr "Da Quest:"
+
+msgid "Jobs"
+msgstr "Empregos"
+
+msgid "Meet the Team"
+msgstr "Conheça a Equipe"
+
+msgid "New password:"
+msgstr "Nova senha:"
+
+msgid "Our Mission"
+msgstr "Nossa Missão"
+
+msgid "Privacy Policy"
+msgstr "Política de Privacidade"
+
+msgid "Reset my password"
+msgstr "Redefinir minha senha"
+
+msgid "Someone invited you to complete a Quest on DrawQuest!"
+msgstr "Alguém convidou você para terminar uma Quest no DrawQuest!"
+
+msgid "Someone shared a drawing with you on DrawQuest!"
+msgstr "Alguém compartilhou um desenho com você no DrawQuest"
+
+msgid "Someone starred your drawing on DrawQuest!"
+msgstr "Alguém curtiu seu desenho no DrawQuest!"
+
+msgid "Submit"
+msgstr "Enviar"
+
+msgid "Terms of Service"
+msgstr "Termos de Serviço"
+
+msgid "Thank you for contacting us! We'll respond shortly."
+msgstr "Obrigado por entrar em contato conosco! Responderemos em breve."
+
+msgid "The issue you're experiencing"
+msgstr "O problema que você está enfrentando"
+
+msgid "There's a new version of DrawQuest available!"
+msgstr "Há uma nova versão do DrawQuest disponível!"
+
+#, python-format
+msgid "Watch %(username)s draw a Quest on DrawQuest."
+msgstr "Assista a %(username)s desenhar uma Quest no DrawQuest."
+
+msgid "Watch the drawing"
+msgstr "Assistir ao desenho"
+
+msgid "Your DrawQuest username"
+msgstr "Seu nome de usuário do DrawQuest"
+
+msgid "Your Email address"
+msgstr "Seu endereço de e-mail"
+
+msgid "invited you to draw their Quest"
+msgstr "convidou você para desenhar sua Quest"
+
+msgid "shared their drawing with you"
+msgstr "compartilhou seu desenho com você"
+

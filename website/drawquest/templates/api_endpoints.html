@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <script type="text/javascript">
+        if (!location.hash.length){
+
+        }
+        </script>
+        <style type="text/css">
+            .tab{
+              padding: 5px;
+              border: 1px solid #cccccc;
+              float: left;
+              margin: 5px 10px 5px 0px;
+              text-decoration: none;
+            }
+            .tab:visited{
+              text-decoration: none;
+              color: #000000;
+            }
+            .tab.selected{
+              color: #ffffff;
+              background: #cc0055;
+              border: 1px solid #000000;
+            }
+            
+            .admin{
+                border: 1px solid #c3c3c3;
+                margin: 5px 5px 20px 5px;
+                text-align: left;
+                background: #ffffdd;
+            }
+            .admin .script_name{
+                color: #0088dd;
+                font-weight: bold;
+                font-size: 1.1em; 
+                padding: 5px;
+            }
+            .admin .inputs{
+                padding: 5px;
+            }
+            .admin .input label{
+                width: 120px;
+                float: left;
+            }
+            .admin .input{
+                padding: 2px;
+            }
+            .admin input[type=text]{
+                width: 250px;
+            }
+            .tabs{
+             margin-top: 20px;
+            }
+            .pages{
+             overflow: hidden;
+            }
+            .pages .tab_page{
+
+            }
+            .documentation{
+             margin: 5px 15px;
+             color: #222222;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="main">
+
+        <ul>
+        {% for api in apis %}
+            {% for command in api.commands %}
+                <li>
+                    <strong>{{ command.url.split('/api')[1] }}</strong><br>
+                    <em>{{ ', '.join(command.args) }}</em>
+                </li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+        
+    </div>
+    </body>
+</html>
+

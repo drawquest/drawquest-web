@@ -1,0 +1,16 @@
+Dear {{ notification.recipient.username }},
+
+What an incredible week it's been! We launched DrawQuest just 12 days ago, hoping that the world shared our vision for bringing creativity back into our everyday lives. Since then, we've reached #1 in the App Store entertainment category and #6 in overall free apps. Most importantly, we've seen an incredible outpouring of creativity from drawers of all ages. We couldn't have done it without you.
+
+We're busy whacking bugs and working on new features, like making it easier to discover great drawings and other Questers. If you have any feedback or questions, please don't hesitate to contact us at feedback@example.com - we'd love to hear from you! 
+
+As a thank you for being one of our early members, we've added 25 coins to your profile. You can use coins to unlock additional colors - just tap "Unlock Colors" beneath the color wheel next time you start a Quest. Remember, you can earn coins by completing the Quest of the Day and by receiving stars on your drawings.
+
+Thanks again to our community for making this all possible. We can't wait to explore our future with you!
+
+- Team DrawQuest
+
+Keep in touch with us on:
+Facebook - http://www.facebook.com/
+Twitter - http://www.twitter.com/DrawQuest
+Tumblr - http://blog.example.com

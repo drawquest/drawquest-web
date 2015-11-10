@@ -1,0 +1,245 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ q.title }} | DrawQuest</title>
+    <style>
+        body {
+            font-family:Arial;
+            background-color:#fbfbfb;
+            padding:0;
+            margin:0;
+        }
+        #main {
+            padding:0 8px 0 8px;
+        }
+        .quest_title {
+            margin-bottom:4px;
+        }
+        .avatar_container {
+            display:inline-block;
+            margin:0 32px 0 0;
+            padding:0;
+            text-align:center;
+        }
+        .avatar_container li, .reply_container li {
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            font-size:80%;
+        }
+        .avatar {
+            max-height:60px;
+        }
+        .reply_container li.username_container {
+            font-size:70%;
+            margin-bottom:1px;
+        }
+        .image {
+            width:100%;
+        }
+        .image_container {
+            display:inline-block;
+            float:left;
+            width:360px;
+            padding:0;
+            margin:4px;
+
+            font-size:1.2em;
+        }
+        .reply_container img {
+            border:1px solid #b5b5b5;
+        }
+        .reply_count {
+            position:relative;
+            top:-1em;
+            font-size:80%;
+        }
+        .star_container, .date, .download {
+            display:inline-block;
+        }
+        .download a {
+            margin:0;
+        }
+        .star {
+            margin-left:2px;
+            color:rgb(252, 219, 85);
+        }
+
+        .drawing_wrapper {
+            position:relative;
+            margin-bottom:0.5em;
+            display:inline-block;
+        }
+        .drawing_wrapper > a {
+            display:inline-block;
+        }
+
+        .drawing {
+            width:270px;
+            height:202px;
+
+            position:relative;
+            border:1px;
+            background-position:center center;
+            background-size:100%;
+            background-color:#fff;
+            background-repeat:no-repeat;
+            box-sizing:content-box;
+        }
+        @media only screen and (min-width:500px) {
+            .drawing {
+                width:550px;
+                height:412px;
+            }
+        }
+        /* For medium desktop screens */
+        @media only screen and (min-width:700px) {
+            .drawing {
+                width:700px;
+                height:525px;
+            }
+        }
+        /* For larger desktop screens */
+        @media only screen and (min-width:1100px) {
+            .drawing {
+                width:800px;
+                height:600px;
+            }
+        }
+        /* For very large desktop screens */
+        @media only screen and (min-width:1700px) {
+            .drawing {
+                width:1024px;
+                height:768px;
+            }
+        }
+        .lazy {
+            display:none;
+        }
+        .drawing {
+            background-image:url({{ q.url }});
+        }
+        .stats .date, .stats .download {
+            vertical-align:top;
+            display:inline-block;
+            margin-top:12px;
+            margin-right:16px;
+            font-size:107%;
+            height:1.5em;
+        }
+        #bar {
+            width:100%;
+            box-sizing:border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            background-color:#67ceda;
+            color:white;
+            padding:6px 8px;
+        }
+        a {
+            color:#67ceda;
+        }
+        a:visited {
+            color:#52a4ae;
+        }
+        #bar .title {
+            font-weight:bold;
+            color:white;
+            position:relative;
+            top:2px;
+            left:2px;
+        }
+        .favicon, .favicon img {
+            display:inline-block;
+            width:20px;
+            height:20px;
+            vertical-align:middle;
+        }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/000exporter/jquery.lazyload.js"></script>
+
+    <script type"text/javascript">
+        $(function () {
+            $("img.lazy").show().lazyload({
+                effect: "fadeIn"
+            });
+        });
+    </script>
+</head>
+<body>
+
+<header id="bar">
+    <a href="/" class="favicon"><img src="/favicon.ico"></a> <a href="/" class="title">DrawQuest Archive</a>
+</header>
+
+<section id="main">
+<p>
+<strong><a href="../">&#8617; Back to {{ user.username }}'s DrawQuest profile</a></strong>
+</p>
+
+<h2 class="quest_title">{{ q.title }}</h2>
+
+{% if q.url %}
+<div class="drawing_wrapper">
+    <a href="{{ q.url }}">
+        <div class="ugc_img drawing">
+        </div>
+    </a>
+</div>
+{% endif %}
+
+<div class="stats">
+    {% if avatar_url %}
+        <ul class="avatar_container">
+            <li><a href="../"><img class="avatar" src="{{ avatar_url }}"></a></li>
+            <li><a href="../">{{ user.username }}</a></li>
+        </ul>
+    {% endif %}
+    
+    {#<div class="reply_container">
+        {{ d.reply_count }}<span class="star">&#9734;</span>
+    </div>#}
+
+    <div class="date">
+        {{ q.date }}
+    </div>
+
+    {% if q.url %}
+    <div class="download">
+        <a href="{{ q.url }}" download class="download">Download</a>
+    </div>
+    {% endif %}
+
+</div>
+
+<h2>Top Drawings in Quest</h2>
+
+<div class="reply_count">
+<em>{{ q.reply_count }} {% if q.reply_count == 0 or q.reply_count > 1 %}drawings{% else %}drawing{%endif%}</em>
+</div>
+
+<div class="top_replies">
+    {% for d in top_replies %}
+        <ul class="reply_container image_container">
+            <li>
+                <a href="{{ d.detail_url }}">{%- if loop.index < 30 %}
+                        <img class="image" src="{{ d.url }}">
+                    {% else %}
+                        <img class="image lazy" data-original="{{ d.url }}" src="/000exporter/grey.gif">
+                    {% endif %}</a>
+            </li>
+            <li class="username_container">
+                <a href="/{{ d.author_username }}">{{ d.author_username }}</a>
+            </li>
+            <li>
+                <a href="{{ d.detail_url }}">View</a> &#183; <a href="{{ d.url }}" download class="download">Download</a>{% if d.star_count %} &#183; {{ d.star_count }}<span class="star">&#9733;</span>{% endif %}
+            </li>
+        </ul>
+    {% endfor %}
+</div>
+
+</section>
+</body>
+</html>

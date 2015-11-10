@@ -1,0 +1,164 @@
+{% extends "base.django.html" %}
+{% load canvas_tags %}
+{% block title %} | Code of Conduct{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/legal.css">
+{% endblock %}
+
+{% block content %}
+<h1>Canvas Code of Conduct</h1>
+<hr>
+<p>
+    Canvas is a place to share and play with images. Whether you're posting a new image, replying to a post with a comment,
+    remix or sticker, you are participating in the Canvas community and shaping what it becomes.
+</p>
+<p>
+    Our goal is to create safe, fun environments for creativity. Anyone can create their own group on Canvas and decide for
+    themselves what's considered on-topic or appropriate for their group, however all groups and all posts on Canvas must also
+    abide by the Code of Conduct.
+</p>
+<p>
+    <strong>Please take these rules seriously and flag any inappropriate content you see.</strong> Violations will be removed
+    along with any replies; other more borderline content may be made less prominent. Repeat or egregious offenders will have
+    their accounts deactivated.
+</p>
+<div class="code_navigation">
+    <span><a onClick="canvas.scrollToAndHighlight($('a[name=sfw]'), true, true);">Keep it safe for work</a></span> |
+    <span><a onClick="canvas.scrollToAndHighlight($('a[name=mean]'), true, true);">Don't be mean</a></span> |
+    <span><a onClick="canvas.scrollToAndHighlight($('a[name=ontopic]'), true, true);">Stay on topic</a></span>
+</div>
+<section>
+    <h2><a name="sfw">Keep it "safe for work"</a></h2>
+    <p>
+        Everyone's workplace differs, what we really mean is to keep things clean enough that most people wouldn't be embarrassed
+        to be caught looking at it at work or with their family. Does it <em>seem</em> dirty? Does it <em>appear</em> disturbing?
+    </p>
+    <ul>
+        <li>
+            <span>No sexually provocative content</span>
+            <ul>
+                <li>Nudity or partial nudity is not allowed, even in drawings.</li>
+                <li>Do not draw breasts or genitals, even non-sexually.</li>
+                <li>Anything less than normal street clothes is not allowed if the purpose of the image is to be provocative.</li>
+                <li>Do not post images depicting sex acts. Even if it's only touching or the activity is fake or implied, if the act or the image has a sexual purpose it still isn't okay.</li>
+                <li>Do not post anything sexually inappropriate or sexualize images of people, particularly if the image involves a minor. This includes anything that creates a focus on breasts or genitals, such as arrows or stamps.</li>
+            </ul>
+        </li>
+        <li>
+            <span>No violent, gross or disturbing content</span>
+            <p>
+                There are lots of places on the Internet to see gory accidents, injuries and other shocking content, but
+                Canvas isn't one of them. Even historical photos or content that is in the news may not be appropriate for Canvas.
+            </p>
+        </li>
+    </ul>
+</section>
+<section>
+    <h2><a name="mean">Don't be mean</a></h2>
+    <p>
+        Canvas is a creative community, everyone is encouraged to try new things and take creative risks. If you're
+        feeling shy, you can even post anonymously. However, it's not okay to be mean to people. Think twice before
+        posting something if you wouldn't say it in person.
+    </p>
+    <ul>
+        <li>
+            <span>Be supportive</span>
+            <p>
+                If you think something is lame or over-hyped, you can down-vote it, but <strong>it's not okay to be rude or
+                insulting.</strong> Don't single out other users for ridicule and don't harass, intimidate, threaten, bully,
+                troll or otherwise be a jerk on Canvas.
+            </p>
+        </li>
+        <li>
+            <span>No hate speech or intolerance</span>
+            <p>
+                It is completely unacceptable to attack or demean a person or group of people based on race, religion,
+                nationality, gender, sexual orientation or disability. This includes labels and jokes that use slurs
+                or offensive stereotypes. 
+            </p>
+        </li>
+        <li>
+            <span>Respect the privacy and safety of others</span>
+            <p>
+                Do not post pictures of people against their wishes. Revealing personally identifying information about
+                someone else, such as their name, address, email address or phone number is strictly prohibited.
+                Behavior that endangers the safety and integrity of the Canvas community or is in any way malicious
+                may result in permanent banning.
+            </p>
+        </li>
+    </ul>
+</section>
+<section>
+    <h2><a name="ontopic">Stay on topic and contribute to the community</a></h2>
+    <p>
+        Canvas is what you make of it. Be engaged, make cool stuff and help us keep things tidy.
+    </p>
+    <ul>
+        <li>
+            <span>Flag inappropriate posts</span>
+            <p>
+                If you see something that violates the Code of Conduct, don't sticker, remix or reply to it,
+                please flag it so that it can be reviewed.
+            </p>
+        </li>
+        <li>
+            <span>Don't ask for stickers</span>
+            <p>
+                Earn stickers by making things people like. Don't directly ask for stickers or post polls asking
+                for people to vote with stickers.
+            </p>
+        </li>
+        <li>
+            <span>Stay on-topic</span>
+            <p>
+                Each group has its own topic and rules and anyone can create their own group, make sure what
+                you're posting is appropriate for the group it's in.
+            </p>
+        </li>
+        <li>
+            <span>Don't spam</span>
+            <p>
+                Don't post the same or similar images to various threads or groups.
+            </p>
+        </li>
+        <li>
+            <span>Don't post inappropriate links</span>
+            <p>
+                This includes misleading links or links to content which violates this code of conduct.
+            </p>
+        </li>
+        <li>
+            <span>Respect copyright</span>
+            <p>
+                Do not post infringing materials.
+            </p>
+        </li>
+        <li>
+            <span>Don't encourage violations</span>
+            <p>
+                Be careful not to encourage or entice other users to violate the Code of Conduct.
+            </p>
+        </li>
+        <li>
+            <span>Be yourself</span>
+            <p>
+                Never impersonate Canvas staff, moderators or other users.
+            </p>
+        </li>
+        <li>
+            <span>One account per user</span>
+            <p>
+                We ask that each user only create one Canvas account.
+            </p>
+        </li>
+    </ul>
+</section>
+<p>
+    Thanks for reading the Code of Conduct. Canvas is constantly growing and changing and these rules
+    will continue to evolve along with it, any <a href="mailto:support@example.com">feedback</a> is appreciated.
+</p>
+<p>
+    -The Canvas Team
+</p>
+{% block coc_footer %}{% endblock %}
+{% endblock %}

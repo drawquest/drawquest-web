@@ -1,0 +1,48 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+<style>
+li {
+    list-style-type:none;
+    display:inline;
+    margin:4px;
+}
+.drawing {
+    display:inline-block;
+    margin-bottom:15px;
+}
+.drawing.tall {
+    background-color:lightgreen;
+}
+.drawing.middle {
+    background-color:lightblue;
+}
+.drawing.bottom {
+    background-color:red;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>Explore</h1>
+<p>
+Red means the user has fewer than 15 followers, blue means fewer than 50 followers, green means fewer than 200 followers.
+</p>
+
+<ul>
+    {% for comment in comments %}
+        {% set author=User.objects.get(id=comment.user.id) %}
+        <li>
+            <div class="drawing {{ "bottom" if author.userinfo.follower_count < 15 }} {{ "middle" if 15 < author.userinfo.follower_count < 50 }} {{ "tall" if 50 < author.userinfo.follower_count < 200 }}">
+                <div><a href="https://example.com{{ comment.share_page_url }}"><img src="{{ comment.content.get_absolute_url_for_image_type("archive") }}"></a></div>
+                <div class="metadata">{{ author.userinfo.follower_count }} followers</div>
+                <div class="metadata">{{ comment.star_count }} stars</div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

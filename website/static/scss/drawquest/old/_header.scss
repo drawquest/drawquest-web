@@ -1,0 +1,64 @@
+#header {
+    .fixed_width_wrapper {
+        padding:10px;
+        @include clearfix();
+    }
+
+    .app_icon {
+        float:left;
+        width:40px;
+        height:40px;
+        margin-right:1.25em;
+        border:none;
+        background:white;
+        background:url(/static/img/drawquest/app_icon_60.png);
+        background-size:100% 100%;
+        @include border-radius(5px);
+        @include box-shadow(0 0 1px 1px $_color_dark_brown);
+    }
+
+    .logo {
+        float:left;
+        width:220px;
+    }
+
+    a.app_store_link {
+        float:right;
+    }
+
+    .app_icon,
+    a,
+    img {
+        display:block;
+    }
+}
+
+@media
+only screen and (max-width:320px) and (orientation:portrait),
+only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:portrait),
+only screen and (-webkit-min-device-pixel-ratio:1.5) and (orientation:portrait),
+only screen and (min-device-pixel-ratio:1.5) and (orientation:portrait),
+only screen and (max-width:999px)
+{
+    #header {
+        height:auto;
+        
+        .fixed_width_wrapper {
+            padding:5px;
+        }
+
+        .logo {
+            width:150px;
+        }
+
+        .app_icon {
+            width:25px;
+            height:25px;
+        }
+
+        a.app_store_link img {
+            position:relative;
+            height:30px;
+        }
+    }
+}

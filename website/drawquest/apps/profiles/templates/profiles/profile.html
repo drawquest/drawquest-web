@@ -1,0 +1,201 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block title %}- {{ target_user.username }}{% endblock %}
+
+{% block extra_meta %}
+    {# This needs to go up here #}
+    <script src="/static/js/viewport_orientation_fix.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/profile.css">
+{% endblock %}
+
+{% block smart_app_banner %}
+  <meta name="apple-itunes-app" content="app-id={{ app_store_id() }}, app-argument=drawquest://profile/{{ target_user.username }}">
+{% endblock %}
+
+{% block fb_metadata %}
+    <meta property="og:title" content="{{ target_user.username }}">
+    <meta property="og:description" content="{% trans username=target_user.username %}{{ username }}'s drawings on DrawQuest{% endtrans %}">
+    <meta property="og:image" content="{{ target_user.details().web_avatar_url }}">
+    <meta property="og:type" content="drawquest:profile">
+    <meta property="og:site_name" content="DrawQuest">
+    <meta property="fb:app_id" content="{{ fb_app_id }}">
+    <link rel="image_src" href="{{ target_user.details().web_avatar_url }}">
+{% endblock %}
+
+{% block twitter_card %}
+    <meta name="twitter:site" content="@DrawQuest">
+    <meta name="twitter:title" content="{% trans username=target_user.username %}{{ username }}'s drawings on DrawQuest{% endtrans %}">
+    {% if top_comments %}
+        <meta name="twitter:card" content="gallery">
+        <meta name="twitter:description" content="Continue through for more great drawings by {{ target_user.username }}.">
+        {% for comment in top_comments %}
+            {% if loop.index0 < 4 %}
+                <meta name="twitter:image{{ loop.index0 }}" content="{{ comment.content.archive.url }}">
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <meta name="twitter:card" content="photo">
+        <meta name="twitter:description" content="{% trans username=target_user.username %}Check out all of {{ username }}'s drawings on DrawQuest.{% endtrans %}">
+        <meta name="twitter:image" content="{{ target_user.details().web_avatar_url }}">
+        <meta name="twitter:url" content="http://example.com/{{ target_user.username }}">
+    {% endif %}
+    <meta name="twitter:app:url:ipad" content="drawquest://profile/{{ target_user.username }}"/>
+{% endblock %}
+
+{% block extra_javascript %}
+    <!--<script src="/static/js/request_animation_polyfill.js"></script>-->
+    <!--<script src="/static/js/drawquest/profile.js"></script>-->
+    <script src="/static/js/drawquest/sharing.js"></script>
+    <script>
+        $(function() {
+            // Sharing
+            $(function() {
+                $('a.social').on('click', function() {
+                    var share_type = $(this).attr("class").split(/\s+/);
+                    share_type = share_type[share_type.length - 1];
+                    var title = "Check out {{ target_user.username }}'s profile on DrawQuest:";
+                    var img_url = "{{ target_user.details().web_avatar_url }}";
+                    window.share(share_type, window.document.location.href, title, img_url);
+                });
+            });
+
+            // Go through and set image heights based on width.
+            var hardcode_image_heights = function() {
+                var ratio = 3/4;
+                var width = $($("ul.drawings img")[0]).width();
+                var height = width * ratio;
+                $("ul.drawings img").css("height", height);
+            };
+            $(window).on("resize", hardcode_image_heights);
+            hardcode_image_heights();
+
+            // Unload img src of things off screen
+            (function() {
+                var images = $("ul.drawings img");
+                var items = [];
+                var window_top = 0;
+                var window_bottom = 0;
+                var top_threshold = 0;
+                var bottom_threshold = 1000;
+
+                var on_resize = function() {
+                    window_top = $(window).scrollTop();
+                    window_bottom = window_top + $(window).height();
+
+                    items = [];
+                    images.each(function(index, element) {
+                        var node = $(element);
+                        var item = {
+                            element : element,
+                            top     : node.offset().top,
+                            height  : node.outerHeight()
+                        };
+                        items.push(item);
+                    });
+                };
+
+                var on_scroll = function() {
+                    window_top = $(window).scrollTop();
+                    window_bottom = window_top + $(window).height();
+
+                    for (var i = 0; i < items.length; i++) {
+                        var blank_img_src = "http://example.com/static/img/0.gif";
+                        var item = items[i];
+                        var bottom = item.top + item.height + top_threshold; // bottom of image
+                        var top = item.top - bottom_threshold; // top of image
+                        if (item.element.src != blank_img_src && (bottom < window_top || top > window_bottom)) {
+                            item.element.src = blank_img_src;
+                        } else if (bottom > window_top && top < window_bottom) {
+                            item.element.src = item.element.getAttribute("data-original");
+                        }
+                    }
+                };
+
+                on_resize();
+                on_scroll();
+                $(window).on("resize", on_resize);
+                $(window).on("scroll", on_scroll);
+            })();
+        });
+    </script>
+{% endblock %}
+
+{% block body_header_content %}
+    <span class="username">
+        {{ target_user.username }}
+    </span>
+{% endblock %}
+
+{% block body %}
+    <!--
+    <div class="fixed_width_wrapper {% if not top_comments %}no_slideshow{% endif %}">
+        <section class="banner">
+            <header>
+                <a href="/" class="logo">
+                    <img src="/static/img/drawquest/app_icon_30@2x.png">
+                    <img src="/static/img/drawquest/logo_medium.png">
+                </a>
+                {% block app_store_link %}
+                    <a href="/download" class="app_store_link">
+                        <img src="/static/img/drawquest/promotion/apple_app_store@2x.png">
+                    </a>
+                {% endblock %}
+            </header>
+            {% if top_comments %}
+                <div class="slideshow">
+                    <ul>
+                        {% for comment in top_comments %}
+                            <li><img src="{{ comment.content.gallery.url }}"></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+    -->
+    <section class="body">
+        <header>
+            <div class="avatar" style="background-image:url({{ target_user.details().web_avatar_url }});"></div>
+            <div class="info">
+                <ul>
+                    <li>
+                        {{ _("Followers") }}
+                        <strong>{{ follower_count }}</strong>
+                    </li>
+                    <li>
+                        {{ _("Following") }}
+                        <strong>{{ following_count }}</strong>
+                    </li>
+                    <li>
+                        {{ _("Drawings") }}
+                        <strong>{{ target_user.comment_count(viewer=user) }}</strong>
+                    </li>
+                </ul>
+                <div class="share">
+                    <a class="social twitter"><img src="/static/img/drawquest/share_twitter_white@2x.png" width="32" height="32"></a>
+                    <a class="social facebook"><img src="/static/img/drawquest/share_facebook_white@2x.png" width="32" height="32"></a>
+                    <a class="social tumblr"><img src="/static/img/drawquest/share_tumblr_white@2x.png" width="32" height="32"></a>
+                </div>
+            </div>
+        </header>
+
+        {% if comments %}
+            <ul class="drawings">
+                {% for comment in comments %}
+                    <li>
+                        <a href="{{ comment.share_page_url }}">
+                            <div class="drawing_wrapper">
+                                <img class="lazy" data-original="{{ comment.content.archive.url }}" src="">
+                            </div>
+                            <p>{{ comment.quest_title }}</p>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </section>
+{% endblock %}
+

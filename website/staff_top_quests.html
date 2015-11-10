@@ -1,0 +1,13 @@
+{% extends "staff/comments_grid.html" %}
+
+{% block body %}
+<ul>
+    {% for comment in comments %}
+        <li>
+            <a href="https://example.com{{ comment.get_share_page_url() }}"><img src="{{ comment.details().content.get_absolute_url_for_image_type("archive") }}"></a><br>
+            {{ get_quest_score(comment) }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

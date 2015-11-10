@@ -1,0 +1,45 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/whitelisting.css">
+{% endblock %}
+
+{% block extra_javascript %}
+    <script src="/static/js/drawquest/whitelisting.js"></script>
+    <script src="/static/lib/keypress-1.0.2.js"></script>
+{% endblock %}
+
+{% block body_class %}
+    {{ body_class }}
+{% endblock %}
+
+{% block body %}
+    {% block nav %}
+        <nav>
+            <a class="active">Moderation</a>
+            |
+            <a href="/admin/staff/moderation/new">Newest</a>
+            |
+            <a href="/admin/staff/moderation/distrusted">Distrusted</a>
+        </nav>
+    {% endblock %}
+
+    {% block unjudged_count %}
+        <p>{{ flagged_count }} flagged</p>
+        <p>{{ trusted_user_count }} trusted users</p>
+    {% endblock %}
+
+    {% block mode_toggle %}
+        <div id="auto_curate_toggle_container">
+            <button id="auto_curate_toggle" data-auto_curate_enabled="{{ auto_curate_enabled|to_json }}">{{ "Disable Auto-Curate" if auto_curate_enabled else "Enable Auto-Curate" }}</button>
+        </div>
+    {% endblock %}
+
+    <ul>
+        {% include "whitelisting/whitelist_items.html" %}
+    </ul>
+{% endblock %}
+
+{% block fb %}{% endblock %}
+{% block ga %}{% endblock %}
+

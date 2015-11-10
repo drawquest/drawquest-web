@@ -1,0 +1,2 @@
+{% trans username=notification.actor.username, url=notification.comment_sticker.comment.get_share_page_url %}{{ username }} starred your drawing on DrawQuest. You can view your drawing here: {{ url }}{% endtrans %}
+

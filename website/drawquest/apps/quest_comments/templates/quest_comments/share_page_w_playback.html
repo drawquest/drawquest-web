@@ -1,0 +1,226 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block title %}- {{ quest.title }}{% endblock %}
+
+{% set original_img_url_mobile = quest.reply_content.get_absolute_url_for_image_type("gallery") %}
+{% set original_img_url_small = quest.reply_content.get_absolute_url_for_image_type("gallery") %}
+{% set original_img_url_large = quest.reply_content.get_absolute_url_for_image_type("gallery") %}
+{% set original_img_url_giant = quest.reply_content.get_absolute_url_for_image_type("gallery") %}
+{% set original_img_url_original = quest.reply_content.get_absolute_url_for_image_type("original") %}
+
+{% set img_url_mobile = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_small = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_large = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_giant = comment.content.get_absolute_url_for_image_type("gallery") %}
+{% set img_url_original = comment.content.get_absolute_url_for_image_type("original") %}
+
+{% block smart_app_banner %}
+  <meta name="apple-itunes-app" content="app-id={{ app_store_id() }}, app-argument=drawquest://quest/{{ quest.id }}/drawing/{{ comment.id }}">
+{% endblock %}
+
+{% block twitter_card %}
+    <meta name="twitter:site" content="@DrawQuest">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:title" content="{{ quest.title }}">
+    <meta name="twitter:description" content="Watch {{ comment.user.username }} draw a quest on DrawQuest.">
+    <meta name="twitter:image" content="{{ comment.content.get_absolute_url_for_image_type('gallery') }}">
+    <meta name="twitter:image:width" content="{{ comment.reply_content._d['gallery']['width'] }}">
+    <meta name="twitter:image:height" content="{{ comment.reply_content._d['gallery']['height'] }}">
+    <meta name="twitter:url" content="http://example.com{{ get_share_page_url(comment) }}">
+    <meta name="twitter:app:url:ipad" content="drawquest://quest/{{ quest.id }}/drawing/{{ comment.id }}"/>
+{% endblock %}
+
+{% block extra_javascript %}
+<script src="/static/lib/kinetic-v4.3.3.min.js"></script>
+<script src="/static/js/drawquest/sharing.js"></script>
+<script src="/static/js/drawquest/playback.js"></script>
+<script>
+    (function() {
+        // Drawing animation
+        if ($('html').hasClass("lt-ie9")) {
+            // Assume this drawing animation won't work in IE 8 or lower
+            $('.play_animation').hide();
+        } else {
+            // Start loading animation on load
+            // play on click
+            var playback_deferred;
+            var deferred_data;
+            $(window).load(function() {
+                window.begin_loading_playback_data({{ comment.id }});
+            });
+            $('.play_animation').on('click', function() {
+                var button = $(this);
+                button.attr("disabled", true);
+                button.addClass("loading");
+                window.begin_drawing_playback({{ comment.id }}, function(has_playback_data) {
+                    // Playback data loaded
+                    button.removeClass("loading");
+                    if (!has_playback_data) {
+                        var message = $('.no_animation_message');
+                        message.show()
+                        setTimeout(function() {
+                            message.fadeOut();
+                        }, 1500);
+                    }
+                    button.hide();
+                }, function() {
+                    // Drawing complete
+                    //button.show();
+                });
+            });
+        }
+
+        // Sharing
+        $(function() {
+            $('button.share').on('click', function() {
+                var share_type = $(this).attr("class").split(/\s+/);
+                share_type = share_type[share_type.length - 1];
+                var quest_title = "{{ quest.title|safe }}";
+                var img_url = "{{ img_url_original }}";
+                window.share(share_type, window.document.location.href, quest_title, img_url);
+            });
+        });
+
+        // Temporary Front-end solution for long titles
+        var title = $('.quest_bar h1 span');
+        var full_title = title.text();
+        var cutoff = 35;
+        if (full_title.length > cutoff) {
+            /*
+            // Truncation
+            var truncated_title = full_title.substr(0, cutoff);
+            truncated_title += "...";
+            title.text(truncated_title);
+            */
+            // Temporary resize
+            $('.quest_bar h1').css("font-size", "2.5em");
+        }
+    }());
+</script>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/share_page_031513.css">
+    <style>
+        /* Response image CSS, needs to be in template */
+        .drawing {
+            background-image:url({{ img_url_small }});
+        }
+        .drawing:before {
+            background-image:url({{ original_img_url_small }});
+        }
+        @media
+        only screen and (max-width:320px) and (orientation:portrait),
+        only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:portrait),
+        only screen and (-webkit-min-device-pixel-ratio:1.5) and (orientation:portrait),
+        only screen and (min-device-pixel-ratio:1.5) and (orientation:portrait),
+        only screen and (max-width:400px),
+        {
+            .drawing {
+                background-image:url({{ img_url_mobile }});
+            }
+            .drawing:before {
+                background-image:url({{ original_img_url_mobile }});
+            }
+        }
+        @media only screen and (min-width:1000px) {
+            .drawing {
+                background-image:url({{ img_url_small }});
+            }
+            .drawing:before {
+                background-image:url({{ original_img_url_small }});
+            }
+        }
+        @media only screen and (min-width:1300px) {
+            .drawing {
+                background-image:url({{ img_url_large }});
+            }
+            .drawing:before {
+                background-image:url({{ original_img_url_large }});
+            }
+        }
+        @media only screen and (min-width:1700px) {
+            .drawing {
+                background-image:url({{ img_url_giant }});
+            }
+            .drawing:before {
+                background-image:url({{ original_img_url_giant }});
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block fb_metadata %}
+    <meta property="og:title" content="{{ quest.title }}">
+    <meta property="og:description" content="{{ comment.user.username }} completed a quest on DrawQuest.">
+    <meta property="og:image" content="{{ img_url_original }}">
+    <meta property="og:type" content="{{ fb_namespace }}:quest">
+    <meta property="og:site_name" content="DrawQuest">
+    <meta property="article:published_time" content="{{ iso_8601(comment.timestamp) }}">
+    <meta property="fb:app_id" content="{{ fb_app_id }}">
+    <link rel="image_src" href="{{ img_url_original }}" />
+{% endblock %}
+
+{% block body %}
+    <div class="bg_gradient"></div>
+    <header class="quest_bar dq_header">
+        <div class="fixed_width_wrapper">
+            <a href="{{ app_store_link() }}" class="app_store_link">
+                <img src="/static/img/drawquest/promotion/apple_app_store.png">
+            </a>
+            <h1 class="no_outline"><span class="ugc_text"> {{ quest.title }}</span></h1>
+        </div>
+    </header>
+    <div class="fixed_width_wrapper">
+        <div class="main">
+            <div class="drawing_wrapper">
+                <a href="{{ img_url_original }}">
+                    <div class="ugc_img drawing">
+                        <canvas id="playback_drawing" width="1024" height="768"></canvas>
+                        <canvas id="playback_stroke" width="1024" height="768"></canvas>
+                    </div>
+                </a>
+                <div class="play_animation"></div>
+                <p class="no_animation_message">
+                    Sorry, this drawing doesn't have playback data.
+                </p>
+            </div>
+            <div class="drawing_info">
+                <div class="user">
+                    <div class="avatar">
+                        {% if not private_profile %}<a href="//example.com/{{ comment.user.username }}">{% endif %}<img src="{{ author.web_avatar_url }}">{% if not private_profile %}</a>{% endif %}
+                    </div>
+                    <img src="/static/img/drawquest/share_pencil.png">
+                    <p>
+                    <strong>{% if not private_profile %}<a href="//example.com/{{ comment.user.username }}">{% endif %}{{ comment.user.username }}{% if not private_profile %}</a>{% endif %}</strong> drew this
+                        <br>
+                        {{ comment.star_count }} <img title="Starred" class="icon" src="/static/img/drawquest/share_star.png">
+                        {{ comment.playback_count }} <img title="Plays" class="icon" src="/static/img/drawquest/share_play.png">
+                    </p>
+                </div>
+                <div class="social">
+                    <button class="share facebook"></button>
+                    <button class="share twitter"></button>
+                    <button class="share tumblr"></button>
+                </div>
+            </div>
+        </div>
+        <div class="marketing">
+            <a href="/"><img class="logo" src="/static/img/drawquest/logo_share_page.png"></a>
+            <p class="about">
+                <a href="/"><img src="/static/img/drawquest/app_icon_125.png"></a>
+                DrawQuest is a free drawing community exclusively for iPad.
+                Every day, people come together on DrawQuest to draw the Quest
+                of the Day.
+            </p>
+            <a href="{{ app_store_link() }}">
+                <button class="cta">
+                    <img src="/static/img/drawquest/apple_icon_shadowed.png">&nbsp;
+                    Download the App
+                    &nbsp;<img src="/static/img/drawquest/button_arrow_shadowed.png">
+                </button>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+

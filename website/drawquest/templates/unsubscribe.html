@@ -1,0 +1,59 @@
+{% extends "drawquest/dqbase.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/drawquest/unsubscribe.css"/>
+{% endblock %}
+
+{% block extra_javascript %}
+<script>
+    $(function() {
+        {% if action != "ALL" %}
+            $('a.more_settings').on("click", function() {
+                $(this).css('color', 'gray');
+                $('a.unsub_all_link').show();
+            });
+        {% endif %}
+    });
+</script>
+{% endblock %}
+
+{% block body %}
+    <section class="main">
+        <div class="fixed_width_wrapper">
+            <div id="unsubscribe_feedback">
+                {% if unsubscribed %}
+                    <h1 class="success">
+                        Your subscription settings have been succesfully saved!
+                    </h1>
+                    <p>
+                        {% if action == "first_starred" %}
+                            You have been unsubscribed from star emails.
+                        {% else %}{% if action == "ALL" %}
+                            You have been unsubscribed from all emails.
+                        {% else %}{% if action == "newsletter" %}
+                            You have been unsubscribed from announcement emails.
+                        {% endif %}{% endif %}{% endif %}
+                    </p>
+                    {% if action != "ALL" %}
+                        <p>
+                            <a href="#" class="more_settings">Further manage your email settings</a>
+                        </p>
+                        <p>
+                            <a href="{{ unsubscribe_all_link }}" class="unsub_all_link" style="display:none;">Unsubscribe from all emails from DrawQuest</a>
+                        </p>
+                    {% endif %}
+                {% else %}
+                    <h1>Something went wrong</h1>
+                    <p>
+                    Invalid e-mail token "{{ token }}" for email "{{ email }}" {% if unsubscribing_user %} or user "{{ unsubscribing_user.username }}"{% endif %}, or user with email not found.
+                        Please contact <a href="mailto:support@example.com">support@example.com</a> to unsubscribe.
+                    </p>
+                {% endif %}
+            </div>
+            {% block email_settings_snippet %}{% endblock %}
+
+            {% block user %}{% endblock %}
+        </div>
+    </section>
+{% endblock %}
+
